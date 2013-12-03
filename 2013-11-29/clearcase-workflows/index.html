@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="ClearCase标准的工作流程" />
+
+    <title>ClearCase Workflows - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>ClearCase Workflows</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/工具技师.html">工具技师</a>
+  
+  <a href="/archive/clearcase.html">ClearCase</a>
+  
+</div>
+<div id="article">
+  <h1>Process Model</h1>
+
+<p>There are two process models that have been implemented on top of ClearCase and ClearQuest: Base and UCM (Unified Change Management), and UCM is recommended in State Street Corporation.</p>
+
+<p>Base ClearCase, as implement of the second generation theory of configuration management solution, can only deal with Files and Directories. It uses branch and view to support parallel development, and tag a label for each release.</p>
+
+<p>UCM ClearCase, as implement of the third generation theory of SCM solution, bring in some new concepts, activity, change set, baseline, stream etc. It manages change set and activity rather than files.</p>
+
+<table class="content-table"><thead>
+<tr>
+<th>Base</th>
+<th>UCM</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Base View</td>
+<td>UCM View</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Component</td>
+</tr>
+<tr>
+<td>Branch</td>
+<td>Stream</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Activity</td>
+</tr>
+<tr>
+<td>Label</td>
+<td>Baseline</td>
+</tr>
+<tr>
+<td>Element</td>
+<td>Element</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Change Set</td>
+</tr>
+</tbody></table>
+
+<p>Brief concept for UCM:</p>
+
+<ol>
+<li>VOB (Version Object Base): is a data repository that holds the files, directories, and any objects that collectively represent a product or a development effort.
+
+<ul>
+<li>Project VOB: keeps the metadata of VOB. Like projects, stream, baseline, activity, change set etc.</li>
+<li>Components VOB: is a group of related directory and file elements, which are developed, integrated, and released together. </li>
+</ul></li>
+<li>Stream: is private work area of developers. It contains a set of baselines, uses to instead branch. Developers can create a development stream base on a baseline for whole project, while branch can only create a branch for single file.</li>
+<li>Baseline: represents a version of one or more components. It contains a set of activities. To instead label in base.</li>
+<li>Activity: records a set of files that a developer creates or modifies to complete a development task, such as fixing a bug.</li>
+<li>Change Set: is a set of files associated with an activity.</li>
+<li>Element: is a file or directory. An element contains one or more versions.</li>
+</ol>
+
+<h1>UCM Workflows</h1>
+
+<p>In a UCM project, work typically progresses as follows:</p>
+
+<ol>
+<li><p>ClearCase administrators create the VOBs. </p>
+
+<p>ClearCase Administrators create the VOBs that will contain all the files and directories that represent the development effort, such as a new product release.</p></li>
+<li><p>Project managers create the UCM project. </p>
+
+<p>Project manager create a UCM project and identify an initial set of components as a starting point (the baseline based on).</p></li>
+<li><p>Developers join the UCM project.</p>
+
+<p>Developers join the project by creating their private work areas and populating them with the contents of the project&#39;s baselines.</p></li>
+<li><p>Development is ongoing. </p>
+
+<p>Developers create, or are assigned, activities, and work on one activity at a time.</p></li>
+<li><p>Developers deliver work to the shared work area. </p>
+
+<p>When developers complete activities, they build and test their work in their private work areas (Development Stream). When developers create a successful software build in their private work area, they share their work with the project team by performing deliver operations. A deliver operation merges the work from the developer&#39;s private work area to the project&#39;s shared work area (Integration Stream).</p></li>
+<li><p>Release engineering builds the product.</p>
+
+<p>Periodically, the delivered work from developers is integrated by building the project&#39;s executable files in the shared work area. This work is typically done by an individual in the development group who is assigned to build the product.</p></li>
+<li><p>Project managers create new baselines. </p>
+
+<p>If the project builds successfully, project manager create a new set of baselines. In a separate work area, a team of Quality Engineers performs more extensive testing of the new baselines.</p></li>
+<li><p>Project managers promote specific baselines that reflect a particular project milestone.</p>
+
+<p>Periodically, as the quality and stability of baselines improve, project manager adjust the promotion level attribute of the baselines to reflect appropriate milestones, such as Built, Tested, or Released. When the new baselines pass a sufficient level of testing, project manager designate them as the recommended set of baselines</p></li>
+<li><p>Developers adjust their private work areas to the latest available baselines.</p>
+
+<p>Developers perform rebase operations to update their private work areas to include the set of versions represented by the new recommended baselines.</p>
+
+<p>Developers continue the cycle of working on activities, delivering completed activities, and updating their private work areas with new baselines.</p></li>
+</ol>
+
+<p>For production hot fix process:</p>
+
+<ol>
+<li><p>Developers create a hot fix development stream</p>
+
+<p>Developers create a new development stream base on the production baseline</p></li>
+<li><p>Development is ongoing</p>
+
+<p>Developer applies hot fix changes on new stream.</p></li>
+<li><p>Project manager create a new baseline on HOT FIX stream</p>
+
+<p>When developers complete changes, they build and test their work in their private work areas. Then, project manager create a baseline on HOT FIX stream. The new baseline contains production release and hot fix changes only.</p></li>
+<li><p>Developers deliver hot fix changes to current development stream</p>
+
+<p>To merge the hot fix to current develop task.</p></li>
+</ol>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">去除公司相关的内容后分享给大家</span>
+    <label class="timestamp">[2013-11-29 13:58:47]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

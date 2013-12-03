@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="输入一个十进制数N，将它转换成R进制数输出。" />
+
+    <title>2031 进制转换 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>2031 进制转换</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/杭电100题.html">杭电100题</a>
+  
+</div>
+<div id="article">
+  <h1>问题描述</h1>
+
+<h2>Problem Description</h2>
+
+<p>输入一个十进制数N，将它转换成R进制数输出。</p>
+
+<h2>Input</h2>
+
+<p>输入数据包含多个测试实例，每个测试实例包含两个整数N(32位整数)和R（2&lt;=R&lt;=16, R&lt;&gt;10）。</p>
+
+<h2>Output</h2>
+
+<p>为每个测试实例输出转换后的数，每个输出占一行。如果R大于10，则对应的数字规则参考16进制（比如，10用A表示，等等）。</p>
+
+<h2>Sample Input</h2>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">7 2
+23 12
+-4 3
+</code></pre></div>
+<h2>Sample Output</h2>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">111
+1B
+-11
+</code></pre></div>
+<h1>问题分析</h1>
+
+<h2>Problem Analyse</h2>
+
+<p>本题是为C语言初学者提供的。</p>
+
+<h2>Algorithm Analyse</h2>
+
+<p>数制换算的一般方法：</p>
+
+<ol>
+<li><p>把r进数转换成十进制数，只要把r(r是大于1的自然数)进制数写成r的各次幂的和的形式，然后按十进制计算结果。</p>
+
+<p>例如: (205.21)<sub>8</sub> = 2 × 8<sup>2</sup> + 0 × 8<sup>1</sup> + 5 × 8<sup>0</sup> + 2 × 8<sup>-1</sup> + 1 × 8<sup>-2</sup></p></li>
+<li><p>把十进制换成r进制，可以把十进制化成r的各次幂(各次幂的系数小于r而大于或等于0的整数)的和，从最高次幂起各次幂的系数就是依次的r进制从左到右各个数位上的数字。</p></li>
+<li><p>当十进制数是整数时，采用“r除取余”法。即用数r除十进整数。取它的每次余数。例如:把(746)<sub>10</sub>化为一个八进制的数。</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">8|746
+  ----
+  8|93 --- 2
+   ---
+  8|11 --- 5
+   ---
+   8|1 --- 3
+    --
+     0 --- 1
+</code></pre></div>
+<p>得到(746)<sub>10</sub> = (1352)<sub>8</sub></p></li>
+<li><p>当十进制是小数时，采用“r乘取整”法，即用数r乘十进制小数，每乘一次取一次整数，直至小数部分变成零为止。</p>
+
+<p>例如:把(0.8125)<sub>10</sub>化为二进制。</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">0.|8125
+ ×|   2
+-------
+1.|6250
+ ×|   2
+-------
+1.|2500
+ ×|   2
+-------
+0.|5000
+ ×|   2
+-------
+1.|0000
+</code></pre></div>
+<p>得到(0.8125)<sub>10</sub> = (0.1101)<sub>2</sub></p></li>
+<li><p>把r1进制数转换成r2进制数，一般可以先把r1进制数转换成十进制数，再从十进制数转换成r2进制数。</p></li>
+</ol>
+
+<h1>算法实现</h1>
+
+<p>从上面的算法可以看出，数制转换需要逆序输出，就需要用到栈。所以我们直接用递归调用了。^_^</p>
+
+<h1>参考源码</h1>
+
+<script src="https://gist.github.com/7499122.js?file=2031.cpp"> </script>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">使用Emacs Lisp批量迁移《HDU 2030-2039》</span>
+    <label class="timestamp">[2013-11-16 22:26:09]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

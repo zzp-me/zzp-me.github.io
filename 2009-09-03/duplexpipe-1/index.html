@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="写 DuplexPipe 是因为“无聊”！真的，那天很无聊， 想起小时候用扑克牌和姐姐比赛算24，就随手写了一个 Shell 脚本重温一下。" />
+
+    <title>DuplexPipe二三事[1] - 有趣的起因：算24 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>DuplexPipe二三事[1] - 有趣的起因：算24</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/项目.html">项目</a>
+  
+  <a href="/archive/双向管道.html">双向管道</a>
+  
+</div>
+<div id="article">
+  <p>写 DuplexPipe 是因为“无聊”！真的，那天很无聊，想起小时候用扑克牌和姐姐比赛算24，就随手写了一个 Shell 脚本重温一下：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#!/bin/sh</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span>i&lt;4<span class="p">;</span>i++<span class="o">))</span>
+<span class="k">do</span>
+    <span class="o">((</span><span class="nv">n</span><span class="o">=</span><span class="nv">$RANDOM</span>%10+1<span class="o">))</span>
+    <span class="nb">echo</span> -n <span class="s2">&quot;$n &quot;</span>
+<span class="k">done</span>
+<span class="nb">echo</span>
+<span class="nv">i</span><span class="o">=</span>0
+<span class="k">while </span><span class="nb">read </span>exp
+<span class="k">do</span>
+    <span class="o">((</span>i++<span class="o">))</span>
+    <span class="o">((</span><span class="nv">value</span><span class="o">=</span><span class="nv">$exp</span><span class="o">))</span>
+    <span class="k">if</span> <span class="o">[[</span> <span class="nv">$value</span> -ne 24 <span class="o">]]</span>
+    <span class="k">then</span>
+<span class="k">        </span><span class="nb">echo</span> -n <span class="s2">&quot;Wrong! &quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;$exp=$value&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;try again!&quot;</span>
+    <span class="k">else</span>
+<span class="k">        </span><span class="nb">echo</span> <span class="s2">&quot;OK!&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Total use ${i}s&quot;</span>
+        <span class="nb">break</span>
+<span class="nb">    </span><span class="k">fi</span>
+<span class="k">done</span>
+</code></pre></div>
+<p>最近好像养成一个习惯：能让计算机做则尽量不自己做。才玩了几盘，就开始动歪脑筋要写一个求24的程序来自动计算。方法就是最简单的穷举，下面是一个最初的简陋版本（有兴趣的朋友可以在此再添加五种括号）：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#!/bin/sh</span>
+s<span class="o">[</span>0<span class="o">]=</span><span class="s1">&#39;+&#39;</span>
+s<span class="o">[</span>1<span class="o">]=</span><span class="s1">&#39;-&#39;</span>
+s<span class="o">[</span>2<span class="o">]=</span><span class="s1">&#39;*&#39;</span>
+s<span class="o">[</span>3<span class="o">]=</span><span class="s1">&#39;/&#39;</span>
+<span class="nb">read </span>a b c d
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span>i&lt;64<span class="p">;</span>i++<span class="o">))</span>
+<span class="k">do</span>
+    <span class="o">((</span><span class="nv">k</span><span class="o">=</span>i%4<span class="o">))</span>
+    <span class="nv">x</span><span class="o">=</span><span class="k">${</span><span class="nv">s</span><span class="p">[</span><span class="nv">$k</span><span class="p">]</span><span class="k">}</span>
+    <span class="o">((</span><span class="nv">k</span><span class="o">=</span>i/4%4<span class="o">))</span>
+    <span class="nv">y</span><span class="o">=</span><span class="k">${</span><span class="nv">s</span><span class="p">[</span><span class="nv">$k</span><span class="p">]</span><span class="k">}</span>
+    <span class="o">((</span><span class="nv">k</span><span class="o">=</span>i/16<span class="o">))</span>
+    <span class="nv">z</span><span class="o">=</span><span class="k">${</span><span class="nv">s</span><span class="p">[</span><span class="nv">$k</span><span class="p">]</span><span class="k">}</span>
+    <span class="nv">e</span><span class="o">=</span><span class="s2">&quot;$a$x$b$y$c$z$d&quot;</span>
+    <span class="nv">r</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$e</span> <span class="p">|</span> bc -l <span class="p">|</span> sed -e <span class="s1">&#39;s//.0/+$//&#39;</span><span class="sb">`</span>
+    <span class="k">if</span> <span class="o">[[</span> <span class="s2">&quot;$r&quot;</span> <span class="o">==</span> <span class="s2">&quot;24&quot;</span> <span class="o">]]</span>
+    <span class="k">then</span>
+<span class="k">        </span><span class="nb">echo</span> <span class="s2">&quot;$e=$r&quot;</span>
+    <span class="k">fi</span>
+<span class="k">done</span>
+</code></pre></div>
+<p>既然能让计算机自动计算结果，那我先运行程序1，显示4个随机数；运行程序2，输入程序1生成的4个数字，获得结果后再反馈给程序1。但转念一想：我这样手工进行输入输出的工作，不是比算24本身更枯燥、单调？而且是重复的劳动！理所当然应该由计算机自动完成。</p>
+
+<p>为完成这个任务，计算机要做的就是让“程序1”和“程序2”进行聊天：“程序1”的输出作为“程序2”的输入、“程序2”的输出作为“程序1”的输入。这一定义会让人立刻联想到“管道”（<code>exe1 | exe2</code>），但遗憾的是“管道”是单向的——只能满足“程序1”的输出作为“程序2”的输入。</p>
+
+<p>其实这就是一个“进程通信”（IPC）的问题，如果你熟悉 UNIX 的历史，也会和我一样联想到 Socket 。我随即想起了网络瑞士军刀——nc（netcat），并用它顺利解决了这个问题！我会在《<a href="/2009-09-03/duplexpipe-2/">DuplexPipe二三事（二）</a>》中介绍这个方法。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">双向管道</span>
+    <label class="timestamp">[2013-11-30 21:30:00]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

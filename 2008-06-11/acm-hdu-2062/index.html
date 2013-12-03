@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="考虑一个集合 An = { 1, 2, ..., n}。比如，A1={1}，A3={1,2,3}。 我们称一个非空子集元素的排列为一个子集序列。 对所有的子序列按字典顺序排序。你的任务就是给出第m个子序列。" />
+
+    <title>2062 Subset sequence - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>2062 Subset sequence</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/杭电100题.html">杭电100题</a>
+  
+</div>
+<div id="article">
+  <h1>问题描述</h1>
+
+<h2>Problem Description</h2>
+
+<p>Consider the aggregate An= { 1, 2, …, n }. For example, A1={1}, A3={1,2,3}. A subset sequence is defined as a array of a non-empty subset. Sort all the subset sequece of An in lexicography order. Your task is to find the m-th one.</p>
+
+<h2>Input</h2>
+
+<p>The input contains several test cases. Each test case consists of two numbers n and m ( 0&lt; n&lt;= 20, 0&lt; m&lt;= the total number of the subset sequence of An ).</p>
+
+<h2>Output</h2>
+
+<p>For each test case, you should output the m-th subset sequence of An in one line.</p>
+
+<h2>Sample Input</h2>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">1 1
+2 1
+2 2
+2 3
+2 4
+3 10
+</code></pre></div>
+<h2>Sample Output</h2>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">1
+1
+1 2
+2
+2 1
+2 3 1
+</code></pre></div>
+<h1>问题分析</h1>
+
+<h2>Problem Analyse</h2>
+
+<p>考虑一个集合 An = { 1, 2, ..., n}。比如，A1={1}，A3={1,2,3}。我们称一个非空子集元素的排列为一个子集序列。 对所有的子序列按字典顺序排序。你的任务就是给出第m个子序列。</p>
+
+<h2>Algorithm Analyse</h2>
+
+<p>首先我们来看看An一共有多少个子集。</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">n=1时,只有{1}一个子集合
+
+n=2时，就有:
+{1}, {2}, 
+{1, 2}, {2, 1}
+4个子集合。
+
+n=3时，有
+{1}, {2}, {3}, 
+{1, 2}, {1, 3}, {2, 1}, {2, 3}, {3, 1}, {3, 2}, 
+{1, 2, 3}, {1, 3, 2}, {2, 1, 3}, {2, 3, 1}, {3, 1, 2}, {3, 2, 1}
+</code></pre></div>
+<p>也许你发现规律了。An子集合的个数为:</p>
+
+<pre>C<sup>1</sup><sub>n</sub>·A<sup>1</sup><sub>1</sub> + C<sup>2</sup><sub>n</sub>·A<sup>2</sup><sub>2</sub> + ... + C<sup>n</sup><sub>n</sub>·A<sup>n</sup><sub>n</sub></pre>
+
+<p>这个公式是对的。但我们换个角度看。</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">n=3时，有
+{1}
+{1, 2}
+{1, 2, 3}
+{1, 3}
+{1, 3, 2}
+
+{2}
+{2, 1}
+{2, 1, 3}
+{2, 3}
+{2, 3, 1}
+
+{3}
+{3, 1}
+{3, 1, 2}
+{3, 2}
+{3, 2, 1}
+</code></pre></div>
+<p>不难发现，An可以按首数字分成n组，而每组里除了第一项，剩下的就是An-1的子集合了。</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">∴f(n) = n[f(n-1) + 1]
+ f(1) = 1
+</code></pre></div>
+<p>我们拿测试数据3 10来做个示范，解释一下怎么求解。因为n=3，所以开始数组里1、2、3三个数。我们知道，n=2时，有4种排列，所以上面n=3可以分成三组，每组5个(加上空集)。因此第10个在第二组里。所以第一个是2，把2输出。原来的数组里删除2，变成1、3两个数。然后10 - (2 - 1) * 5 = 5，即它在第2组的第5个。减去首个空集合，5 - 1 = 4 ≠ 0，表示2后面还有数字。因为A1 = 1是，所以再第2组里又可以分成两组，每组2个(加上空集)。所以，4在第2组，剩下的数组中，第二个元素是3，所以输出3。再把数组里的3删除，剩下1一个数。然后4 - (2 - 1) * 2 = 2，既它是第2组的第2个。减去首个空集，2 - 1 = 1 ≠ 0，表示2后面还有数字。按上面的方法继续下去，直到n = 0 或 后面为空集为止。最后输出数组里的第1个元素，就得到2 3 1，就是解了。</p>
+
+<p>从上面的计算可以看出来，本题目的关键是先求的An中每一组的个数g(n)，不难得出 g(n) = f(n) / n</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">∵f(n) = n[f(n-1) + 1]
+∴g(n) = n[f(n-1) + 1] / n = f(n-1) + 1
+∵f(n-1) = (n-1) * g(n-1)
+∴g(n) = (n-1) * g(n-1) + 1
+</code></pre></div>
+<h1>算法实现</h1>
+
+<p>在调整数组的时候，只要做一趟插入排序就可以了。效率不错。</p>
+
+<table class="content-table"><thead>
+<tr>
+<th>Rank</th>
+<th>Author</th>
+<th>Exe. Time</th>
+<th>Exe. Memory</th>
+<th>Code Len.</th>
+<th>Language</th>
+<th>Date</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>redraiment</td>
+<td>31MS</td>
+<td>0K</td>
+<td>564B</td>
+<td>C</td>
+<td>2007-07-28 17:14:03</td>
+</tr>
+</tbody></table>
+
+<h1>参考源码</h1>
+
+<script src="https://gist.github.com/7499122.js?file=2062.cpp"> </script>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">使用Emacs Lisp批量迁移《HDU 2060-2069》</span>
+    <label class="timestamp">[2013-11-17 20:01:59]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

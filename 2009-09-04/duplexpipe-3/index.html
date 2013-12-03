@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="为实现公网对内部网络的访问，需要对数据进行转发（即端口映射）。 FPipe 是一款命令行下的端口映射工具，可以映射 TCP/UDP 协议，支持连接数的最大上限。" />
+
+    <title>DuplexPipe二三事[3] - 网络中转站：端口映射 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>DuplexPipe二三事[3] - 网络中转站：端口映射</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/项目.html">项目</a>
+  
+  <a href="/archive/双向管道.html">双向管道</a>
+  
+</div>
+<div id="article">
+  <h1>端口映射</h1>
+
+<p>在《<a href="/2009-09-03/duplexpipe-2/">DuplexPipe二三事（二）</a>》中介绍了瑞士军刀 nc 的用法：nc 就像给程序一张飞机票，让原本只能在本地执行的程序也能运行在网络上！但网络和现实交通一样，很多地方需要中转才能到达（比如外网计算机无法直接访问公司内部 Web 服务器）。</p>
+
+<p>为实现公网对内部网络的访问，需要对数据进行转发（即端口映射）。比如内网“主机A”开启了 Web（port 80）服务，需要在“服务器的网关”上设置：凡来自 Internet 上对 80 端口的请求，全部转发给内部网络中的“主机A”。这里的“服务器网关”可以是路由器、交换机或者一台 PC 。</p>
+
+<h1>工具简介</h1>
+
+<p>FPipe 是一款命令行下的端口映射工具，可以映射 TCP/UDP 协议，支持连接数的最大上限。你可以从它的官网（<a href="http://www.foundstone.com/">http://www.foundstone.com</a>）下载到最新版本。下面是它的用法和几个常用的选项：</p>
+
+<dl>
+<dt>FPipe [-hvu?] [-lrs ] [-i IP] IP</dt>
+<dd>-l 在本地监听的端口</dd>
+<dd>-s 从哪个端口发送出重定向的信息</dd>
+<dd>-r 要定向到IP主机的端口号</dd>
+<dd>-u UDP 模式</dd>
+<dd>-v 详细地显示过程</dd>
+<dt>示例：</dt>
+<dd>FPipe -v -l 80 -s 90 -r 80 192.168.1.100</dd>
+<dd>作用就是将来自本机80端口的信息，通过90端口，转发到主机192.168.1.100的80端口上去。</dd>
+</dl>
+
+<p>你可以尝试执行：“<code>FPipe -l 80 -s 80 -r 80 203.208.39.160</code>”，然后访问“<code>http://localhost/</code>”就会打开 Google 首页，因为<code>203.208.39.160</code>就是 Google 主机的 IP 地址，^_^。更多的内容请参见程序附带的帮助文档。</p>
+
+<h1>总结</h1>
+
+<p>对于在《<a href="/2009-09-03/duplexpipe-1/">DuplexPipe二三事（一）</a>》中提出的“进程通信”问题，nc 可以让本地程序通过网络进行通信；本文介绍的 FPipe 就像一座桥梁，让内网和外网的网络程序也能顺利通信。但可惜 FPipe 本身不够灵活，它只有“监听本地端口，连接远程主机”这一种通信模式。用来应付服务端监听、客户端主动连接的 C/S 模式还可以，如果碰到两端都监听或两端都主动连接的网络程序，就无能力为了。为解决这个问题，需要清除我们的主角——“DuplexPipe”，详细内容请看《<a href="/2009-09-04/duplexpipe-4/">DuplexPipe二三事（四）</a>》。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">双向管道</span>
+    <label class="timestamp">[2013-11-30 21:30:00]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="有没有办法让“监听-监听”、“连接-连接”这两种方式也能通信呢？ 或者说，有没有办法在不修改程序的前提下转换它的连接方式？ 这就是 DuplexPipe 提供的功能！" />
+
+    <title>DuplexPipe二三事[4] - 网络连接方式随心换 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>DuplexPipe二三事[4] - 网络连接方式随心换</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/项目.html">项目</a>
+  
+  <a href="/archive/双向管道.html">双向管道</a>
+  
+</div>
+<div id="article">
+  <h1>连接方式</h1>
+
+<p>在《<a href="/2009-09-03/duplexpipe-1/">DuplexPipe二三事（一）</a>》中提到建立连接有两种方式：监听本地端口，等待其他程序来连接（以下简称“监听方式”）；或者主动连接其他程序（以下简称“连接方式”）。排列组合一下，会得到三种结果：监听-连接、监听-监听、连接-连接。其中只有“监听-连接”方式能正确地建立连接，《<a href="/2009-09-04/duplexpipe-3/">DuplexPipe二三事（三）</a>》中介绍的 FPipe 只是在其中添加了一节“监听-连接-监听-连接”，其中粗体部分就是 FPipe 的工作。</p>
+
+<p>那有没有办法让“监听-监听”、“连接-连接”这两种方式也能通信呢？或者说，有没有办法在不修改程序的前提下转换它的连接方式？这就是 DuplexPipe 提供的功能！</p>
+
+<h1>DuplexPipe简介</h1>
+
+<p>DuplexPipe 和 FPipe 类似，也是命令行下的转发工具，但它允许你自己选择连接方式，因此比 FPipe 更加灵活！DuplexPipe 目前还只有 Java 实现方式，开放源代码，目前还不支持 UDP 模式。欢迎有兴趣的同学一起参与开发和维护！项目主页：<a href="http://code.google.com/p/duplexpipe">http://code.google.com/p/duplexpipe</a>。下面来介绍一下它的选项和用法：</p>
+
+<dl>
+  <dt>用法: java -jar DuplexPipe [-vh] model model</dt>
+  <dt>选项:</dt>
+  <dd>-v              输出一些提示信息</dd>
+  <dd>-h              显示本帮助文档</dd>
+  <dt>模式:</dt>
+  <dd>-l port         监听本地端口</dd>
+  <dd>-c host port    连接远程端口</dd>
+  <dt>示例:</dt>
+  <dd>java pipe.DuplexPipe -c 192.168.1.100 3389 -l 1234</dd>
+  <dd>将本地 1234 号端口上的信息转发给 192.168.1.100 的 3389 端口，这样的用法类似 FPipe。</dd>
+</dl>
+
+<p>由上述可知，执行“java -jar DuplexPipe -c host1 port1 -c host2 port2”就能让“监听-监听”方式的两个程序通信；执行“java -jar DuplexPipe -l port1 -l port2”可以让“连接-连接”方式的两个程序交流。</p>
+
+<h1>总结</h1>
+
+<p>从功能上来说，DuplexPipe 和 FPipe 有部分重合，不过这并不是 DuplexPipe 的亮点。思索一下你会发现它能做很多事情！你不想知道我是如何用它将“Windows 远程桌面”改造成反弹式连接的吗？你不想看看怎么让这些小工具配合来创造一个后门？请看《<a href="/2009-09-04/duplexpipe-5/">DuplexPipe二三事（五）</a>》。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">双向管道</span>
+    <label class="timestamp">[2013-11-30 21:30:00]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

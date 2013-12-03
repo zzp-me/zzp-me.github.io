@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="这是比《深入浅出C语言》更早的“Head First C”， 生动地介绍什么是编程，以及C语言中指针和数组这对冤的区别。" />
+
+    <title>编程村一日游 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>编程村一日游</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/编程语言生态.html">编程语言生态</a>
+  
+  <a href="/archive/c语言.html">C语言</a>
+  
+</div>
+<div id="article">
+  <p>不久前，我应邀去和学弟学妹们（非本专业大一）聊天，他们让我简单地介绍一下什么是编程，以及C语言中指针和数组的关系。于是我做了一个PPT，并在每班邀请一男一女两位同学来现场表演“指针”和“数组”，现场气氛很活跃。</p>
+
+<p>以前，不管是去给学弟学妹们上课，还是演讲、作讲座或是作报告，都是一次性说完就完事。讲的内容也和一次性纸巾一样，用完就仍，干净卫生！在记忆中好像没有经历过把一大段相同的话重复说的。</p>
+
+<p>这回是我第一次尝试重复地说一段话，早上1、2节两个班，3、4节再两个班，我发现我还真的可以把两次课讲得完全一样。记得《鹿鼎记》里韦小宝说：“要想知道一个人说的是不是假话，让他再重复说一次就可以了。”这招兴许对我没用。</p>
+
+<p>现在好像已经产生了“惯性”，老师们只要有机会让我上台讲话，或多或少都要我扯一扯什么学习的体会呀、经验啦、心得啊～我说现在不说了，再说就成“祥林嫂讲阿毛的故事”了，现在你们可能还主动要去我讲，到时候我再讲都没人鸟我了...我这个大屁孩哪有那么多“人生经历”能拿出来和那些小屁孩分享的，又要每次讲得都不一样，那只能瞎编了～所以今天就安心地上我的课，那些事情还是等着他们自己去摸索，毕竟讲得再多也只是我自己的事情，他们没经历过也永远成不了他们的心得。</p>
+
+<p>我将PPT里的文字调整位置并截图，发上来和大家分享。PPT中，我很无耻地使用了O&#39;Reilly出版的《Head First》系列上面的图片。</p>
+
+<p><img src="/resource/2010-01-10/programming-village/01.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/02.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/03.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/04.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/05.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/06.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/07.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/08.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/09.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/10.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/11.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/12.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/13.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/14.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/15.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/16.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/17.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/18.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/19.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/20.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/21.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/22.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/23.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/24.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/25.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/26.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/27.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/28.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/29.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/30.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/31.jpg" /></p>
+
+<p><img src="/resource/2010-01-10/programming-village/32.jpg" /></p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">编程村一日游</span>
+    <label class="timestamp">[2013-12-01 11:32:01]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

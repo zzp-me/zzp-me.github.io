@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="Cygwin 用的是 netcat 原生的 1.10 版本，该版本没提供 -c 选项。 因为我最近在做的项目需要一个这样的工具来帮助测试， 于是就决定自己编译 1.10-38 版的 nc。" />
+
+    <title>在 Cygwin 下编译 netcat_1.10-38 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>在 Cygwin 下编译 netcat_1.10-38</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/项目.html">项目</a>
+  
+  <a href="/archive/双向管道.html">双向管道</a>
+  
+</div>
+<div id="article">
+  <p>我在《<a href="/2010-01-25/duplexpipe-8-linux-nc/">Linux下用nc实现DuplexPipe</a>》中提到，Win 版的 netcat 无法实现 DuplexPipe 的功能。</p>
+
+<p>其实 Cygwin 版的 netcat 也是如此。Cygwin 用的是 netcat 原生的 1.10 版本（项目地址是：<a href="http://nc110.sourceforge.net/">http://nc110.sourceforge.net/</a>），该版本没提供 -c 选项。因为我最近在做的项目需要一个这样的工具来帮助测试，于是就决定自己编译 1.10-38 版的 nc。</p>
+
+<h1>编译</h1>
+
+<p>首先到 debian 下 netcat 的主页下载源代码（<a href="http://packages.qa.debian.org/n/netcat.html">http://packages.qa.debian.org/n/netcat.html</a>），测试版已经到 1.10-39 版本了，我选择稳定版 v1.10-38（<a href="http://packages.debian.org/source/stable/netcat">http://packages.debian.org/source/stable/netcat</a>）。需要下载两个文件：其中 <a href="http://ftp.de.debian.org/debian/pool/main/n/netcat/netcat_1.10.orig.tar.gz">netcat_1.10.orig.tar.gz</a> 是原生的 nc；<a href="http://ftp.de.debian.org/debian/pool/main/n/netcat/netcat_1.10-38.diff.gz">netcat_1.10-38.diff.gz</a> 是升级包。</p>
+
+<p>下载完成后先解压：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>ls
+netcat_1.10-38.diff.gz*  netcat_1.10.orig.tar.gz*
+<span class="nv">$ </span>tar xvf netcat_1.10.orig.tar.gz
+...
+<span class="nv">$ </span>ls
+netcat-1.10.orig/  netcat_1.10-38.diff.gz*  netcat_1.10.orig.tar.gz*
+</code></pre></div>
+<p>接着是释放补丁</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">cd </span>netcat-1.10.orig
+<span class="nv">$ </span>ls
+Changelog  README  generic.h     netcat.c  stupidh*
+Makefile   data/   netcat.blurb  scripts/
+<span class="nv">$ </span>zcat ../netcat_1.10-38.diff.gz <span class="p">|</span> patch -p1
+<span class="nv">$ </span>ls
+Changelog  README  debian/    nc.1          netcat.c  stupidh*
+Makefile   data/   generic.h  netcat.blurb  scripts/
+</code></pre></div>
+<p>补丁被释放到 debian 目录下。然后就是给源代码打补丁了。</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>sed <span class="s1">&#39;s#^#patch -Np1 -i debian/patches/#&#39;</span> debian/patches/series <span class="p">|</span> sh
+patching file Makefile
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file debian/nc.1
+patching file netcat.c
+patching file debian/nc.1
+patching file netcat.c
+patching file debian/nc.1
+patching file data/rservice.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file netcat.c
+patching file scripts/webproxy
+<span class="err">$</span>
+</code></pre></div>
+<p>最后，为了能使用 <code>-c</code> 和 <code>-e</code> 选项，还要再修改一下 Makefile 文件。将 Makefile 的第 11 行“<code># DFLAGS = -DTEST -DDEBUG</code>”替换成“<code>DFLAGS = -DDEBIAN_VERSION=&#39;&quot;1.10-38&quot;&#39; -DGAPING_SECURITY_HOLE -DIP_TOS -DTELNET</code>”，保存退出。这样，就可以运行“<code>make nc</code>”来编译了。</p>
+
+<h1>安装</h1>
+
+<p>编译完成后会在当前目录下生成一个“nc.exe”。将它拷贝到“/bin”目录下，并将“nc.1”复制到“/usr/share/man/man1”目录里。这样就安装完成了。你可以试试运行“nc -h”看看版本号是否正确。</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>nc -h
+<span class="o">[</span>v1.10-38<span class="o">]</span>
+connect to somewhere:   nc <span class="o">[</span>-options<span class="o">]</span> hostname port<span class="o">[</span>s<span class="o">]</span> <span class="o">[</span>ports<span class="o">]</span> ...
+listen <span class="k">for </span>inbound:     nc -l -p port <span class="o">[</span>-options<span class="o">]</span> <span class="o">[</span>hostname<span class="o">]</span> <span class="o">[</span>port<span class="o">]</span>
+options:
+        -c shell commands       as <span class="sb">`</span>-e<span class="s1">&#39;; use /bin/sh to exec [dangerous!!]</span>
+<span class="s1">        -e filename             program to exec after connect [dangerous!!]</span>
+<span class="s1">        -b                      allow broadcasts</span>
+<span class="s1">        -g gateway              source-routing hop point[s], up to 8</span>
+<span class="s1">        -G num                  source-routing pointer: 4, 8, 12, ...</span>
+<span class="s1">        -h                      this cruft</span>
+<span class="s1">        -i secs                 delay interval for lines sent, ports scanned</span>
+<span class="s1">        -k                      set keepalive option on socket</span>
+<span class="s1">        -l                      listen mode, for inbound connects</span>
+<span class="s1">        -n                      numeric-only IP addresses, no DNS</span>
+<span class="s1">        -o file                 hex dump of traffic</span>
+<span class="s1">        -p port                 local port number</span>
+<span class="s1">        -r                      randomize local and remote ports</span>
+<span class="s1">        -q secs                 quit after EOF on stdin and delay of secs</span>
+<span class="s1">        -s addr                 local source address</span>
+<span class="s1">        -T tos                  set Type Of Service</span>
+<span class="s1">        -t                      answer TELNET negotiation</span>
+<span class="s1">        -u                      UDP mode</span>
+<span class="s1">        -v                      verbose [use twice to be more verbose]</span>
+<span class="s1">        -w secs                 timeout for connects and final net reads</span>
+<span class="s1">        -z                      zero-I/O mode [used for scanning]</span>
+<span class="s1">port numbers can be individual or ranges: lo-hi [inclusive];</span>
+<span class="s1">hyphens in port names must be backslash escaped (e.g. &#39;</span>ftp/-data<span class="err">&#39;</span><span class="o">)</span>.
+</code></pre></div>
+<h1>模拟 WireShark</h1>
+
+<p>在项目中，我们有时会需要截获客户端和服务端之间发送的消息。WireShark 可以监听本地的通信，可是我觉得它操作比较麻烦。现在，有了 1.10-38 版的 nc，就可以很简单地实现这个功能！</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">nc -l -p 1234 -c <span class="s1">&#39;tee 1234.txt | nc remotehost 1235 | tee 1235.txt&#39;</span>
+</code></pre></div>
+<p>执行了上面的命令后，再用客户端连接本地的 1234 端口，nc 就会自动去连接远程的 1235 端口。并且客户端发送的消息会保留一份副本到 1234.txt 文件中；服务器反馈的信息则会保存到 1235.txt 中。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">双向管道</span>
+    <label class="timestamp">[2013-11-30 21:30:00]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

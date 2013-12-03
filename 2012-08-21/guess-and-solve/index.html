@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="实在无聊，于是写了一个猜数字游戏： 随机生成一个[0, 99]之间的整数， 如果猜得小了就显示 Too small， 大了显示 Too big， 否则显示 You are right。" />
+
+    <title>猜数字游戏及自动解猜数字程序 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>猜数字游戏及自动解猜数字程序</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/项目.html">项目</a>
+  
+  <a href="/archive/双向管道.html">双向管道</a>
+  
+</div>
+<div id="article">
+  <p>都是寂寞惹得祸...网络故障已经四天了，强烈谴责华数网通这种低效率的行为（好吧，谴责有个屁用）。</p>
+
+<p>实在无聊，于是写了一个猜数字游戏：随机生成一个<code>[0, 99]</code>之间的整数，如果猜得小了就显示 Too small，大了显示 Too big，否则显示 You are right。作为添头，前面会以英文序数词输出 The first time, The second time...</p>
+<div class="highlight"><pre><code class="common-lisp language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">setf</span> <span class="vg">*random-state*</span> <span class="p">(</span><span class="nb">make-random-state</span> <span class="no">t</span><span class="p">))</span>
+<span class="p">(</span><span class="nb">do</span> <span class="p">((</span><span class="nv">target</span> <span class="p">(</span><span class="nb">random</span> <span class="mi">100</span><span class="p">))</span>
+     <span class="p">(</span><span class="nv">guess</span> <span class="mi">0</span><span class="p">)</span>
+     <span class="p">(</span><span class="nv">times</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">1+</span> <span class="nv">times</span><span class="p">)))</span>
+    <span class="p">((</span><span class="nb">=</span> <span class="nv">target</span> <span class="nv">guess</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">format</span> <span class="no">t</span> <span class="s">&quot;Give a number between 0 to 99: &quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">format</span> <span class="no">t</span> <span class="s">&quot;The ~:r time: ~[You are right!~;Too big.~:;Too small.~]~%&quot;</span>
+          <span class="nv">times</span> <span class="p">(</span><span class="nb">signum</span> <span class="p">(</span><span class="nb">-</span> <span class="p">(</span><span class="k">setq</span> <span class="nv">guess</span> <span class="p">(</span><span class="nb">read</span><span class="p">))</span> <span class="nv">target</span><span class="p">))))</span>
+</code></pre></div>
+<p>让我很欣喜的是核心代码只有 do 循环这么一句话。故事当然还没完，我玩来几盘后，想着要是有一个自动化的程序能自己玩这个游戏就好了。转念一想，最近刚接触的 Tcl 有一个扩展叫 Expect，就是能自动化这种交互式的程序！继续捣鼓一阵：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#!/usr/bin/expect -f</span>
+
+spawn clisp guess.lisp
+
+<span class="nb">set </span>leftBound 0
+<span class="nb">set </span>rightBound 100
+<span class="k">while </span>1 <span class="o">{</span>
+    expect <span class="o">{</span>
+        right <span class="o">{</span><span class="nb">break</span><span class="o">}</span>
+        small <span class="o">{</span><span class="nb">set </span>leftBound <span class="nv">$guess</span><span class="o">}</span>
+        big <span class="o">{</span><span class="nb">set </span>rightBound <span class="nv">$guess</span><span class="o">}</span>
+        <span class="o">{</span>Give a number between 0 to 99: <span class="o">}</span> <span class="o">{</span>
+            <span class="nb">set </span>guess <span class="o">[</span>expr <span class="o">(</span><span class="nv">$leftBound</span> + <span class="nv">$rightBound</span><span class="o">)</span> / 2<span class="o">]</span>
+            send <span class="s2">&quot;$guess\n&quot;</span>
+        <span class="o">}</span>
+        eof <span class="o">{</span><span class="nb">exit </span>0<span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
+<p>算法就是二分。看看执行效果：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">expect$ ./main.tcl
+spawn clisp guess.lisp
+Give a number between 0 to 99: 50
+The first time: Too small.
+Give a number between 0 to 99: 75
+The second time: Too small.
+Give a number between 0 to 99: 87
+The third time: Too small.
+Give a number between 0 to 99: 93
+The fourth time: Too big.
+Give a number between 0 to 99: 90
+The fifth time: Too big.
+Give a number between 0 to 99: 88
+The sixth time: Too small.
+Give a number between 0 to 99: 89
+The seventh time: You are right!
+expect$
+</code></pre></div>
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">双向管道</span>
+    <label class="timestamp">[2013-11-30 21:30:00]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

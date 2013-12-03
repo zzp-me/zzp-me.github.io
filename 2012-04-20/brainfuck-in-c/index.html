@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="用ANSI C实现一个轻量级的BrainFuck解释器" />
+
+    <title>C语言实现BrainFuck解释器 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>C语言实现BrainFuck解释器</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/解释器.html">解释器</a>
+  
+  <a href="/archive/brainfuck.html">BrainFuck</a>
+  
+</div>
+<div id="article">
+  <p>码农的业余休闲活动就是去学习一门冷门的语言或者研究一项非主流的技术。BrainFuck 是一门小巧的编程语言，顾名思义，阅读这门语言的代码就像在强奸你的大脑一样。事实证明开发它的解释器比读懂它的 Hello World 要快。</p>
+
+<p>BrainFuck只有八条指令：</p>
+
+<table class="content-table"><thead>
+<tr>
+<th>指令</th>
+<th>含义</th>
+<th>等价的C代码</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>&gt;</td>
+<td>指针加一</td>
+<td>++ptr;</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>指针减一</td>
+<td>--ptr;</td>
+</tr>
+<tr>
+<td>+</td>
+<td>指针指向的字节的值加一</td>
+<td>++*ptr;</td>
+</tr>
+<tr>
+<td>-</td>
+<td>指针指向的字节的值减一</td>
+<td>--*ptr;</td>
+</tr>
+<tr>
+<td>.</td>
+<td>输出指针指向的单元内容（ASCII码）</td>
+<td>putchar(*ptr);</td>
+</tr>
+<tr>
+<td>,</td>
+<td>输入内容到指针指向的单元（ASCII码）</td>
+<td>*ptr = getchar();</td>
+</tr>
+<tr>
+<td>[</td>
+<td>如果指针指向的单元值为零，向后跳转到对应的]指令的次一指令处</td>
+<td>while (*ptr) {</td>
+</tr>
+<tr>
+<td>]</td>
+<td>如果指针指向的单元值不为零，向前跳转到对应的[指令的次一指令处</td>
+<td>}</td>
+</tr>
+</tbody></table>
+
+<p>解释器代码如下：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;string.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="cp">#define TOKENS &quot;&gt;&lt;+-.,[]&quot;</span>
+<span class="cp">#define CODE_SEGMENT_SIZE 30000</span>
+<span class="cp">#define STACK_SEGMENT_SIZE 1000</span>
+<span class="cp">#define DATA_SEGMENT_SIZE 30000</span>
+
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">Callback</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="n">cs</span><span class="p">[</span><span class="n">CODE_SEGMENT_SIZE</span><span class="p">];</span>   <span class="cm">/* Code Segment */</span>
+  <span class="kt">long</span> <span class="n">ip</span><span class="p">;</span>                      <span class="cm">/* Instruction Pointer */</span>
+  <span class="kt">char</span> <span class="n">ss</span><span class="p">[</span><span class="n">STACK_SEGMENT_SIZE</span><span class="p">];</span>  <span class="cm">/* Stack Segment */</span>
+  <span class="kt">long</span> <span class="n">sp</span><span class="p">;</span>                      <span class="cm">/* Stack Pointer */</span>
+  <span class="kt">char</span> <span class="n">ds</span><span class="p">[</span><span class="n">DATA_SEGMENT_SIZE</span><span class="p">];</span>   <span class="cm">/* Data Segment */</span>
+  <span class="kt">long</span> <span class="n">bp</span><span class="p">;</span>                      <span class="cm">/* Base Pointer */</span>
+  <span class="n">Callback</span> <span class="n">fn</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+<span class="p">}</span> <span class="n">vm</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">vm_forward</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">bp</span> <span class="o">=</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">bp</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">DATA_SEGMENT_SIZE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vm_backward</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">bp</span> <span class="o">=</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">bp</span> <span class="o">+</span> <span class="n">DATA_SEGMENT_SIZE</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">DATA_SEGMENT_SIZE</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vm_increment</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">ds</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">bp</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vm_decrement</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">ds</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">bp</span><span class="p">]</span><span class="o">--</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vm_input</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">ds</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">bp</span><span class="p">]</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vm_output</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">putchar</span><span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">ds</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">bp</span><span class="p">]);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vm_while_entry</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">ds</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">bp</span><span class="p">])</span> <span class="p">{</span>
+    <span class="n">vm</span><span class="p">.</span><span class="n">ss</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">sp</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm</span><span class="p">.</span><span class="n">ip</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">vm</span><span class="p">.</span><span class="n">sp</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">ip</span><span class="o">++</span><span class="p">;</span> <span class="n">vm</span><span class="p">.</span><span class="n">cs</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">ip</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">c</span><span class="p">;</span> <span class="n">vm</span><span class="p">.</span><span class="n">ip</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">cs</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">ip</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;[&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">c</span><span class="o">++</span><span class="p">;</span>
+      <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">cs</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">ip</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;]&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">c</span><span class="o">--</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">vm_while_exit</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">ds</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">bp</span><span class="p">])</span> <span class="p">{</span>
+    <span class="n">vm</span><span class="p">.</span><span class="n">sp</span><span class="o">--</span><span class="p">;</span>
+    <span class="n">vm</span><span class="p">.</span><span class="n">ip</span> <span class="o">=</span> <span class="n">vm</span><span class="p">.</span><span class="n">ss</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">sp</span><span class="p">];</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">c</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+  <span class="n">memset</span><span class="p">(</span><span class="o">&amp;</span><span class="n">vm</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">vm</span><span class="p">));</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">fn</span><span class="p">[</span><span class="sc">&#39;&gt;&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm_forward</span><span class="p">;</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">fn</span><span class="p">[</span><span class="sc">&#39;&lt;&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm_backward</span><span class="p">;</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">fn</span><span class="p">[</span><span class="sc">&#39;+&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm_increment</span><span class="p">;</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">fn</span><span class="p">[</span><span class="sc">&#39;-&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm_decrement</span><span class="p">;</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">fn</span><span class="p">[</span><span class="sc">&#39;.&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm_output</span><span class="p">;</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">fn</span><span class="p">[</span><span class="sc">&#39;,&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm_input</span><span class="p">;</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">fn</span><span class="p">[</span><span class="sc">&#39;[&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm_while_entry</span><span class="p">;</span>
+  <span class="n">vm</span><span class="p">.</span><span class="n">fn</span><span class="p">[</span><span class="sc">&#39;]&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">vm_while_exit</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="n">EOF</span><span class="p">;)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">strchr</span><span class="p">(</span><span class="n">TOKENS</span><span class="p">,</span> <span class="n">c</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">vm</span><span class="p">.</span><span class="n">cs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="p">;</span>
+      <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">run</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">vm</span><span class="p">.</span><span class="n">cs</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">ip</span><span class="p">])</span> <span class="p">{</span>
+    <span class="n">vm</span><span class="p">.</span><span class="n">fn</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">cs</span><span class="p">[</span><span class="n">vm</span><span class="p">.</span><span class="n">ip</span><span class="p">]]();</span>
+    <span class="n">vm</span><span class="p">.</span><span class="n">ip</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">argv</span><span class="p">[])</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">freopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">&quot;r&quot;</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">setup</span><span class="p">();</span>
+  <span class="n">run</span><span class="p">();</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Brainfuck版Hello world的代码如下：</p>
+<div class="highlight"><pre><code class="brainfuck language-brainfuck" data-lang="brainfuck"><span class="nb">++++++++++</span><span class="c"></span>
+<span class="k">[</span><span class="nv">&gt;</span><span class="nb">+++++++</span><span class="nv">&gt;</span><span class="nb">++++++++++</span><span class="nv">&gt;</span><span class="nb">+++</span><span class="nv">&gt;</span><span class="nb">+</span><span class="nv">&lt;&lt;&lt;&lt;</span><span class="nb">-</span><span class="k">]</span><span class="c"></span>
+<span class="nv">&gt;</span><span class="nb">++</span><span class="nt">.</span><span class="nv">&gt;</span><span class="nb">+</span><span class="nt">.</span><span class="nb">+++++++</span><span class="nt">..</span><span class="nb">+++</span><span class="nt">.</span><span class="nv">&gt;</span><span class="nb">++</span><span class="nt">.</span><span class="nv">&lt;&lt;</span><span class="nb">+++++++++++++++</span><span class="nt">.</span><span class="c"></span>
+<span class="nv">&gt;</span><span class="nt">.</span><span class="nb">+++</span><span class="nt">.</span><span class="nb">------</span><span class="nt">.</span><span class="nb">--------</span><span class="nt">.</span><span class="nv">&gt;</span><span class="nb">+</span><span class="nt">.</span><span class="nv">&gt;</span><span class="nt">.</span><span class="c"></span>
+</code></pre></div>
+<p>执行结果为：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>gcc brainfuck.c -o bf
+<span class="nv">$ </span>./bf helloword.bf
+Hello World!
+</code></pre></div>
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">BrainFuck解释器</span>
+    <label class="timestamp">[2013-12-02 16:02:45]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

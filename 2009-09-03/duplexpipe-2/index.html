@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="nc 属于传输层的工具（TCP/IP 四层模型请看这里）， 它能保证准确无误地发送和接收数据， 但并不关心数据的具体含义（这些工作交给应用层的软件）" />
+
+    <title>DuplexPipe二三事[2] - 瑞士军刀再显锋芒：让程序相互聊天 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>DuplexPipe二三事[2] - 瑞士军刀再显锋芒：让程序相互聊天</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/项目.html">项目</a>
+  
+  <a href="/archive/双向管道.html">双向管道</a>
+  
+</div>
+<div id="article">
+  <h1>瑞士军刀NC</h1>
+
+<p>nc（NetCat）是我很喜欢的一个小工具。在我常用的网络小工具中使用频率仅次于 cURL 。nc 属于传输层的工具（TCP/IP 四层模型请看这里），它能保证准确无误地发送和接收数据，但并不关心数据的具体含义（这些工作交给应用层的软件）。难怪说 nc 是网络的瑞士军刀，因为所有应用层的软件都是通过各自的网络协议来解析来自传输层的数据。所以，只要你了解应用层协议（比如HTTP、POP3等），就可以手工模拟出任何服务端或客户端程序。而且，只要你愿意，以后设计网络程序完全可以只实现一个“解析器”，数据传输的工作则全权交给 nc 了。</p>
+
+<h1>常用功能</h1>
+
+<p>网络程序要建立连接有两种方式：主动去连接、监听本地端口等待连接。nc 也提供了这两种方式：</p>
+
+<dl>
+<dt>1) nc <em>host port</em></dt>
+<dd>主动连接 <em>host</em> 的 <em>port</em> 端口。</dd>
+<dt>2) nc -l -p <em>port</em></dt>
+<dd>监听本地 <em>port</em> 端口，等待其他程序来连接。</dd>
+<dt>示例：</dt>
+<dd>运行 nc <em>g.cn 80</em></dd>
+<dd>这样就连接上“谷歌中国”的服务器，输入“<b>GET / HTTP/1.1&lt;CR&gt;&lt;CR&gt;</b>”（不包括引号，其中&lt;CR&gt;是回车，这里需要敲两次回车），服务器就会返回“谷歌”首页的 HTML 源代码。</dd>
+</dl>
+
+<p>上面是一个网络程序最基本的功能，默认下输入输出为 stdin 和 stdout （也就是“键盘”和“屏幕”）。nc 让我最欣赏的就是“-e”选项，通过它能将输入输出重定向到本地可执行程序。例如在 windows 环境下执行：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">nc -l -p 1234 -e cmd.exe
+</code></pre></div>
+<p>这样，从端口 1234 获得的数据都会转发给 cmd.exe ，而 cmd.exe 的输出也会返回给网络。此时的 nc 就像一件外衣罩在 cmd.exe 上，让原本不具备网络通信功能的 cmd.exe 也成为网络程序。更多关于 nc 的用法可以参见这里。</p>
+
+<h1>程序自动“聊天”</h1>
+
+<p>如果你能理解上述 nc 的用法，那解决《[DuplexPipe二三事（一）]/2009-09-03/duplexpipe-1/》中提到的进程通信问题也就很简单了！打开两个终端分别执行：“<code>nc -l -p 1234 -e 24.sh</code>”和“<code>nc localhost 1234 -e r24.sh</code>”，这样两个 Shell 脚本就通过本地 1234 端口进行通信了！我就是用这种方法让我的 ThinkPad 疯狂了一把～</p>
+
+<h1>总结</h1>
+
+<p>作为一个通讯工具，nc 最神奇的地方就是能让本地非网络程序（比如 cmd.exe）实现网络通讯。但如果是两个网络程序，因为某种原因没办法直接建立连接（比如想在外网访问内网服务器），此时 nc 就无能为力了。这时候需要做的就是数据转发（端口映射），《<a href="/2009-09-04/duplexpipe-3/">DuplexPipe二三事（三）</a>》中会介绍如何用 FPipe 来实现端口映射。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">双向管道</span>
+    <label class="timestamp">[2013-11-30 21:30:00]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="ClearCase标准的工作流程[中文版]" />
+
+    <title>ClearCase流程 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>ClearCase流程</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/工具技师.html">工具技师</a>
+  
+  <a href="/archive/clearcase.html">ClearCase</a>
+  
+</div>
+<div id="article">
+  <h1>过程模型</h1>
+
+<p>ClearCase和ClearQuest实现了两种过程模型：Base和UCM（Unified Change Management，即统一变更管理），其中UCM是被推荐的方式。</p>
+
+<p>Base模型基于配置管理解决方案的第二代理论，只能处理文件和目录。它使用分支（Branch）和视图（View）来支持并行开发，使用标签（Label）来标记每一次发布。</p>
+
+<p>UCM基于第三代理论，引入了一些新的概念：活动（activity）、变更集（change set）、基线（baseline）、流（stream）等。它管理变更集和活动，而不是针对文件。</p>
+
+<p>下表示两个模型的概念对比：</p>
+
+<table class="content-table"><thead>
+<tr>
+<th>Base</th>
+<th>UCM</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Base View</td>
+<td>UCM View</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Component</td>
+</tr>
+<tr>
+<td>Branch</td>
+<td>Stream</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Activity</td>
+</tr>
+<tr>
+<td>Label</td>
+<td>Baseline</td>
+</tr>
+<tr>
+<td>Element</td>
+<td>Element</td>
+</tr>
+<tr>
+<td>/</td>
+<td>Change Set</td>
+</tr>
+</tbody></table>
+
+<p>UCM概念简介：</p>
+
+<ol>
+<li>VOB (Version Object Base)：是一个仓库，容纳文件、目录以及任何与产品或开发相关的资源。
+
+<ul>
+<li>Project VOB：保存VOB的元数据（Metadata）。例如项目、流、基线、活动、变更集等。</li>
+<li>Components VOB：保存与开发、集成、发布等真正工作相关的文件、目录等信息。</li>
+</ul></li>
+<li>Stream：“流”为开发者提供独立的工作区。它包含一组基线，用于替代Base中分支的概念。开发人员可基于某一条基线创建一条开发流（Development Stream），而分支却只能创建单个文件的分支。</li>
+<li>Baseline：“基线”可理解成快照，指明了某时刻组建的版本。它包含一个活动集，用于取代Base中的标签概念。</li>
+<li>Activity：“活动”用于记录一项单独的任务，例如修复一个缺陷、添加一项新功能等。</li>
+<li>Change Set：“变更集”与“活动”相关连，记录开发者为了完成活动中描述的任务而创建或修改的一系列文件。</li>
+<li>Element：元素是版本库中的单个文件或目录，一个元素包含一到多个版本。</li>
+</ol>
+
+<h1>UCM工作流</h1>
+
+<p>一个UCM典型的处理流程如下：</p>
+
+<ol>
+<li><p>ClearCase管理员创建VOBs</p>
+
+<p>ClearCase管理员创建一个用于容纳所有开发相关资源的仓库。</p></li>
+<li><p>项目主管创建UCM项目</p>
+
+<p>项目主管在仓库中创建一个自己的项目，包含相关的组件，此时ClearCase自动自动生成项目的集成流（Integration Stream）。</p></li>
+<li><p>开发人员加入（join）UCM项目</p>
+
+<p>开发人员参与到项目中，并创建私人的工作区（开发流）。</p></li>
+<li><p>执行开发任务</p>
+
+<p>开发人员创建或委任一个活动，一个活动应该只用于一个开发任务！</p></li>
+<li><p>开发人员交付（deliver）自己的成果到共享区</p>
+
+<p>当开发人员完成了自己的开发任务，并完成相应的测试，就可以把自己的工作成果交付到集成流上。</p></li>
+<li><p>发行工程师（Release engineering）构建项目</p>
+
+<p>项目中专门负责构建的工程师会周期性地到集成流上构建最新的可执行文件，使其能包含开发人员交付的代码。</p></li>
+<li><p>项目主管创建一条新的基线</p>
+
+<p>如果项目构建成功，项目主管会打一条新的基线，然后由质量保证组的工程师们基于新的基线做集成测试。</p></li>
+<li><p>项目主管把基线提升为里程碑</p>
+
+<p>经过反复地修复、构建、测试、发布等过程，基线会稳定下来，此时项目主管可以去推荐（recommended）这条基线为项目里程碑。</p></li>
+<li><p>开发人员把私人的工作区更新到最新状态</p>
+
+<p>开发人员把私人的工作区更新到推荐的基线上，然后重复上述步骤继续新的开发任务。</p></li>
+</ol>
+
+<p>用于产品紧急修复（hot fix）的流程如下：</p>
+
+<ol>
+<li><p>开发人员创建一条用于紧急修复的开发流</p>
+
+<p>开发人员基于发布的基线（不是最新的基线）创建一条用于紧急修复的开发流。</p></li>
+<li><p>执行开发任务</p>
+
+<p>把补丁打到新的开发流中。</p></li>
+<li><p>项目主管在该开发上打基线</p>
+
+<p>在开发人员完成测试后，项目主管在该开发流上创建一条新的基线，它仅包含已发布的代码和补丁代码，不会包含那些仍然处于开发过程中的未发布代码。因此把这条基线提升为里程碑作为紧急发布版本。</p></li>
+<li><p>开发人员把补丁交付到集成流中。</p>
+
+<p>根据上述流程，整合补丁代码到当前开发中。</p></li>
+</ol>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">中文版ClearCase开发流程</span>
+    <label class="timestamp">[2013-11-29 14:58:50]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

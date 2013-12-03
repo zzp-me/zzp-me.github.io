@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="E4X中访问XML子节点的方法" />
+
+    <title>E4X教程[2] - 访问 XML 子节点 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>E4X教程[2] - 访问 XML 子节点</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/编程语言生态.html">编程语言生态</a>
+  
+  <a href="/archive/javascript.html">JavaScript</a>
+  
+  <a href="/archive/e4x.html">E4X</a>
+  
+</div>
+<div id="article">
+  <h1>访问 XML 子节点</h1>
+
+<p>JavaScript 对象通常使用 . 或 [] 来设置性质。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">foo</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="nx">a</span><span class="p">[</span><span class="s2">&quot;bar&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</code></pre></div>
+<p>在 E4X 中，点（.）和中括号（[]）操作符用来访问 E4X 元素的子节点。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">element1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+                 <span class="o">&lt;</span><span class="nx">bar</span><span class="o">/&gt;</span>
+               <span class="o">&lt;</span><span class="err">/foo&gt;;</span>
+<span class="kd">var</span> <span class="nx">element2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">baz</span><span class="o">/&gt;</span><span class="p">;</span>
+<span class="nx">element1</span><span class="p">.</span><span class="nx">bar</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element2</span><span class="p">);</span>
+<span class="nx">element1</span><span class="p">[</span><span class="s2">&quot;bar&quot;</span><span class="p">].</span><span class="nx">appendChild</span><span class="p">(</span><span class="o">&lt;</span><span class="nx">quux</span><span class="o">/&gt;</span><span class="p">);</span>
+</code></pre></div>
+<p>往 element1 中的 bar 节点添加子节点，生成如下 XML 文档：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">bar</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">baz</span><span class="o">/&gt;</span>
+    <span class="o">&lt;</span><span class="nx">quux</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="err">/bar&gt;</span>
+<span class="o">&lt;</span><span class="err">/foo&gt;</span>
+</code></pre></div>
+<p>但是要注意，给一个不存在的子元素赋值会创建这个元素。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">element1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">/&gt;</span>
+<span class="nx">element1</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+<p>生成</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">bar</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;</span><span class="err">/bar&gt;</span>
+<span class="o">&lt;</span><span class="err">/foo&gt;</span>
+</code></pre></div>
+<p>如果子节点已经存在，点（.）操作符允许你更改它的值。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+             <span class="o">&lt;</span><span class="nx">bar</span><span class="o">&gt;</span><span class="mi">1</span><span class="o">&lt;</span><span class="err">/bar&gt;</span>
+           <span class="o">&lt;</span><span class="err">/foo&gt;</span>
+<span class="nx">elem</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</code></pre></div>
+<p>会将原来的值 1 改成 2。</p>
+
+<p>你可以用 delete 命令删除一个子节点。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">elem</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+             <span class="o">&lt;</span><span class="nx">bar</span><span class="o">/&gt;</span>
+             <span class="o">&lt;</span><span class="nx">baz</span><span class="o">/&gt;</span>
+           <span class="o">&lt;</span><span class="err">/foo&gt;</span>
+<span class="k">delete</span> <span class="nx">elem</span><span class="p">.</span><span class="nx">bar</span><span class="p">;</span>
+</code></pre></div>
+<p>只剩下</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">baz</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="err">/foo&gt;</span>
+</code></pre></div>
+<p>点（.）操作符还能用于替换特定的子节点。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">elem1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="nx">bar</span><span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="err">/foo&gt;;</span>
+<span class="kd">var</span> <span class="nx">elem2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">red</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="nx">blue</span><span class="o">/&gt;</span>
+            <span class="o">&lt;</span><span class="err">/red&gt;;</span>
+<span class="nx">elem1</span><span class="p">.</span><span class="nx">bar</span> <span class="o">=</span> <span class="nx">elem2</span><span class="p">;</span>
+</code></pre></div>
+<p>用 elem2 的全部内容替换 <bar/> 元素。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">red</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">blue</span><span class="o">/&gt;</span>
+  <span class="o">&lt;</span><span class="err">/red&gt;</span>
+<span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+</code></pre></div>
+<h1>XML 列表</h1>
+
+<p>许多时候，一个元素会有两个或多个相同类型的子节点。在这种情况下，访问 foo.bar 将返回一个XML 列表对象，包含所有类型为“bar”的子节点。注意：在使用 . 操作符时，判断它是返回单个元素还是一个 XML 列表，这是你的责任。在返回这些性质时，E4X 的行为并没有区别。</p>
+
+<p>XML 列表的行为就像是一个数组。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+                <span class="o">&lt;</span><span class="nx">bar</span> <span class="nx">baz</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">&gt;</span><span class="nx">red</span><span class="o">&lt;</span><span class="err">/bar&gt;</span>
+                <span class="o">&lt;</span><span class="nx">bar</span> <span class="nx">baz</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="nx">blue</span><span class="o">&lt;</span><span class="err">/bar&gt;</span>
+              <span class="o">&lt;</span><span class="err">/foo&gt;;</span>
+<span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">element</span><span class="p">.</span><span class="nx">bar</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">();</span> <span class="c1">// returns 2</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// the first bar element</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// the second bar element</span>
+</code></pre></div>
+<p>需要注意，这个列表时可修改的，在它上面做的修改都会反映到原始的 XML 文档中。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;green&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>XML 文档被修改为：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">bar</span> <span class="nx">baz</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">&gt;</span><span class="nx">red</span><span class="o">&lt;</span><span class="err">/bar&gt;</span>
+  <span class="o">&lt;</span><span class="nx">bar</span> <span class="nx">baz</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">&gt;</span><span class="nx">green</span><span class="o">&lt;</span><span class="err">/bar&gt;</span>
+<span class="o">&lt;</span><span class="err">/foo&gt;</span>
+</code></pre></div>
+<h1>特殊类型的节点</h1>
+
+<p>XML 对象有一些方法可以访问 XML 列表中的通用类型节点。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span> <span class="nx">Some</span> <span class="nx">text</span> <span class="o">&lt;</span><span class="nx">bar</span><span class="o">&gt;</span><span class="nx">not</span> <span class="nx">text</span><span class="o">&lt;</span><span class="err">/bar&gt; More text &lt;/foo&gt;;</span>
+<span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">text</span><span class="p">();</span>
+<span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">();</span> <span class="c1">// returns 2</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span> <span class="c1">// returns &quot; Some text &quot;</span>
+<span class="nx">list</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// returns &quot; More text &quot;</span>
+</code></pre></div>
+<p>你同样可以访问注释节点：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">XML</span><span class="p">.</span><span class="nx">ignoreComments</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span> <span class="nx">Some</span>  <span class="c">&lt;!--</span> <span class="nx">abc</span> <span class="o">--&gt;</span> <span class="nx">text</span> <span class="o">&lt;</span><span class="err">/foo&gt;;</span>
+<span class="kd">var</span> <span class="nx">comments</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">comments</span><span class="p">();</span>
+<span class="nx">alert</span><span class="p">(</span><span class="nx">comments</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span> <span class="c1">// Returns &lt;!-- abc --&gt;</span>
+</code></pre></div>
+<p>星号（*）选择器将返回 XML 列表的所有子节点。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="nx">bar</span><span class="o">/&gt;</span>
+          <span class="o">&lt;</span><span class="nx">baz</span><span class="o">/&gt;</span>
+        <span class="o">&lt;</span><span class="err">/foo&gt;;</span>
+<span class="kd">var</span> <span class="nx">list</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="o">*</span><span class="p">;</span>
+<span class="nx">list</span><span class="p">.</span><span class="nx">length</span><span class="p">();</span> <span class="c1">// returns 2</span>
+</code></pre></div>
+<h1>元素属性</h1>
+
+<p>很多 XML 元素都有赋有特定值的属性。例如：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">pets</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">dog</span> <span class="nx">color</span><span class="o">=</span><span class="s2">&quot;brown&quot;</span><span class="o">&gt;</span><span class="nx">Fido</span><span class="o">&lt;</span><span class="err">/dog&gt;</span>
+  <span class="o">&lt;</span><span class="nx">cat</span> <span class="nx">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="o">&gt;</span><span class="nx">Fluffy</span><span class="o">&lt;</span><span class="err">/cat&gt;</span>
+<span class="o">&lt;</span><span class="err">/pets&gt;</span>
+</code></pre></div>
+<p>E4X 运行你用 .@ 操作符来反问这些特定元素的属性。最基本的情况如下例所示：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span> <span class="nx">bar</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">/&gt;</span>
+ <span class="nx">element</span><span class="p">.</span><span class="err">@</span><span class="nx">bar</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+</code></pre></div>
+<p>它将生成：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">foo</span> <span class="nx">bar</span><span class="o">=</span><span class="s2">&quot;2&quot;</span><span class="o">/&gt;</span>
+</code></pre></div>
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">E4X</span>
+    <label class="timestamp">[2013-11-30 18:36:26]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

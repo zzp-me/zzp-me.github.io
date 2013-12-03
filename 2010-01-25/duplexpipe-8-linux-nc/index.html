@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="Linux下使用nc实现DuplexPipe的功能" />
+
+    <title>Linux下用nc实现DuplexPipe - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>Linux下用nc实现DuplexPipe</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/项目.html">项目</a>
+  
+  <a href="/archive/双向管道.html">双向管道</a>
+  
+</div>
+<div id="article">
+  <p>nc 是一把网络的瑞士军刀，我以前在介绍 DuplexPipe 时也提到过，如果你没接触过它，可以先参看一下《<a href="/2009-09-03/duplexpipe-2/">DuplexPipe二三事（二）</a>》。再来简单地介绍一下 DuplexPipe，顾名思义，它是一个“双向管道”。在 shell 中，我们通过“|”使用匿名管道，让前一条命令的输出作为后一条命令的输入；双向管道即在此基础上在加上“后一条命令的输入作为前一条命令的输入”。这是最初开发它的原因，但后来发现它更像是一个网络接口转换器，“DuplexPipe”这个名字反而不能体现它的功能。</p>
+
+<h1>留言</h1>
+
+<p>今天有网友给我留言，他通过用 nc 的 -e 选项来执行 nc 本身来实现 DuplexPipe。留言原文如下：</p>
+
+<blockquote>
+<p>哥们，你写的那个DuplexPipe, 我很欣赏。
+不过近日于网上逛发现此工具的功能竟然完全可以用netcat做到，
+有两种方法，我的博客上载了一种。简单描述如下：</p>
+</blockquote>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">在windows下：
+echo nc [ip] [port] &gt; relay.bat
+nc -l -p [port2] -e relay.bat
+其余的类推
+第二种方法是用命名管道：(linux下)
+mknod backpipe p
+nc -l -p [port] 0&lt;backpipe | nc [ip] [port12] | tee backpipe
+</code></pre></div>
+<p>其中选项 -e 的作用是：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">for NT:    -e prog        inbound program to exec [dangerous!!]
+for Linux: -e filename    program to exec after connect [dangerous!!]
+</code></pre></div>
+<h1>Windows下不行</h1>
+
+<p>在我开发 DuplexPipe 时确实考虑过功能会不会和 nc 重叠，当时只想着通过 shell 管道来连接，忘了 nc 自带了一个双向管道！我首先在 Vista 下做了测试，nc(win32) 是从 <a href="http://www.securityfocus.com/tools/139">http://www.securityfocus.com/tools/139</a> 下载。开启三个命令提示符，分别执行：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">1) nc -l -p 1234
+2) nc localhost 1234 -e &quot;nc -l -p 1235&quot;
+3) nc localhost 1235
+</code></pre></div>
+<p>其中第二条和留言中使用批处理等价。理论上在提示符(3)中输入一行数据，提示符(1)三中马上显示。但我每次在提示符(3)中输入一堆数据后，提示符(1)要输入两个回车才会把数据显示出来。我又另外开启四个命令提示符，模拟 DuplexPipe：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">1) nc -l -p 1234
+2) nc -l -p 1235 -e &quot;nc -l -p 1236&quot;
+3) nc localhost 1234 -e &quot;nc localhost 1235&quot;
+4) nc localhost 1236
+</code></pre></div>
+<p>此时提示符(1)中的数据能发送到(4)中，而提示符(4)中的数据却倒不了(1)。调整(2)、(3)中端口的顺序会出现不同结果，但都达不到理想效果。后来又下了其他几个不同版本的 nc，并在 WinXP 下也进行了测试，但都不成功。</p>
+
+<h1>Linux下成功</h1>
+
+<p>Linux下有些不同，nc 不能脱离 shell 执行。可以像留言中一样先创建一个脚本文件，也可以使用另一个选项：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">-c shell commands      as `-e&#39;; use /bin/sh to exec [dangerous!!]
+</code></pre></div>
+<p>我的系统是 Debian Lenny+nc v1.10-38，经测试能实现 DuplexPipe 的全部功能！最新版的 DuplexPipe 能实现<a href="/2009-10-01/duplexpipe-7/">九种连接模式</a>，对应的指令分别是：</p>
+
+<ol>
+<li>nc -l -p port1 -c &#39;nc -l -p port2&#39;</li>
+<li>nc -l -p port1 -c &#39;nc host2 port2&#39;</li>
+<li>nc -l -p port1 -c &#39;nc -u -l -p port2&#39;</li>
+<li>nc -l -p port1 -c &#39;nc -u host2 port2&#39;</li>
+<li>nc host1 port1 -c &#39;nc host2 port2&#39;</li>
+<li>nc host1 port1 -c &#39;nc -u -l -p port2&#39;</li>
+<li>nc host1 port1 -c &#39;nc -u host2 port2&#39;</li>
+<li>nc -u -l -p port1 -c &#39;nc -u -l -p port2&#39;</li>
+<li>nc -u -l -p port1 -c &#39;nc -u host2 port2&#39;</li>
+</ol>
+
+<p>在留言中还提到用命名管道来实现。</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">mknod pipe p
+nc -l -p 1234 0&lt; pipe | nc -l -p 1235 &gt; pipe
+</code></pre></div>
+<p>shell 的匿名管道让前一条命令的标准输出作为后一条命令的标准输入，手工创建的命名管道则是让后一条命令的标准输出作为前一条命令的标准输入。你会发现这已经解决了文章开头的问题，而且不需要通过网络。</p>
+
+<h1>下一步任务</h1>
+
+<p>我想，DuplexPipe 已经没必要继续维护了。虽然 Windows 下测试不成功，但所幸它的源码开放，也许接下来我们应该考虑转向去完善 netcat for NT。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">双向管道</span>
+    <label class="timestamp">[2013-11-30 21:30:00]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,570 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="控制语句的解析与实现" />
+
+    <title>用C语言写解释器[4] - 语句分析 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>用C语言写解释器[4] - 语句分析</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/解释器.html">解释器</a>
+  
+  <a href="/archive/basic解释器.html">BASIC解释器</a>
+  
+</div>
+<div id="article">
+  <h1>声明</h1>
+
+<p>为提高教学质量，我所在的学院正在筹划编写C语言教材。《用C语言写解释器》系列文章经整理后将收入书中“综合实验”一章。因此该系列的文章主要阅读对象定为刚学完C语言的学生（不要求有数据结构等其他知识），所以行文比较罗嗦，请勿见怪。本人水平有限，如有描述不恰当或错误之处请不吝赐教！特此声明。</p>
+
+<h1>语句</h1>
+
+<p>在前面的章节中已经成功实现了内存管理和表达式求值模块。之所以称表达式求值是解释器的核心部分，是因为几乎所有语句的操作都伴随着表达式求值。也许你已经迫不及待地给 eval 传值让它执行复杂的运输了，但目前来讲它充其量只是一个计算器。要想成为一门语言，还需要一套自成体系的语法，包括输入输出语句和控制语句。但在进行语法分析之前，首先需要将 BASIC 源码载入到内存中。</p>
+
+<h1>BASIC 源码载入</h1>
+
+<p>在《<a href="/2009-10-18/basic-interpreter-in-c-1/">用C语言写解释器（一）</a>》中附了一段 BASIC 参考代码，每一行的结构是一个行号+一条语句。其中行号为 1-9999 之间的正整数，且当前行号大于前面的行号；语句则由以下即将介绍的 3 条 I/O 语句和 8 条控制语句组成。为方便编码，程序中采用静态数组来保存源代码，读者可以尝试用链表结构实现动态申请的版本。下面是代码结构的定义。</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in basic_io.h</span>
+<span class="cp">#define PROGRAM_SIZE (10000)</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ln</span><span class="p">;</span>     <span class="c1">// line number</span>
+    <span class="n">STRING</span> <span class="n">line</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">CODE</span><span class="p">;</span>
+
+<span class="k">extern</span> <span class="n">CODE</span> <span class="n">code</span><span class="p">[</span><span class="n">PROGRAM_SIZE</span><span class="p">];</span>
+<span class="k">extern</span> <span class="kt">int</span> <span class="n">cp</span><span class="p">;</span>
+<span class="k">extern</span> <span class="kt">int</span> <span class="n">code_size</span><span class="p">;</span>
+</code></pre></div>
+<p>其中 <code>code_size</code> 的作用顾名思义：记录代码的行数。cp （0 ≤ cp &lt; code_size）记录当前行的下标（比如 cp 等于5时表明执行到第5行）。下面是载入 BASIC 源码的参考代码，在载入源码的同时会去除两端的空白字符。</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in basic_io.c</span>
+<span class="kt">void</span> <span class="nf">load_program</span> <span class="p">(</span> <span class="n">STRING</span> <span class="n">filename</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span> <span class="p">(</span> <span class="n">filename</span><span class="p">,</span> <span class="s">&quot;r&quot;</span> <span class="p">);</span>
+    <span class="kt">int</span> <span class="n">bg</span><span class="p">,</span> <span class="n">ed</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span> <span class="n">fp</span> <span class="o">==</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;文件 %s 无法打开！/n&quot;</span><span class="p">,</span> <span class="n">filename</span> <span class="p">);</span>
+        <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">while</span> <span class="p">(</span> <span class="n">fscanf</span> <span class="p">(</span> <span class="n">fp</span><span class="p">,</span> <span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="p">)</span> <span class="o">!=</span> <span class="n">EOF</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="o">&lt;=</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="o">-</span><span class="mi">1</span><span class="p">].</span><span class="n">ln</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Line %d: 标号错误！/n&quot;</span><span class="p">,</span> <span class="n">cp</span> <span class="p">);</span>
+            <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">fgets</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">),</span> <span class="n">fp</span> <span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="n">bg</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">isspace</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">[</span><span class="n">bg</span><span class="p">]);</span> <span class="n">bg</span><span class="o">++</span> <span class="p">);</span>
+        <span class="n">ed</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">strlen</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span> <span class="o">+</span> <span class="n">bg</span> <span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span> <span class="n">ed</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">isspace</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">[</span><span class="n">ed</span><span class="o">+</span><span class="n">bg</span><span class="p">]</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">ed</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">ed</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">memmove</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">,</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span> <span class="o">+</span> <span class="n">bg</span><span class="p">,</span> <span class="n">ed</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">);</span>
+            <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">[</span><span class="n">ed</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">cp</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">cp</span> <span class="o">&gt;=</span> <span class="n">PROGRAM_SIZE</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;程序%s太大，代码空间不足！/n&quot;</span><span class="p">,</span> <span class="n">filename</span> <span class="p">);</span>
+            <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">code_size</span> <span class="o">=</span> <span class="n">cp</span><span class="p">;</span>
+    <span class="n">cp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h1>语法分析</h1>
+
+<p>源码载入完成后就要开始逐行分析语句了，程序中总共能处理以下 11 种语句：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in main.c</span>
+<span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span>
+    <span class="n">key_input</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>  <span class="c1">// INPUT</span>
+    <span class="n">key_print</span><span class="p">,</span>      <span class="c1">// PRINT</span>
+    <span class="n">key_for</span><span class="p">,</span>        <span class="c1">// FOR .. TO .. STEP</span>
+    <span class="n">key_next</span><span class="p">,</span>       <span class="c1">// NEXT</span>
+    <span class="n">key_while</span><span class="p">,</span>      <span class="c1">// WHILE</span>
+    <span class="n">key_wend</span><span class="p">,</span>       <span class="c1">// WEND</span>
+    <span class="n">key_if</span><span class="p">,</span>         <span class="c1">// IF</span>
+    <span class="n">key_else</span><span class="p">,</span>       <span class="c1">// ELSE</span>
+    <span class="n">key_endif</span><span class="p">,</span>      <span class="c1">// END IF</span>
+    <span class="n">key_goto</span><span class="p">,</span>       <span class="c1">// GOTO</span>
+    <span class="n">key_let</span>         <span class="c1">// LET</span>
+<span class="p">}</span> <span class="n">keywords</span><span class="p">;</span>
+</code></pre></div>
+<p>《<a href="/2009-10-18/basic-interpreter-in-c-1/">用C语言写解释器（一）</a>》中详细描述了每个语句的语法，本程序中所谓的语法其实就是字符串匹配，参考代码如下：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in main.c</span>
+<span class="n">keywords</span> <span class="nf">yacc</span> <span class="p">(</span> <span class="k">const</span> <span class="n">STRING</span> <span class="n">line</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;INPUT &quot;</span><span class="p">,</span> <span class="mi">6</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_input</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;PRINT &quot;</span><span class="p">,</span> <span class="mi">6</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_print</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;FOR &quot;</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_for</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">stricmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;NEXT&quot;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_next</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;WHILE &quot;</span><span class="p">,</span> <span class="mi">6</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_while</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">stricmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;WEND&quot;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_wend</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;IF &quot;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_if</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">stricmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;ELSE&quot;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_else</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">stricmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;END IF&quot;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_endif</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;GOTO &quot;</span><span class="p">,</span> <span class="mi">5</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_goto</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;LET &quot;</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_let</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">strchr</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="sc">&#39;=&#39;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">key_let</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>每个语句对应有一个执行函数，在分析出是哪种语句后，就可以调用它了！为了编码方便，我们将这些执行函数保存在一个函数指针数组中，请看下面的参考代码：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in main.c</span>
+<span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">key_func</span><span class="p">[])(</span> <span class="k">const</span> <span class="n">STRING</span> <span class="p">)</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">exec_input</span><span class="p">,</span>
+    <span class="n">exec_print</span><span class="p">,</span>
+    <span class="n">exec_for</span><span class="p">,</span>
+    <span class="n">exec_next</span><span class="p">,</span>
+    <span class="n">exec_while</span><span class="p">,</span>
+    <span class="n">exec_wend</span><span class="p">,</span>
+    <span class="n">exec_if</span><span class="p">,</span>
+    <span class="n">exec_else</span><span class="p">,</span>
+    <span class="n">exec_endif</span><span class="p">,</span>
+    <span class="n">exec_goto</span><span class="p">,</span>
+    <span class="n">exec_assignment</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">argc</span> <span class="o">!=</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;usage: %s basic_script_file/n&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">);</span>
+        <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">load_program</span> <span class="p">(</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="p">);</span>
+
+    <span class="k">while</span> <span class="p">(</span> <span class="n">cp</span> <span class="o">&lt;</span> <span class="n">code_size</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="p">(</span><span class="o">*</span><span class="n">key_func</span><span class="p">[</span><span class="n">yacc</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span> <span class="p">)])</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span> <span class="p">);</span>
+        <span class="n">cp</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>以上代码展示的就是整个程序的基础框架，现在欠缺的只是每个语句的执行函数，下面将逐个详细解释。</p>
+
+<h1>I/O语句</h1>
+
+<p>输入输出是一个宽泛的概念，并不局限于从键盘输入和显示到屏幕上，还包括操作文件、连接网络、进程通信等。《我们的目标》中指出只需实现从键盘输入（INPUT）和显示到屏幕上（PRINT），事实上还应该包括赋值语句，只不过它属于程序内部的I/O。</p>
+
+<h2>INPUT 语句</h2>
+
+<p>INPUT 语句后面跟着一堆变量名（用逗号隔开）。因为变量是弱类型，你可以输入数字或字符串。但C语言是强类型语言，为实现这个功能就需要判断一下 scanf 的返回值。我们执行 <code>scanf ( &quot;%lf&quot;, &amp;memory[n].i )</code>，如果你输入的是一个数字，就能成功读取一个浮点数，函数返回 1、否则就返回 0；不能读取时就采用 getchar 来获取字符串！参考代码如下：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in basic_io.c</span>
+<span class="kt">void</span> <span class="nf">exec_input</span> <span class="p">(</span> <span class="k">const</span> <span class="n">STRING</span> <span class="n">line</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="n">line</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="n">assert</span> <span class="p">(</span> <span class="n">s</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">);</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="mi">5</span><span class="p">;</span>
+
+    <span class="k">while</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">isspace</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">isalpha</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="o">||</span> <span class="n">isalnum</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">perror</span> <span class="p">(</span> <span class="s">&quot;变量名错误！/n&quot;</span> <span class="p">);</span>
+            <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">n</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">scanf</span> <span class="p">(</span> <span class="s">&quot;%lf&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">memory</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">i</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+            <span class="c1">// 用户输入的是一个字符串</span>
+            <span class="n">memory</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">type</span> <span class="o">=</span> <span class="n">var_string</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">memory</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">getchar</span><span class="p">())</span> <span class="o">==</span> <span class="sc">&#39;&quot;&#39;</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">(</span><span class="n">memory</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">getchar</span><span class="p">())</span><span class="o">!=</span><span class="sc">&#39;&quot;&#39;</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">!</span><span class="n">isspace</span><span class="p">(</span><span class="n">memory</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">getchar</span><span class="p">());</span> <span class="n">i</span><span class="o">++</span> <span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">memory</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">memory</span><span class="p">[</span><span class="n">n</span><span class="p">].</span><span class="n">type</span> <span class="o">=</span> <span class="n">var_double</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">isspace</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="o">*</span><span class="n">s</span> <span class="o">!=</span> <span class="sc">&#39;,&#39;</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">perror</span> <span class="p">(</span> <span class="s">&quot;INPUT 表达式语法错误！/n&quot;</span> <span class="p">);</span>
+            <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>PRINT 语句</h2>
+
+<p>输出相对简单些，PRINT 后面跟随的是一堆表达式，表达式只需委托给 eval 来求值即可，因此 PRINT 要做的仅仅是按照值的类型来输出结果。唯一需要小心的就是类似 <code>PRINT &quot;hello, world&quot;</code> 这样字符串中带有逗号的情况，以下是参考代码：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in basic_io.c</span>
+<span class="kt">void</span> <span class="nf">exec_print</span> <span class="p">(</span> <span class="k">const</span> <span class="n">STRING</span> <span class="n">line</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">STRING</span> <span class="n">l</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="o">*</span><span class="n">e</span><span class="p">;</span>
+    <span class="n">VARIANT</span> <span class="n">v</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="n">strcpy</span> <span class="p">(</span> <span class="n">l</span><span class="p">,</span> <span class="n">line</span> <span class="p">);</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span>
+
+    <span class="n">assert</span> <span class="p">(</span> <span class="n">s</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">);</span>
+    <span class="n">s</span> <span class="o">+=</span> <span class="mi">5</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="p">(;;)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="n">e</span> <span class="o">=</span> <span class="n">s</span><span class="p">;</span> <span class="o">*</span><span class="n">e</span> <span class="o">&amp;&amp;</span> <span class="o">*</span><span class="n">e</span> <span class="o">!=</span> <span class="sc">&#39;,&#39;</span><span class="p">;</span> <span class="n">e</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// 去除字符串</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="o">*</span><span class="n">e</span> <span class="o">==</span> <span class="sc">&#39;&quot;&#39;</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="k">do</span> <span class="p">{</span>
+                    <span class="n">e</span><span class="o">++</span><span class="p">;</span>
+                <span class="p">}</span> <span class="k">while</span> <span class="p">(</span> <span class="o">*</span><span class="n">e</span> <span class="o">&amp;&amp;</span> <span class="o">*</span><span class="n">e</span> <span class="o">!=</span> <span class="sc">&#39;&quot;&#39;</span> <span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="o">*</span><span class="n">e</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="o">*</span><span class="n">e</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span> <span class="n">c</span><span class="o">++</span> <span class="p">)</span> <span class="n">putchar</span> <span class="p">(</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">t</span><span class="err">&#39;</span> <span class="p">);</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">eval</span> <span class="p">(</span> <span class="n">s</span> <span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">v</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">var_double</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span> <span class="p">(</span> <span class="s">&quot;%g&quot;</span><span class="p">,</span> <span class="n">v</span><span class="p">.</span><span class="n">i</span> <span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">v</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">var_string</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">printf</span> <span class="p">(</span> <span class="n">v</span><span class="p">.</span><span class="n">s</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">if</span> <span class="p">(</span> <span class="n">e</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">e</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">putchar</span> <span class="p">(</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">n</span><span class="err">&#39;</span> <span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>LET 语句</h2>
+
+<p>在 BASIC 中，“赋值”和“等号”都使用“=”，因此不能像 C 语言中使用 A = B = C 这样连续赋值，在 BASIC 中它的意思是判断 B 和 C 的值是否相等并将结果赋值给 A 。而且关键字 LET 是可选的，即 <code>LET A = 1</code> 和 <code>A = 1</code> 是等价的。剩下的事情那个就很简单了，只要将表达式的值赋给变量即可。以下是参考代码：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in basic_io.c</span>
+<span class="kt">void</span> <span class="nf">exec_assignment</span> <span class="p">(</span> <span class="k">const</span> <span class="n">STRING</span> <span class="n">line</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">s</span> <span class="o">=</span> <span class="n">line</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">s</span><span class="p">,</span> <span class="s">&quot;LET &quot;</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">isspace</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">isalpha</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="o">||</span> <span class="n">isalnum</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">s</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">perror</span> <span class="p">(</span> <span class="s">&quot;变量名错误！/n&quot;</span> <span class="p">);</span>
+        <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">isspace</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="o">!=</span> <span class="sc">&#39;=&#39;</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;赋值表达式 %s 语法错误！/n&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="p">);</span>
+        <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">memory</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval</span> <span class="p">(</span> <span class="n">s</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h1>控制语句</h1>
+
+<p>现在是最后一个模块——控制语句。控制语句并不参与交互，它们的作用只是根据一定的规则来改变代码指针（cp）的值，让程序能到指定的位置去继续执行。限于篇幅，本节只介绍 for、next 以及 goto 三个控制语句的实现方法，读者可以尝试自己完成其他函数，也可以参看附带的完整代码。</p>
+
+<h2>FOR 语句</h2>
+
+<p>先来看一下 FOR 语句的结构：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">FOR var = expression1 TO expression2 [STEP expression3]
+</code></pre></div>
+<p>它首先要计算三个表达式，获得 v1、v2、v3 三个值，然后让变量（var）从 v1 开始，每次迭代都加 v3，直到超出 v2 的范围位置。因此，每一个 FOR 语句，我们都需要保存这四个信息：变量名、起始值、结束值以及步长。另外，不要忘记 FOR 循环等控制语句可以嵌套使用，因此需要开辟一组空间来保存这些信息，参考代码如下：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in grammar.h</span>
+<span class="k">static</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>           <span class="c1">// memory index</span>
+    <span class="kt">int</span> <span class="n">ln</span><span class="p">;</span>           <span class="c1">// line number</span>
+    <span class="kt">double</span> <span class="n">target</span><span class="p">;</span>    <span class="c1">// target value</span>
+    <span class="kt">double</span> <span class="n">step</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">stack_for</span><span class="p">[</span><span class="n">MEMORY_SIZE</span><span class="p">];</span>
+<span class="k">static</span> <span class="kt">int</span> <span class="n">top_for</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+<p>分析的过程就是通过 strstr 在语句中搜索“=”、“TO”、“STEP”等字符串，然后将提取的表达式传递给 eval 计算，并将值保存到 stack_for 这个空间中。参考代码如下：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in grammar.c</span>
+<span class="kt">void</span> <span class="nf">exec_for</span> <span class="p">(</span> <span class="k">const</span> <span class="n">STRING</span> <span class="n">line</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">STRING</span> <span class="n">l</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="o">*</span><span class="n">s</span><span class="p">,</span> <span class="o">*</span><span class="n">t</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">top</span> <span class="o">=</span> <span class="n">top_for</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span> <span class="n">strnicmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;FOR &quot;</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">goto</span> <span class="n">errorhandler</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">top</span> <span class="o">&gt;=</span> <span class="n">MEMORY_SIZE</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;FOR 循环嵌套过深！/n&quot;</span> <span class="p">);</span>
+        <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">strcpy</span> <span class="p">(</span> <span class="n">l</span><span class="p">,</span> <span class="n">line</span> <span class="p">);</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">isspace</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">)</span> <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">isalpha</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">isalnum</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">id</span> <span class="o">=</span> <span class="n">toupper</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="o">-</span> <span class="sc">&#39;A&#39;</span><span class="p">;</span>
+        <span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">ln</span> <span class="o">=</span> <span class="n">cp</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">goto</span> <span class="n">errorhandler</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">do</span> <span class="p">{</span>
+        <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">while</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">isspace</span><span class="p">(</span><span class="o">*</span><span class="n">s</span><span class="p">)</span> <span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="o">*</span><span class="n">s</span> <span class="o">==</span> <span class="sc">&#39;=&#39;</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">s</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">goto</span> <span class="n">errorhandler</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">strstr</span> <span class="p">(</span> <span class="n">s</span><span class="p">,</span> <span class="s">&quot; TO &quot;</span> <span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">t</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">memory</span><span class="p">[</span><span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">eval</span> <span class="p">(</span> <span class="n">s</span> <span class="p">);</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">goto</span> <span class="n">errorhandler</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="n">strstr</span> <span class="p">(</span> <span class="n">s</span><span class="p">,</span> <span class="s">&quot; STEP &quot;</span> <span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">t</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">target</span> <span class="o">=</span> <span class="n">eval</span> <span class="p">(</span> <span class="n">s</span> <span class="p">).</span><span class="n">i</span><span class="p">;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">t</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+        <span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">step</span> <span class="o">=</span> <span class="n">eval</span> <span class="p">(</span> <span class="n">s</span> <span class="p">).</span><span class="n">i</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">fabs</span> <span class="p">(</span> <span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">step</span> <span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1E-6</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">goto</span> <span class="n">errorhandler</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">target</span> <span class="o">=</span> <span class="n">eval</span> <span class="p">(</span> <span class="n">s</span> <span class="p">).</span><span class="n">i</span><span class="p">;</span>
+        <span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">step</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span> <span class="p">(</span><span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">step</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> 
+         <span class="n">memory</span><span class="p">[</span><span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">id</span><span class="p">].</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">target</span><span class="p">)</span><span class="o">||</span>
+         <span class="p">(</span><span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">step</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> 
+         <span class="n">memory</span><span class="p">[</span><span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">id</span><span class="p">].</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">stack_for</span><span class="p">[</span><span class="n">top</span><span class="p">].</span><span class="n">target</span><span class="p">))</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span> <span class="n">cp</span> <span class="o">&lt;</span> <span class="n">code_size</span> <span class="o">&amp;&amp;</span> <span class="n">strcmp</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">,</span> <span class="s">&quot;NEXT&quot;</span><span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">cp</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">cp</span> <span class="o">&gt;=</span> <span class="n">code_size</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">goto</span> <span class="n">errorhandler</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">top_for</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span><span class="p">;</span>
+
+<span class="nl">errorhandler:</span>
+    <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Line %d: 语法错误！/n&quot;</span><span class="p">,</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="p">);</span>
+    <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>NEXT 语句</h2>
+
+<p>NEXT 的工作就简单得多了。它从 stack_for 这个空间中取出最后一组数据，让变量的值累加上步长，并判断循环是否结束。如果结束就跳出循环执行下一条语句；否则就将代码指针移回循环体的顶部，继续执行循环体。下面是参考代码。</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in grammar.c</span>
+<span class="kt">void</span> <span class="nf">exec_next</span> <span class="p">(</span> <span class="k">const</span> <span class="n">STRING</span> <span class="n">line</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">stricmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;NEXT&quot;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Line %d: 语法错误！/n&quot;</span><span class="p">,</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="p">);</span>
+        <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">top_for</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Line %d: NEXT 没有相匹配的 FOR！/n&quot;</span><span class="p">,</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="p">);</span>
+        <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">memory</span><span class="p">[</span><span class="n">stack_for</span><span class="p">[</span><span class="n">top_for</span><span class="p">].</span><span class="n">id</span><span class="p">].</span><span class="n">i</span> <span class="o">+=</span> <span class="n">stack_for</span><span class="p">[</span><span class="n">top_for</span><span class="p">].</span><span class="n">step</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">stack_for</span><span class="p">[</span><span class="n">top_for</span><span class="p">].</span><span class="n">step</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> 
+         <span class="n">memory</span><span class="p">[</span><span class="n">stack_for</span><span class="p">[</span><span class="n">top_for</span><span class="p">].</span><span class="n">id</span><span class="p">].</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">stack_for</span><span class="p">[</span><span class="n">top_for</span><span class="p">].</span><span class="n">target</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">top_for</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">stack_for</span><span class="p">[</span><span class="n">top_for</span><span class="p">].</span><span class="n">step</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> 
+         <span class="n">memory</span><span class="p">[</span><span class="n">stack_for</span><span class="p">[</span><span class="n">top_for</span><span class="p">].</span><span class="n">id</span><span class="p">].</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">stack_for</span><span class="p">[</span><span class="n">top_for</span><span class="p">].</span><span class="n">target</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">top_for</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">cp</span> <span class="o">=</span> <span class="n">stack_for</span><span class="p">[</span><span class="n">top_for</span><span class="p">].</span><span class="n">ln</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>GOTO 语句</h2>
+
+<p>也许你认为 GOTO 语句只是简单的将 cp 的值设置为指定的行，但事实上它比想象中的要复杂些。考虑下面的 BASIC 代码：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">0010 I = 5
+0020 GOTO 40
+0030 FOR I = 1 TO 10
+0040   PRINT I
+0050 NEXT
+</code></pre></div>
+<p>像这类代码，直接跳到循环体内部，如果只是简单地将 cp 移动到指定位置，当代码继续执行到 NEXT 时就会报告没有对应的 FOR 循环！跳到其他的控制结构，如 WHILE、IF 等，也会出现相同的问题。以下是参考代码（有删减）。</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in grammar.c</span>
+<span class="kt">void</span> <span class="nf">exec_goto</span> <span class="p">(</span> <span class="k">const</span> <span class="n">STRING</span> <span class="n">line</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">ln</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span> <span class="n">strnicmp</span> <span class="p">(</span> <span class="n">line</span><span class="p">,</span> <span class="s">&quot;GOTO &quot;</span><span class="p">,</span> <span class="mi">5</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Line %d: 语法错误！/n&quot;</span><span class="p">,</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="p">);</span>
+        <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">ln</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">eval</span> <span class="p">(</span> <span class="n">line</span> <span class="o">+</span> <span class="mi">5</span> <span class="p">).</span><span class="n">i</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">ln</span> <span class="o">&gt;</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 往下跳转</span>
+        <span class="k">while</span> <span class="p">(</span> <span class="n">cp</span> <span class="o">&lt;</span> <span class="n">code_size</span> <span class="o">&amp;&amp;</span> <span class="n">ln</span> <span class="o">!=</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">,</span> <span class="s">&quot;IF &quot;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="n">top_if</span><span class="o">++</span><span class="p">;</span>
+                <span class="n">stack_if</span><span class="p">[</span><span class="n">top_if</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">stricmp</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">,</span> <span class="s">&quot;ELSE&quot;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="n">stack_if</span><span class="p">[</span><span class="n">top_if</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">stricmp</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">,</span> <span class="s">&quot;END IF&quot;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="n">top_if</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">,</span> <span class="s">&quot;WHILE &quot;</span><span class="p">,</span> <span class="mi">6</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="n">top_while</span><span class="o">++</span><span class="p">;</span>
+                <span class="n">stack_while</span><span class="p">[</span><span class="n">top_while</span><span class="p">].</span><span class="n">isrun</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+                <span class="n">stack_while</span><span class="p">[</span><span class="n">top_while</span><span class="p">].</span><span class="n">ln</span> <span class="o">=</span> <span class="n">cp</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">stricmp</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">,</span> <span class="s">&quot;WEND&quot;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="n">top_while</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">strnicmp</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">,</span> <span class="s">&quot;FOR &quot;</span><span class="p">,</span> <span class="mi">4</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+                <span class="n">VARIANT</span> <span class="n">v</span><span class="p">;</span>
+                <span class="k">while</span> <span class="p">(</span> <span class="n">isspace</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="p">)</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">memory</span><span class="p">[</span><span class="n">toupper</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="p">];</span>
+                <span class="n">exec_for</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span> <span class="p">);</span>
+                <span class="n">memory</span><span class="p">[</span><span class="n">toupper</span><span class="p">(</span><span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">stricmp</span> <span class="p">(</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">line</span><span class="p">,</span> <span class="s">&quot;NEXT&quot;</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="n">top_for</span><span class="o">--</span><span class="p">;</span>
+            <span class="p">}</span>
+            <span class="n">cp</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">ln</span> <span class="o">&lt;</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 往上跳转</span>
+        <span class="c1">// 代码类似，此处省略</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// 我不希望出现死循环，你可能有其他处理方式</span>
+        <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Line %d: 死循环！/n&quot;</span><span class="p">,</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="p">);</span>
+        <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span> <span class="n">ln</span> <span class="o">==</span> <span class="n">code</span><span class="p">[</span><span class="n">cp</span><span class="p">].</span><span class="n">ln</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">cp</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;标号 %d 不存在！/n&quot;</span><span class="p">,</span> <span class="n">ln</span> <span class="p">);</span>
+        <span class="n">exit</span> <span class="p">(</span> <span class="n">EXIT_FAILURE</span> <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h1>总结</h1>
+
+<p>本章介绍了源码载入、语法分析以及部分语句的实现，WHILE 和 IF 等控制语句方法和 FOR、NEXT 类似，有兴趣的读者请尝试自己实现（或者参看附带的完整源码）。这样一个解释器的四个关键部分“内存管理”、“表达式求值”、“输入输出”和“控制语句”就全部介绍完了，希望你也能写出自己的解释器。下一篇我将总结一下我个人对编程语言的一些思考，如果你也有兴趣请继续关注《用C语言写解释器（五）》！</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">用C语言写BASIC解释器</span>
+    <label class="timestamp">[2013-12-01 15:55:39]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

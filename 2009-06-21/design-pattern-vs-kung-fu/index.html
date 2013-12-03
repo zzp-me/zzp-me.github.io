@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="设计模式就像武侠小说里大侠们使的武功招式，一个模式对应一种武功招式。" />
+
+    <title>设计模式与武侠 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>设计模式与武侠</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/设计模式.html">设计模式</a>
+  
+</div>
+<div id="article">
+  <p>本学期学完设计模式，略有感悟，和大家共勉。首先看一下模式的定义：</p>
+
+<p>模式：在某情境下，针对某问题的某种解决方案。 </p>
+
+<ul>
+<li>情境：应用某个模式的情况。这应该是不断重复出现的情况。</li>
+<li>问题：你想在某情境下达到的目标，但也可以是某情境下的约束。</li>
+<li>解决方案：这是我们的目标。一个通用的设计，用来解决约束，达到目标。</li>
+</ul>
+
+<p>通俗版本：如果你发现自己处于某个情境下，面对着所欲达到的目标被一群约束影响着的问题，然而，你能够应用某个设计，克服这些约束并达到该目标，将你领向某个解决方案。</p>
+
+<p>在我看来，“模式”就像武侠小说里大侠们使的武功招式（一个模式对应一种武功招式）：</p>
+
+<ol>
+<li><p>就是因为有了武功招式，才让专业习武者和市井流氓打架时的拳打脚踢区分开来；</p>
+
+<p>同理，设计模式等专业术语也让专业软件设计师和业余编程爱好者有了本质区别。</p></li>
+<li><p>武功招式普遍都有一些很响亮的名字，比如太极里的“白鹤亮翅”；</p>
+
+<p>同样，每个设计模式都有一个形象贴切的名字，像“观察者模式”。</p></li>
+<li><p>武功招式，都是由最基本的拳、掌、钩等（或者剑术的刺、劈等）基本招式组成，并以各门各派的“内功心法”为指导，形成能够强身健体、修身养性的招数；</p>
+
+<p>设计模式，同样是由最基本的基础元素：抽象、封装、多台、继承组成，并合理遵循贯彻Object-Oriented设计原则，产生富有弹性的类图结构和设计框架。</p></li>
+<li><p>武功招式会被滥用，初学者做起事情来，处处都是有头有脸的招式，在木板上订枚钉子，好好的榔头不用，非要用什么一阳指、千斤坠；</p>
+
+<p>设计模式同样会有如此尴尬，初学者“为了用设计模式而用设计模式”，甚至扬言写个Hello World也要用设计模式，这时候就病入膏肓了。</p></li>
+<li><p>《笑傲江湖》中，风清扬教令狐冲“独孤九剑”的时候，倾囊相授之后要他尽数忘记。以后在比剑的过程中随心所欲，想起那一招就使出哪一招。
+悟道（编程之道）者的心智能够看到模式在何处能够自然融入，不必去思考这个地方用“策略模式”好还是用“模板方法模式”好，一切顺其自然。</p></li>
+<li><p>武学的一种高境界，是无招胜有招，因为但凡是招式，就有其弱点，能被相克的招式破解，而且并不是人人都能练好这一招一式；</p>
+
+<p>编程亦是如此，每个模式虽然威力强劲，但都是比较复杂的实现方式，而且各自都有相对的适用范围和使用后果（好的或坏的）。</p></li>
+<li><p>学习武功招式，最美妙的地方就是能和其他习武者一起切磋改进，还能相互学习；</p>
+
+<p>设计模式的绝顶妙处也是让你和其他设计者有共同语言，并且不用重复制造车轮。</p></li>
+<li><p>武学宗师能够自创武功；</p>
+
+<p>设计大师同样挖掘模式。</p></li>
+<li><p>武功有欣赏价值；</p>
+
+<p>设计有艺术气息。</p></li>
+</ol>
+
+<p>总结起来，无论是习武也好，编程也好，简单才是硬道理，最完美的解决方案属于最简单的方案，而不是最绚丽的方案。</p>
+
+<p>要达到无招的境界，时刻把《<a href="/2009-06-21/software-vs-belief/">汝当分离软件与信仰</a>》铭记在心。</p>
+
+<p>但所谓的无招也只是冰山的一角，神雕第二十六回，杨过发现独孤求败的剑冢，里面埋藏着三把剑及四片刻有文字的石片，代表着这一代高手的四个阶段。这学剑的四个阶段，其实也可以用于学习处事的四个不同阶段。</p>
+
+<p>第一柄剑长四尺，锋利无比，剑下石片下写着，刚猛凌烈，无坚不摧，弱冠前与河朔群雄争锋。少年人性格刚烈，对世界诸多不满，急于清除一切不公平、不完美的实物，满怀理想到处攻击批评，锐不可当，自觉无坚不摧，与河朔群雄争锋云云更是为之使命的事。</p>
+
+<p>后来就发觉问题了。第二片石片上没有剑，下面写着，紫薇软剑，二十岁前用，误伤义士不详，乃弃之深谷。软剑比平常硬剑难使，比之锐不可当又上一层，但是一味自以为伸张正义，殊不知自己也会有错，以致误伤义士。到这时才明白但凭一时冲动的判断是多么不可靠。所谓不祥，是心生内疚，弃于深谷的不单是误伤义士的软剑，还有少年人不顾一切、不可一世的锐气。</p>
+
+<p>第三把剑顺理成章的事凝重的钝剑。石片下写的是重剑无锋，大巧不工，四十岁之前持之横行天下。老练世故的人，早已学会怎样举重若轻、不露锋芒、反而威力更大。大巧不工这四字知易行难，最重要的是锻炼内力深厚。不过，钝口无知的重剑与利剑、软剑的分别，归根究底仍是技巧上的分别　，目标始终是霸道，持之横行天下。</p>
+
+<p>第四个阶段才是渐入化境，第四柄木剑，石片上文字道，四十岁之后不屑带物，草木竹石均可为剑。自此精进，渐入无剑胜有剑之境。</p>
+
+<p>不屑带物，也就是不被外物所控制了，无剑胜有剑，因为无剑束缚更少、限制更少，木剑不过是聊备一棺。到了四十岁便有这样的进展，不为身外物、不为名利成败所劳役，渐趋淡薄，的确令人羡慕。然而，到了这个境界，人就难免寂寞了，独孤求败连一败也求不到，岂非做尘俗中人更好。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">更新链接地址</span>
+    <label class="timestamp">[2013-12-01 12:18:35]</label>
+  </div>
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">设计模式与武侠</span>
+    <label class="timestamp">[2013-12-01 12:13:42]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

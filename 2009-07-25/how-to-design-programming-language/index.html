@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="编程语言并不神秘，所有配置文件都会慢慢进化成一门新的编程语言。 本文以a+b为例，介绍程序如何从“硬编码”一步一步进化成编程语言。" />
+
+    <title>如何设计一门编程语言 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>如何设计一门编程语言</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/编程语言生态.html">编程语言生态</a>
+  
+</div>
+<div id="article">
+  <p>前几天读了一篇《<a href="http://eishn.blog.163.com/blog/static/652318200961325951918/">也谈写写编译器</a>》，很认同其观点。我也赞同“编译原理”就像数据结构一样是很基础、很实用的课程：“unix/linux 下随便哪个项目为了方便都可能随手做一个，这是 UNIX 程序员的基本功”。但很可惜我们学校软件工程专业不开设编译原理，理由是学了没用。</p>
+
+<p>我们都知道“程序=数据结构+算法”，通俗地说是程序由“数据”和处理数据的“行为”组成。根据程序对数据和行为的控制，可以将其归类为“硬编码”、“可配置”、“可控制”以及“可编程”四类。下面以简易计算器为例依次讨论。</p>
+
+<h1>硬编码</h1>
+
+<p>此级别的程序，数据和行为都是硬编码到代码中，执行时用户不能改变。比如在C程序中直接printf(&quot;%d\n&quot;, 1+2);。这时候程序的数据“1”、“2”和行为“+”都是固定不必的。</p>
+
+<p>硬编码的程序在实际应用中不常见。</p>
+
+<h1>可配置</h1>
+
+<p>到了可配置级别，程序的行为依然固定，但数据由用户提供。比如ACM的经典入门题“a+b”：scanf(&quot;%d%d&quot;, &amp;a, &amp;b); printf(&quot;%d\n&quot;, a + b);。此时程序行为依然是求和，但数据是运行时才确定，程序变得比较灵活。</p>
+
+<p>为可配置的程序提供的数据文本，可以看作是一种数据格式（Data formats）。比如 /etc/passwd。</p>
+
+<h1>可控制</h1>
+
+<p>可控制的程序比可配置更灵活，运行时用户不仅可以指定数据，还能指定处理该数据的行为。即运算符“＋、－、×、÷”也由用户指定。例如scanf(&quot;%d%c%d&quot;, &amp;a, &amp;c, &amp;b);，接下来用switch (c) 分别处理四则运算。可控制就是指程序的行为可控制，但行为的范围依然是固定的。也就是说用户指定的行为必须是程序本身提供的，程序只能进行四则运算，求根、阶乘等运算行为程序没提供，因此就无法使用。</p>
+
+<p>此时，程序的数据文本具有隐式操作，可以理解成一种暗含控制流的声明性语言。例如 fetchmail(1) 的运行控制语法可视为一种很弱的命令性语言。</p>
+
+<h1>可编程</h1>
+
+<p>可编程的程序，已经同时具备“输入输出、算数运算、内存管理、按条件跳转”四种性质（请参考《<a href="/2009-07-03/laplace-in-dos-batch/">用DOS批处理来做数字图像处理</a>》）。此时程序的行为是可扩展的，例如能通过迭代来运算阶乘。</p>
+
+<p>此时的程序已经发展到命令性（具有显示操作）的微型语言范畴，几乎快成为通用解释器。bc(1) 和 dc(1) 都是完备图灵机语言的好例子，它们都是命令性微型语言。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">[Thanks Ruby]我知道你的密码哦~</span>
+    <label class="timestamp">[2013-12-03 21:42:12]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="如何用C语言实现表达式解析、括号优先级判断、求值等。" />
+
+    <title>用C语言写解释器[2] - 表达式求值 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>用C语言写解释器[2] - 表达式求值</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/解释器.html">解释器</a>
+  
+  <a href="/archive/basic解释器.html">BASIC解释器</a>
+  
+</div>
+<div id="article">
+  <h1>声明</h1>
+
+<p>为提高教学质量，我所在的学院正在筹划编写C语言教材。《用C语言写解释器》系列文章经整理后将收入书中“综合实验”一章。因此该系列的文章主要阅读对象定为刚学完C语言的学生（不要求有数据结构等其他知识），所以行文比较罗嗦，请勿见怪。本人水平有限，如有描述不恰当或错误之处请不吝赐教！特此声明。</p>
+
+<h1>内存管理</h1>
+
+<p>既然是表达式求值，自然需要在内存中保存计算结果以及中间值。在《<a href="/2009-10-18/basic-interpreter-in-c-1/">用C语言写解释器（一）</a>》中提过：变量要求是若类型，而 C 语言中的变量是强类型，为实现这个目标就需要定义自己的变量类型，参考代码如下（注释部分指出代码所在的文件名，下同）：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in basic_io.h</span>
+<span class="cp">#define MEMORY_SIZE (26)</span>
+
+<span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span>
+    <span class="n">var_null</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">var_double</span><span class="p">,</span>
+    <span class="n">var_string</span>
+<span class="p">}</span> <span class="n">variant_type</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">STRING</span><span class="p">[</span><span class="mi">128</span><span class="p">];</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">variant_type</span> <span class="n">type</span><span class="p">;</span>
+    <span class="k">union</span> <span class="p">{</span>
+        <span class="kt">double</span> <span class="n">i</span><span class="p">;</span>
+        <span class="n">STRING</span> <span class="n">s</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span> <span class="n">VARIANT</span><span class="p">;</span>
+
+<span class="k">extern</span> <span class="n">VARIANT</span> <span class="n">memory</span><span class="p">[</span><span class="n">MEMORY_SIZE</span><span class="p">];</span>
+
+<span class="c1">// in expression.h</span>
+<span class="k">typedef</span> <span class="n">VARIANT</span> <span class="n">OPERAND</span><span class="p">;</span>
+</code></pre></div>
+<p>程序自带 A-Z 26个可用变量，初始时都处于未赋值（ver_null)状态。所有变量必须先赋值再使用，否则就会报错！至于赋值语句的实现请参见后面语法分析的章节。</p>
+
+<h1>操作符</h1>
+
+<p>表达式中光有数值不行，还需要有操作符。在《一》中“表达式运算”一节已经给出了解释器需要实现的所有操作符，包括“算术运算”、“关系运算”和“逻辑运算”。下面给出程序中操作符的定义和声明：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in expression.h</span>
+<span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span>
+    <span class="cm">/* 算数运算 */</span>
+    <span class="n">oper_lparen</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>    <span class="c1">// 左括号</span>
+    <span class="n">oper_rparen</span><span class="p">,</span>        <span class="c1">// 右括号</span>
+    <span class="n">oper_plus</span><span class="p">,</span>          <span class="c1">// 加</span>
+    <span class="n">oper_minus</span><span class="p">,</span>         <span class="c1">// 减</span>
+    <span class="n">oper_multiply</span><span class="p">,</span>      <span class="c1">// 乘</span>
+    <span class="n">oper_divide</span><span class="p">,</span>        <span class="c1">// 除</span>
+    <span class="n">oper_mod</span><span class="p">,</span>           <span class="c1">// 模</span>
+    <span class="n">oper_power</span><span class="p">,</span>         <span class="c1">// 幂</span>
+    <span class="n">oper_positive</span><span class="p">,</span>      <span class="c1">// 正号</span>
+    <span class="n">oper_negative</span><span class="p">,</span>      <span class="c1">// 负号</span>
+    <span class="n">oper_factorial</span><span class="p">,</span>     <span class="c1">// 阶乘</span>
+    <span class="cm">/* 关系运算 */</span>
+    <span class="n">oper_lt</span><span class="p">,</span>            <span class="c1">// 小于</span>
+    <span class="n">oper_gt</span><span class="p">,</span>            <span class="c1">// 大于</span>
+    <span class="n">oper_eq</span><span class="p">,</span>            <span class="c1">// 等于</span>
+    <span class="n">oper_ne</span><span class="p">,</span>            <span class="c1">// 不等于</span>
+    <span class="n">oper_le</span><span class="p">,</span>            <span class="c1">// 不大于</span>
+    <span class="n">oper_ge</span><span class="p">,</span>            <span class="c1">// 不小于</span>
+    <span class="cm">/* 逻辑运算 */</span>
+    <span class="n">oper_and</span><span class="p">,</span>           <span class="c1">// 且</span>
+    <span class="n">oper_or</span><span class="p">,</span>            <span class="c1">// 或</span>
+    <span class="n">oper_not</span><span class="p">,</span>           <span class="c1">// 非</span>
+    <span class="cm">/* 赋值 */</span>
+    <span class="n">oper_assignment</span><span class="p">,</span>    <span class="c1">// 赋值</span>
+    <span class="n">oper_min</span>            <span class="c1">// 栈底</span>
+<span class="p">}</span> <span class="n">operator_type</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span>
+    <span class="n">left2right</span><span class="p">,</span>
+    <span class="n">right2left</span>
+<span class="p">}</span> <span class="n">associativity</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">numbers</span><span class="p">;</span>        <span class="c1">// 操作数</span>
+    <span class="kt">int</span> <span class="n">icp</span><span class="p">;</span>            <span class="c1">// 优先级</span>
+    <span class="kt">int</span> <span class="n">isp</span><span class="p">;</span>            <span class="c1">// 优先级</span>
+    <span class="n">associativity</span> <span class="n">ass</span><span class="p">;</span>  <span class="c1">// 结合性</span>
+    <span class="n">operator_type</span> <span class="n">oper</span><span class="p">;</span> <span class="c1">// 操作符</span>
+<span class="p">}</span> <span class="n">OPERATOR</span><span class="p">;</span>
+
+<span class="c1">// in expression.c</span>
+<span class="k">static</span> <span class="k">const</span> <span class="n">OPERATOR</span> <span class="n">operators</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="cm">/* 算数运算 */</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_lparen</span><span class="p">},</span>     <span class="c1">// 左括号</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_rparen</span><span class="p">},</span>    <span class="c1">// 右括号</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_plus</span><span class="p">},</span>      <span class="c1">// 加</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_minus</span><span class="p">},</span>     <span class="c1">// 减</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_multiply</span><span class="p">},</span>  <span class="c1">// 乘</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_divide</span><span class="p">},</span>    <span class="c1">// 除</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_mod</span><span class="p">},</span>       <span class="c1">// 模</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_power</span><span class="p">},</span>     <span class="c1">// 幂</span>
+    <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">right2left</span><span class="p">,</span> <span class="n">oper_positive</span><span class="p">},</span>  <span class="c1">// 正号</span>
+    <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">right2left</span><span class="p">,</span> <span class="n">oper_negative</span><span class="p">},</span>  <span class="c1">// 负号</span>
+    <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_factorial</span><span class="p">},</span> <span class="c1">// 阶乘</span>
+    <span class="cm">/* 关系运算 */</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_lt</span><span class="p">},</span>        <span class="c1">// 小于</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_gt</span><span class="p">},</span>        <span class="c1">// 大于</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_eq</span><span class="p">},</span>          <span class="c1">// 等于</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_ne</span><span class="p">},</span>          <span class="c1">// 不等于</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_le</span><span class="p">},</span>        <span class="c1">// 不大于</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_ge</span><span class="p">},</span>        <span class="c1">// 不小于</span>
+    <span class="cm">/* 逻辑运算 */</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_and</span><span class="p">},</span>         <span class="c1">// 且</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">left2right</span><span class="p">,</span> <span class="n">oper_or</span><span class="p">},</span>          <span class="c1">// 或</span>
+    <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="n">right2left</span><span class="p">,</span> <span class="n">oper_not</span><span class="p">},</span>       <span class="c1">// 非</span>
+    <span class="cm">/* 赋值 */</span>
+    <span class="c1">// BASIC 中赋值语句不属于表达式！</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">right2left</span><span class="p">,</span> <span class="n">oper_assignment</span><span class="p">},</span>  <span class="c1">// 赋值</span>
+    <span class="cm">/* 最小优先级 */</span>
+    <span class="p">{</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">right2left</span><span class="p">,</span> <span class="n">oper_min</span><span class="p">}</span>          <span class="c1">// 栈底</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>你也许会问为什么需要 <code>icp（incoming precedence）</code>、<code>isp（in-stack precedence）</code> 两个优先级，现在不用着急，以后会详细解释！</p>
+
+<h1>后缀表达式</h1>
+
+<p>现在操作数（operand）和操作符（operator）都有了，一个表达式就是由它们组合构成的，我们就统称它们为标记（token）。在程序中定义如下：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in expression.h</span>
+<span class="k">typedef</span> <span class="k">enum</span> <span class="p">{</span>
+    <span class="n">token_operand</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">token_operator</span>
+<span class="p">}</span> <span class="n">token_type</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">token_type</span> <span class="n">type</span><span class="p">;</span>
+    <span class="k">union</span> <span class="p">{</span>
+        <span class="n">OPERAND</span> <span class="n">var</span><span class="p">;</span>
+        <span class="n">OPERATOR</span> <span class="n">ator</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span> <span class="n">TOKEN</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">tlist</span> <span class="p">{</span>
+    <span class="n">TOKEN</span> <span class="n">token</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">tlist</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">TOKEN_LIST</span><span class="p">,</span> <span class="o">*</span><span class="n">PTLIST</span><span class="p">;</span>
+</code></pre></div>
+<p>我们平时习惯将表达式符写作：<code>operand operator operand</code>（比如1+1），这是一个递归的定义，表达式本身也可作为操作数。像这种将操作符放在两个操作数之间的表达式称为中缀表达式，中缀表达式的好处是可读性强，操作数之间泾渭分明（尤其是手写体中）。但它有自身的缺陷：操作符的位置说明不了它在运算的先后问题。例如 1+2×3 中，虽然 + 的位置在 × 之前，但这并不表示先做加运算再做乘运算。为解决这个问题，数学中给操作符分了等级，级别高的操作符先计算（乘号的级别比加号高），并用<em>括号</em>提高操作符优先级。因此上例表达式的值是 7 而不是 <code>(1+2)*3=9</code>。</p>
+
+<p>但对于计算机来说，优先级是一个多余的概念。就像上面提到的，中缀表达式中操作符的顺序没有提供运算先后关系的信息，这就好比用4个字节的空间仅保存1个字节数据——太浪费了！索性将操作符按照运算的先后排序：先计算的排最前面。此时操作符就不适合再放中间了，可以将它移到被操作数的后面：<code>operand operand operator</code>（比如 1 1 +）。上例中 <code>1+2×3</code> 就变化为 <code>1 2 3 × +；(1+2)×3</code> 变化成 <code>1 2 + 3 ×</code>，这种将操作符符放到操作数后面的表达式称为后缀表达式。同理还有将操作符符按照逆序放到操作数的前面的前缀表达式。</p>
+
+<p>无论是前缀表达式还是后缀表达式，它们的优点都是用操作符的顺序来代替优先级，这样就可以舍弃括号等概念，化繁为简。</p>
+
+<h1>后缀表达式求值</h1>
+
+<p>请看下面的梯等式计算，比较中缀表达式和后缀表达式的求值过程。</p>
+
+<pre>  8 × <span style="background-color: #ffff00;">( 2 + 3 )</span>        8 <span style="background-color: #ffff00;">2 3 +</span> ×
+= <span style="background-color: #ffff00;">8 * 5</span>              = <span style="background-color: #ffff00;">8 5 ×</span>
+= <span style="background-color: #ffff00;">40</span>                 = <span style="background-color: #ffff00;">40</span></pre>
+
+<p>后缀表达式的求值方式：从头开始一个标记（token）一个标记地往后扫描，碰到操作数时先放到一个临时的空间里；碰到操作符就从空间里取出最后两个操作数，做相应的运算，然后将结果再次放回空间中。到了最后，空间中就只剩下操作数即运算结果！这个中缀表达式求值类似，只不过中缀表达式操作数取的是前后各一个。下面的代码是程序中后缀表达式求值的节选，其中只包含加法运算，其他运算都是类似的。</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="c1">// in expression.c</span>
+<span class="n">VARIANT</span> <span class="nf">eval</span> <span class="p">(</span> <span class="k">const</span> <span class="kt">char</span> <span class="n">expr</span><span class="p">[]</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="c1">// 一些变量的定义和声明</span>
+
+    <span class="c1">// 将中缀表达式转换成后缀表达式</span>
+    <span class="c1">// 转换方法将在后续文章中介绍</span>
+    <span class="n">list</span> <span class="o">=</span> <span class="n">infix2postfix</span> <span class="p">();</span>
+    <span class="k">while</span> <span class="p">(</span> <span class="n">list</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 取出一个 token</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">list</span><span class="p">;</span>
+        <span class="n">list</span> <span class="o">=</span> <span class="n">list</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">next</span><span class="p">;</span>
+
+        <span class="c1">// 如果是操作数就保存到 stack 中</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">p</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">token_operand</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">p</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">next</span> <span class="o">=</span> <span class="n">stack</span><span class="p">;</span>
+            <span class="n">stack</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="c1">// 如果是操作符...</span>
+        <span class="k">switch</span> <span class="p">(</span> <span class="n">p</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">ator</span><span class="p">.</span><span class="n">oper</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// 加法运算</span>
+        <span class="k">case</span> <span class="n">oper_plus</span>:
+            <span class="c1">// 取出 stack 中最末两个操作数</span>
+            <span class="n">op2</span> <span class="o">=</span> <span class="n">stack</span><span class="p">;</span>
+            <span class="n">op1</span> <span class="o">=</span> <span class="n">stack</span> <span class="o">=</span> <span class="n">stack</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">next</span><span class="p">;</span>
+
+            <span class="k">if</span> <span class="p">(</span> <span class="n">op1</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">var_double</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span>
+                 <span class="n">op2</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">var_double</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="n">op1</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">i</span> <span class="o">+=</span> <span class="n">op2</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">i</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="c1">// 字符串的加法即合并两个字符串</span>
+                <span class="c1">// 如果其中一个是数字则需要先转换为字符串</span>
+                <span class="k">if</span> <span class="p">(</span> <span class="n">op1</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">var_double</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="n">sprintf</span> <span class="p">(</span> <span class="n">s1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">%</span><span class="n">g</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;,</span> <span class="n">op1</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">i</span> <span class="p">);</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">strcpy</span> <span class="p">(</span> <span class="n">s1</span><span class="p">,</span> <span class="n">op1</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">s</span> <span class="p">);</span>
+                <span class="p">}</span>
+                <span class="k">if</span> <span class="p">(</span> <span class="n">op2</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">var_double</span> <span class="p">)</span> <span class="p">{</span>
+                    <span class="n">sprintf</span> <span class="p">(</span> <span class="n">s2</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">%</span><span class="n">g</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;,</span> <span class="n">op2</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">i</span> <span class="p">);</span>
+                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                    <span class="n">strcpy</span> <span class="p">(</span> <span class="n">s2</span><span class="p">,</span> <span class="n">op2</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">s</span> <span class="p">);</span>
+                <span class="p">}</span>
+                <span class="n">op1</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">type</span> <span class="o">=</span> <span class="n">var_string</span><span class="p">;</span>
+                <span class="n">strcat</span> <span class="p">(</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span> <span class="p">);</span>
+                <span class="n">strcpy</span> <span class="p">(</span> <span class="n">op1</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">.</span><span class="n">s</span><span class="p">,</span> <span class="n">s1</span> <span class="p">);</span>
+            <span class="p">}</span>
+            <span class="n">free</span> <span class="p">(</span> <span class="n">op2</span> <span class="p">);</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+        <span class="c1">// 其他操作符方法类似</span>
+        <span class="nl">default:</span>
+            <span class="c1">// 无效操作符处理</span>
+            <span class="k">break</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">free</span> <span class="p">(</span> <span class="n">p</span> <span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">value</span> <span class="o">=</span> <span class="n">stack</span><span class="o">-&amp;</span><span class="n">gt</span><span class="p">;</span><span class="n">token</span><span class="p">.</span><span class="n">var</span><span class="p">;</span>
+    <span class="n">free</span> <span class="p">(</span> <span class="n">stack</span> <span class="p">);</span>
+
+    <span class="c1">// 最后一个元素即表达式的值</span>
+    <span class="k">return</span> <span class="n">value</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h1>总结</h1>
+
+<p>这一篇文章主要介绍了表达式中的操作符、操作数在程序内部的表示方法、后缀表达式的相关知识以及后缀表达式求值的方法。在下一篇文章中将着重介绍如何将中缀表达式转换成后缀表达式。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">用C语言写BASIC解释器</span>
+    <label class="timestamp">[2013-12-01 15:55:39]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

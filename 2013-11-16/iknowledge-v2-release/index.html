@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="经过几天的开发，基于Jekyll的iKnowledge 2.0终于开发完成！ 新版本变化颇大，v2.0之于v1.0就像SVN之于CVS： iKnowledge 1.0从无到有；iKnowledge 2.0把事情做对。" />
+
+    <title>iKnowledge 2.0 发布：把事情做对！ - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>iKnowledge 2.0 发布：把事情做对！</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/项目.html">项目</a>
+  
+  <a href="/archive/iknowledge.html">iKnowledge</a>
+  
+</div>
+<div id="article">
+  <p>年初我开发了<a href="/2013-03-13/iknowledge-v1-release/">iKnowledge</a>，当时为了快速地完成从无到有的突破，我选择基于ExtJS来实现（稍纵即逝的灵感很容易被惰性打败）。在这大半年里，我依旧不断地学习新技术，以前一直下不了决心学习Python、<a href="http://ruby-lang.org/">Ruby</a>等主流脚本语言，现在也开始使用并喜欢上它们。在仔细阅读了<a href="http://jekyllrb.com/docs/home/">Jekyll</a>的官方文档后，我觉得时机已经成熟，便开始动手开发新版的iKnowledge！</p>
+
+<p>经过几夜奋斗，iKnowledge 2.0终于完成，实现了许多我梦寐以求的功能！新版本之于旧版本，犹如SVN之于CVS：iKnowledge 1.0是伟大的软件，它从无到有的创新（当然也许早就存在我不知道的同类软件），但同时它不是一款好软件，安装繁琐、使用麻烦、体态臃肿……；iKnowledge 2.0站在巨人的肩膀之上，从软件的安装到使用，许多方面都得到了改善，它努力成为一款好用的软件！</p>
+
+<p>再次感谢<a href="http://jekyllrb.com/">Jekyll</a>，感谢<a href="http://ruby-lang.org/">Ruby</a>！如果没有这些优秀的开源软件，道路会曲折很多。</p>
+
+<h1>iKnowledge 的改进</h1>
+
+<h2>更简便的安装</h2>
+
+<p>第一版可谓是东拼西凑的产物，很多功能都停留在“能工作”的状态。例如从零搭建一套iKnowledge v1.0，你需要在本地安装Java、Shell环境、下载Rhino……门槛相当高。</p>
+
+<p>新版本努力在这方面做得更好，新版本不会图一时便利而引入额外的工具或库。你需要做的仅仅是执行</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">git clone --depth 1 https://github.com/redraiment/iKnowledge.git
+</code></pre></div>
+<p>然后开始写文章！</p>
+
+<h2>超轻量级</h2>
+
+<p>iKnowledge终于摆脱了“击败全球99%的龟速博客”称号。现在，包括<a href="http://ruby-lang.org/">Ruby</a>开发的<a href="http://jekyllrb.com/">Jekyll</a>插件在内，整套系统只有100KB！单张页面不到2KB，比起一些刻意为移动设备优化过的网页还要小！</p>
+
+<p>同时，iKnowledge还从重度依赖JavaScript的极端走向无JavaScript的另一个极端！第一版只有一张页面，所有文章的内容都通过AJAX动态加载，对搜索引擎的爬虫不够友好，导致站内搜索功能形同虚设；新版则是真正生成了纯静态的页面，每篇文章都是独立页面。</p>
+
+<h2>分类归档</h2>
+
+<ol>
+<li>分类依旧可嵌套：第一版本中已实现；</li>
+<li>同一篇文章可属于多个分类：由于第一版的分层结构依赖文件目录结构，因此一篇文章只隶属于一种分类；</li>
+<li>文章所属分类变化时不影响文章的URL：第一版分类结构变化时URL也会随之变化，理由同上；</li>
+<li>文章名不再出现在分类列表中：第一版分类与文章都放在同一颗树中，新版分类列表中不再包含文章链接，取而代之的是点击分类链接时显示该分类下的文章列表。</li>
+</ol>
+
+<h2>Markdown</h2>
+
+<p>自2010年参加工作以来，我的CSDN博客几乎停止更新，偶尔发点小打小闹的东西。因为我转战线下：改用Emacs自带的org-mode来写文章，这更能让我专注于文章的内容。这半年里除了学习新的编程技术，我还掌握了Markdown格式，我发现它比org-mode更适合写文章，而且<a href="http://jekyllrb.com/">Jekyll</a>默认就能处理！</p>
+
+<p>第一版中写文章需要手工书写HTML，遇到需要贴代码的情况还要手工转移特殊字符，这些琐事很影响我写作的心情和欲望。现在换成Markdown之后，它简洁的语法让我更有写作的冲动！</p>
+
+<h2>修改历史</h2>
+
+<p>这是iKnowledge的特色功能之一！即自动在每篇文章的末尾追加修改历史。</p>
+
+<p>早在2009年，我就向CSDN博客维护团队建议过添加这个功能，但我很能理解他们否决的理由，这个功能很多人都用不上，甚至有些人还排斥这个功能。当时我要求添加这个功能的初衷是有很多网友在看我写的文章时会发现其中有错别字或其他错误，我希望有一个地方能统一展示有哪些人为这篇文章做出贡献。</p>
+
+<p>另一个原因和我写文章的方式有关，我写文章通常不是一气呵成，往往从灵感乍现，到下笔写作，最后成文发布要经历很长的一段时间。例如我开发“中文计算器”这个小工具不是某一天一拍脑袋就想出来的，而是早在一年前研究阿拉伯数字转中文大写的算法，之后又研究中文转阿拉伯数字，最有才想到做成一个中文的计算器。我希望能完整地记录这个过程。</p>
+
+<h2>社交分享</h2>
+
+<p>最后，感谢新浪微博提供的评论箱功能，让静态页面也拥有评论的功能！同时集成微博分享功能，因此新版本中微博分享的按钮已经取消了。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">修改文章名</span>
+    <label class="timestamp">[2013-11-27 20:27:50]</label>
+  </div>
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">正式发布iKnowledge 2.0</span>
+    <label class="timestamp">[2013-11-19 15:01:30]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

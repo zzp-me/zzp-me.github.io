@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="研究node.js的原理和适用场景。 异步!=多线程，同时，异步不意味着更快。" />
+
+    <title>Node.js 初体验 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>Node.js 初体验</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/编程语言生态.html">编程语言生态</a>
+  
+  <a href="/archive/javascript.html">JavaScript</a>
+  
+  <a href="/archive/服务端js.html">服务端JS</a>
+  
+</div>
+<div id="article">
+  <p>又到周五晚上自由时间，^_^。今天看了一下 Node.js。</p>
+
+<h1>服务器端 JS 情缘</h1>
+
+<p>在校期间我学会了JavaScript和Java，当时我就在考虑JS有没有类似JSP一样的服务器端程序，名字应该是JSSP（JavaScript Server Page），可以在 HTML 中嵌入 JS。Google了一圈发现IIS支持用JScript代替VBScript做ASP开发，另外SourceForge上真有个叫JSSP的项目，以及今天的主角Node.js。当时的Node.js刚起步，首页背景还是黑乎乎的（不晓得其他童鞋是否也有印象）。经过一圈比较，我最终选择使用Rhino——一个纯Java实现的JS引擎，它吸引我的地方是能直接调用Java类库。</p>
+
+<h1>Node.js</h1>
+
+<p>最近关注Node.js人变多了。在长期与一堆厚重的Java框架、类库为伍之后，我也想看看外面的世界。Node.js最为人所津津乐道的就是异步加回调机制以及良好的性能。我想知道它和我熟悉的Java有何不同。</p>
+
+<h1>Node.js 要解决的问题</h1>
+
+<p>在使用Java开发的过程里，经常会有与下面类似的代码：</p>
+<div class="highlight"><pre><code class="java language-java" data-lang="java"><span class="c1">// block A</span>
+<span class="c1">// do something</span>
+
+<span class="c1">// block B</span>
+<span class="c1">// on Database</span>
+<span class="n">ResultSet</span> <span class="n">rs</span> <span class="o">=</span> <span class="n">dbo</span><span class="o">.</span><span class="na">executeQuery</span><span class="o">(</span><span class="s">&quot;Query Statement&quot;</span><span class="o">);</span>
+
+<span class="k">while</span> <span class="o">(</span><span class="n">rs</span><span class="o">.</span><span class="na">next</span><span class="o">())</span> <span class="o">{</span>
+    <span class="c1">// block C</span>
+    <span class="c1">// parse the result</span>
+<span class="o">}</span>
+
+<span class="c1">// block D</span>
+<span class="c1">// do something</span>
+</code></pre></div>
+<p>代码块A先处理一些任务；代码块B发送查询语句到数据库，等待返回数据集；代码块C处理返回结果；代码块D继续做其他事情。执行时序图如下：</p>
+
+<p><img src="/resource/2012-09-25/node-js-introduct/1.png" /></p>
+
+<p>容易看出，在等待代码块B时，整个程序都暂停了，中间有一大段空闲时间没有处理任何任务。从依赖关系上说，代码块C必须在代码块B成功执行后才能执行；但代码块D对前面的B、C并没有依赖关系。因此，如果在等待期间先执行代码块D，直到代码块B执行完毕再触发代码块C。如下图所示：</p>
+
+<p><img src="/resource/2012-09-25/node-js-introduct/2.png" /></p>
+
+<p>假设每个代码块所需的执行时间是5秒，那第一种方案需要20秒，而第二种只需要15秒。Node.js要做的事情就是使用第二种方案取代第一种方案以获得性能的提升。</p>
+
+<h1>回调函数队列</h1>
+
+<p>情理之中意料之外，Node.js实现的方式是单进程且单线程。它内部维护着一个回调函数队列，遵循先到先处理的原则逐个执行。让我联想到<a href="http://zh.wikipedia.org/wiki/%E6%89%B9%E5%A4%84%E7%90%86%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F">批处理操作系统</a>，任务一个接一个地执行，没有抢占并享有所有系统资源。Node.js回调机制所做的事情就是把相应的代码块塞到队尾。</p>
+
+<p>比如上一节的例子中的方法二，执行过程就变成：代码块A被塞到队列中；数据库查询语句注册了一个事件并绑定代码块C为回调函数；代码块D被塞到队尾；此时代码块B执行完成并触发事件，把代码块C塞到队尾。因此，依次执行的是A、D、C（注：B是数据库服务器上的查询操作，并不是Node.js中执行的代码），期间并无间歇。</p>
+
+<p>考虑下面的代码，就遵循上述的代码模式：</p>
+
+<ol>
+<li>代码块A：请求计数以及记录请求开始处理的时间（不是到达时间）。</li>
+<li>代码块B：此处用setTimeout做了5秒延迟，模拟外部程序处理五秒钟。</li>
+<li>代码块C：记录回调函数被调用的时间，睡5秒来模拟服务器运算，并记录结束时间。</li>
+<li>代码块D：记录响应的时间（即用户收到回馈的时间）。</li>
+</ol>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// block A</span>
+    <span class="nx">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">id</span> <span class="o">=</span> <span class="nx">count</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">start</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">reply</span><span class="p">;</span>
+
+    <span class="c1">// block B</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// block C</span>
+        <span class="kd">var</span> <span class="nx">called</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+        <span class="kd">var</span> <span class="nx">end</span><span class="p">;</span>
+
+        <span class="k">do</span> <span class="p">{</span>
+            <span class="nx">end</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="nx">end</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">-</span> <span class="nx">called</span><span class="p">.</span><span class="nx">getTime</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">);</span>
+
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39; start @ &#39;</span> <span class="o">+</span> <span class="nx">start</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39; reply @ &#39;</span> <span class="o">+</span> <span class="nx">reply</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39; called @ &#39;</span> <span class="o">+</span> <span class="nx">called</span><span class="p">);</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">id</span> <span class="o">+</span> <span class="s1">&#39; end @ &#39;</span> <span class="o">+</span> <span class="nx">end</span><span class="p">);</span>
+    <span class="p">},</span> <span class="mi">5000</span><span class="p">);</span>
+
+    <span class="c1">// block D</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s1">&#39;text/html&#39;</span><span class="p">});</span>
+    <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">();</span>
+    <span class="nx">reply</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Date</span><span class="p">();</span>
+<span class="p">}).</span><span class="nx">listen</span><span class="p">(</span><span class="mi">80</span><span class="p">);</span>
+</code></pre></div>
+<p>在我的机器上执行结果如下：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">λ sudo node main.js 
+1 start @ Fri Sep 21 2012 19:12:35 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+1 reply @ Fri Sep 21 2012 19:12:35 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+1 called @ Fri Sep 21 2012 19:12:40 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+1 end @ Fri Sep 21 2012 19:12:45 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+</code></pre></div>
+<p>和预期的一样：请求在19:12:35时开始处理，并且没有被阻塞，而是在同一时间就返回了；5秒后回调函数开始被处理；又过了5秒回调函数执行完毕，整个过程结束。</p>
+
+<p>我们来数数上面这段代码总共有几个显眼的回调函数：</p>
+
+<ol>
+<li>整段代码/文件是一个回调函数，在程序启动时被塞到队列中并立即执行了；</li>
+<li>createServer 中注册的回调函数，在收到用户请求后被触发（塞到队列，不一定马上执行）；</li>
+<li>setTimeout 中注册的回调函数，在延迟5后才被塞到队列。</li>
+</ol>
+
+<h1>单线程的问题</h1>
+
+<p>Node.js采用单进程+单线程的其中一个原因是避免系统频繁开辟线程带来的开销。网络上说开启一个线程要使用2M的内存（有这么多？），我没去验证过具体数值，但至少是有一些开销的，当请求量大是的确会成为瓶颈。上节提到Node.js的处理任务的方式类似批处理操作系统，因此它在规避线程开销的同时也完全继承了批处理方式的缺陷——交互不友好。我指的交互是后面的请求会被回调函数队列中前面的任务阻塞住，从接受到回馈耗费很长的时间等待。</p>
+
+<p>用下面代码分别在第0秒、第1秒、第7秒发送一个请求，并记录每个请求从发出到收到回馈的时间：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
+
+date
+<span class="nb">time </span>curl http://localhost
+sleep 1
+date
+<span class="nb">time </span>curl http://localhost
+sleep 6
+date
+<span class="nb">time </span>curl http://localhost
+date
+</code></pre></div>
+<p>执行结果如下：</p>
+
+<ol>
+<li>19:16:36 发送第一个请求，几乎马上收到回馈；</li>
+<li>等待1秒后发送第二个请求，同样马上收到回馈；</li>
+<li>继续等待6秒发送第三个请求，耗时8秒后猜收到回馈！</li>
+</ol>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>./submit.sh 
+2012年 09月 21日 星期五 19:16:36 CST
+
+real    0m0.018s
+user    0m0.004s
+sys     0m0.008s
+2012年 09月 21日 星期五 19:16:37 CST
+
+real    0m0.015s
+user    0m0.012s
+sys     0m0.000s
+2012年 09月 21日 星期五 19:16:43 CST
+
+real    0m7.982s
+user    0m0.000s
+sys     0m0.004s
+2012年 09月 21日 星期五 19:16:51 CST
+</code></pre></div>
+<p>相信第三次请求的用户会极其不满，来看看Node.js执行时的快照：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">1 start @ Fri Sep 21 2012 19:16:36 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+1 reply @ Fri Sep 21 2012 19:16:36 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+1 called @ Fri Sep 21 2012 19:16:41 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+1 end @ Fri Sep 21 2012 19:16:46 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+2 start @ Fri Sep 21 2012 19:16:37 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+2 reply @ Fri Sep 21 2012 19:16:37 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+2 called @ Fri Sep 21 2012 19:16:46 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+2 end @ Fri Sep 21 2012 19:16:51 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+3 start @ Fri Sep 21 2012 19:16:51 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+3 reply @ Fri Sep 21 2012 19:16:51 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+3 called @ Fri Sep 21 2012 19:16:56 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+3 end @ Fri Sep 21 2012 19:17:01 GMT+0800 <span class="o">(</span>CST<span class="o">)</span>
+</code></pre></div>
+<p>下表中A1表示第一次请求中的代码块A，其他以此类推。假定代码块A、B、D都是瞬间完成，只有C耗时5秒。从表中可知，第三次请求是在第15钟才开始被处理。根据测试脚本的输出可知，第三次请求其实在第7秒就已经发出了，但由于是那时队列中还有C1、C2在处理，因此等待了8秒钟！假设队列的平均长度是100，那每个请求平均的等待时间就是 (100 / 4 - 1) * (A+B+C+D)，即要等前面24个请求处理完。这还仅仅是请求得到回馈的时间，该请求对应回调函数被执行的时间还要更久。</p>
+
+<h1>适用场景</h1>
+
+<p>通过上面的研究，我觉得Node.js并不适合需要与用户实时交互的系统；它适合集中处理用户发来的大规模“指令”，即不需要及时看到结果的请求。比如微博系统，用户发表一条微博，可能需要在服务器上排队1分钟才能最终保存到数据库。在这一分钟里，用户更多地是看看别人发表的微博，并不十分迫切地想看到自己那条微博。如果希望有更好的体验，其实可以用DOM直接把用户发表的微博先更新到当前页面，同时使用Ajax异步请求保存这条数据。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">[Thanks Ruby]Node.js初体验</span>
+    <label class="timestamp">[2013-12-03 22:28:54]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

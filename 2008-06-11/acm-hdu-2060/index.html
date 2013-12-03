@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="现在，你的任务就是在菲利普告诉你现在台面上的情况(有多少个球还留在台面上) 后判断一下他是否需要放弃这局斯诺克比赛。 如果他还有获胜的机会，就输出“Yes”，否则输出“No”。" />
+
+    <title>2060 Snooker - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>2060 Snooker</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/杭电100题.html">杭电100题</a>
+  
+</div>
+<div id="article">
+  <h1>问题描述</h1>
+
+<h2>Problem Description</h2>
+
+<p>background:</p>
+
+<p>Philip likes to play the QQ game of Snooker when he wants a relax, though he was just a little vegetable-bird. Maybe you hadn&#39;t played that game yet, no matter, I&#39;ll introduce the rule for you first.</p>
+
+<p>There are 21 object balls on board, including 15 red balls and 6 color balls: yellow, green, brown, blue, pink, black.</p>
+
+<p>The player should use a white main ball to make the object balls roll into the hole, the sum of the ball&#39;s fixed value he made in the hole is the player&#39;s score. The player should firstly made a red ball into the hole, after that he gains red-ball&#39;s value(1 points), then he gets the chance to make a color ball, then alternately. The color ball should be took out until all the red-ball are in the hole. In other word, if there are only color balls left on board, the player should hit the object balls in this order: yellow(2 point), green(3 point), brown(4 point), blue(5 point), pink(6 point), black(7 point), after the ball being hit into the hole, they are not get out of the hole, after no ball left on board, the game ends, the player who has the higher score wins the game. PS: red object balls never get out of the hole.</p>
+
+<p>I just illustrate the rules that maybe used, if you want to contact more details, visit <a href="http://sports.tom.com/snooker/">http://sports.tom.com/snooker/</a> after the contest.</p>
+
+<p>for example, if there are 12 red balls on board(if there are still red ball left on board, it can be sure that all the color balls must be on board either). So suppose Philp can continuesly hit the ball into the hole, he can get the maximun score is</p>
+
+<p>12 * 1 (12 red-ball in one shoot) + 7 * 12(after hit a red ball, a black ball which was the most valuable ball should be the target) + 2 + 3 + 4 + 5 + 6 + 7(when no red ball left, make all the color ball in hole).</p>
+
+<p>Now, your task is to judge whether Philip should make the decision to give up when telling you the condition on board(How many object balls still left not in the hole and the other player&#39;s score). If Philp still gets the chance to win, just print &quot;Yes&quot;, otherwise print &quot;No&quot;. (PS: if the max score he could get on board add his current score is equal to the opponent&#39;s current score, still output &quot;Yes&quot;)</p>
+
+<h2>Input</h2>
+
+<p>The first line contains a numble N indicating the total conditions. Then followed by N lines, each line is made of three integers:</p>
+
+<p>Ball<em>Left P</em>Score O_Score represeting the ball number left on board, Philp&#39;s current score, and the opponent&#39;s current score.</p>
+
+<p>All the input value are in 32 bit integer value range.</p>
+
+<h2>Output</h2>
+
+<p>You should caculate the max score left Philp can gain, and judge whether he has the possiblity to win.</p>
+
+<h2>Sample Input</h2>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">2
+12 1 1
+1 30 39
+</code></pre></div>
+<h2>Sample Output</h2>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Yes
+No
+</code></pre></div>
+<h1>问题分析</h1>
+
+<h2>Problem Analyse</h2>
+
+<p>背景:</p>
+
+<p>当菲利普要放松一下自己的时候，他喜欢去玩QQ里的斯诺克游戏，虽然他还只是个小菜鸟。也许你还不知道这个游戏的规则，没关系，我会先为你介绍。 一共有21个球在台面上，其中包括15个红球和6个彩球:黄、绿、褐、蓝、粉、黑。选手需要用一个白球来使这些球滚进洞里，那些球所代表的值的和就是他的得分。 选手必须先把一个红球打进洞里，然后它得到红球相应的分值(1分)，然后他就有一次机会去选择打一个彩球。在红球还未全部打进洞里之前，打进去的彩球需要重新拿出来。 换句话说，也就是最后桌上将会只留下彩球。选手按下面的顺序来击球:黄(2分)、绿(3分)、褐(4分)、蓝(5分)、粉(6分)、黑(7分)。这时候把彩球打进洞里，它们不会被拿出来。 当桌面上没有球留下的时候，比赛结束。分数高的选手获胜。PS:红球不会重新拿出。我仅仅只阐述了一下规则，如果你希望了解更多的资料，请浏览: <a href="http://sports.tom.com/snooker/">http://sports.tom.com/snooker/</a></p>
+
+<p>例如，桌台上还有12个红球(如果还有红球留在台面上，表示所有的彩球一定也都留在台面上)。我假设菲利普能继续击球，他能得到的最大分数是： 12 * 1(一次性打掉12个红球) + 7 * 12(每打完一个红球就打黑球) + 2 + 3 + 4 + 5 + 6 + 7(没有红球剩下时，就打所有的彩球)。 现在，你的任务就是在菲利普告诉你现在台面上的情况(有多少个球还留在台面上)后判断一下他是否需要放弃这局比赛。如果他还有获胜的机会，就输出“Yes”，否则输出“No”。 (PS:如果他最大可能的得分加上现在的分数等于对手的分数，依然输出“Yes”)</p>
+
+<p>简单数学计算</p>
+
+<h2>Algorithm Analyse</h2>
+
+<p>只要直接按题目的意思来就可以了。</p>
+
+<h1>参考源码</h1>
+
+<script src="https://gist.github.com/7499122.js?file=2060.cpp"> </script>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">使用Emacs Lisp批量迁移《HDU 2060-2069》</span>
+    <label class="timestamp">[2013-11-17 20:01:59]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="不要被一个蹩脚的工具牵着鼻子走" />
+
+    <title>用C语言写解释器[5] - 其他一些东西 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>用C语言写解释器[5] - 其他一些东西</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/解释器.html">解释器</a>
+  
+  <a href="/archive/basic解释器.html">BASIC解释器</a>
+  
+</div>
+<div id="article">
+  <h1>写完解释器之后</h1>
+
+<p>这一篇文章我只想和大家侃侃编程语言的事情，不会被放到书中。因此可以天南地北地扯淡，不用像前几篇那样畏首畏尾。</p>
+
+<p>经过前面几篇文章的讨论，已经把如何用纯 C 语言来实现一个解释器的方法介绍完了。但那些是写给我校 C 语言初学者看的，并不只是你，我也觉得很不过瘾 ^_^。因此准备继续深入学习编译原理等课程，希望有志同道合的朋友和我一起交流！</p>
+
+<h1>富饶的语言（工具）</h1>
+
+<p>在前几篇文章中一直在鼓吹我拍脑袋想出的语言四大要素：“内存管理”、“表达式求值”、“输入/输出”、“按条件跳转”，在这篇文章中您就姑且信它一回。按这四条准则去匹配，汇编语言已经完全符合了，那为什么又需要 C 语言、Java、C# 等高级语言？因为编程除了需要“语言”之外还需要“抽象”！</p>
+
+<p>“抽象”是个很有效的工具，当你介绍自己房间时不会具体到每个木纤维、油漆分子和铁原子。同样的，我们也不乐意总是写一堆 JNZ、JMP 指令，而仅仅是为了实现 if、for、while 等控制结构。C 语言等高级语言提供的抽象的层次更高、表现力更强，允许用更少的语句描述更多的操作。感谢如此富饶的语言为我们提供不同的视角去观察这个世界。</p>
+
+<p>高级语言与低级语言相比有更高的抽象层次，而高级语言之间的差别主要体现在适用范围上。比如一些语言适合写 WEB 程序，另一些适合做数值分析等。术业有专攻，你只需根据自己的问题来选择一门合适的语言。</p>
+
+<h1>什么时候需要创造新的语言</h1>
+
+<p>当我们碰到一类新的问题时，首先考虑的就是定义新的数据结构，并设计多个函数去操作它，最后将它们独立出来打包成一个类库方便在其他地方调用（比如处理图形图像的 OpenGL 库）。上面已经提过，每种语言都有它适合的领域，强行将一门语言用在它不擅长的领域中就出现冗长、繁琐的代码。自然语言也是如此：英语中有种语法叫虚拟语气，描述的是一种假设，并非事实。比如“If I have time, I will go to see you. ”。按原意一字不差地翻译会很繁琐，我知道台湾作家痞子蔡在使用中文式虚拟语气很有一套：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">如果我还能活一天，
+我就要做你的爱侣。
+我能活一天吗？可惜。
+所以我不是你的爱侣。 ——《第一次亲密接触》
+</code></pre></div>
+<p>上面是一段完整表现虚拟语气精髓的话，我们在日常生活中不会这么罗嗦。同样，如果你发现用现有语言来描述某个特定领域问题时显得力不从心，就可以考虑为这个领域定制一种特定的语言了（Domain Specific Language）！使用现成的词法分析器和语法分析器（比如 lex 和 yacc）对提高开发效率很有帮助，但你也可以考虑使用诸如 Lisp 这样支持元语言编程的语言，通过改造把它的语法过渡到或接近于问题领域。</p>
+
+<h1>从语言（工具）中挣脱</h1>
+
+<p>从写解释器这件事中可以获得一些建议：不要再争论哪个语言更优秀，只有最适合的；用高级语言写代码首先力求可读性好。第一条建议我在以前讨论“工具理论”时提过很多次，就不再重复，主要交流一下可读性的问题。</p>
+
+<p>经过了上面冗长的解释和亲自实现解释器以后，大家应该能了解到：一门新语言诞生的动机多数情况下不是为了提高执行效率，而是为了提高开发效率。很多人都沉浸在“++i”比“i++”高效、“10&gt;&gt;1”比“10/2”快等奇技淫巧中。像我以前玩 ACM 时，一心只想着迷人的“0k 0ms”，代码写得它认识我我不认识它。就像《<a href="http://blog.csdn.net/redraiment/archive/2008/01/29/2072005.aspx">求质数之筛法</a>》一文中的程序，我多少次想把这篇文章删了，免得丢人现眼，但最终还是决定留下，时刻提醒自己不要写如此招人诟病的代码！</p>
+
+<p>在你自己实现过解释器后希望也能明白，如果真有哪个解释器执行语句“i++;”的效率比“++i;”低，那只能说明这个解释器写得烂！像现代的 C 语言编译器都会有优化的选项，编译时去识别一些常见的热点进行优化，难保那些自以为是的优化反而将代码破坏得连编译器也无法识别。所以要迁就解释器而将代码改得乱七八糟，我宁可换一个更好的解释器！</p>
+
+<p>真的想深入研究算法，就势必会和硬件相关。你需要精确地知道代码一共执行了多少个时钟周期，而不是简单地根据嵌套了几层 FOR 循环来判断复杂度是 O(n) 还是 O(n<sup>2</sup>)。除非你深入了解你的解释器，否则无从知晓执行一条 FOR 语句时解释器会不会背着你扫描了整个内存空间。无怪乎经典巨著《<a href="http://www.china-pub.com/7544">计算机程序设计艺术</a>》三卷本中要使用汇编语言来编写代码。</p>
+
+<h1>总结</h1>
+
+<p>废话了这么多，我只是想表达“我们是主人”，不要被一个蹩脚的工具牵着鼻子走。当你发现打字员平均打字速度慢时，总不会为了迁就她而只说一些她打得快的字吧？以上内容属于个人观点，切莫认真。欢迎大家通过邮件和我交流你们的想法，我的邮箱地址：<a href="mailto:redraiment@gmail.com">redraiment@gmail.com</a>。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">用C语言写BASIC解释器</span>
+    <label class="timestamp">[2013-12-01 15:55:39]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

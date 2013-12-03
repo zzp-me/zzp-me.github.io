@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="" />
+
+    <title>E4X教程[1] - 入门 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>E4X教程[1] - 入门</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/编程语言生态.html">编程语言生态</a>
+  
+  <a href="/archive/javascript.html">JavaScript</a>
+  
+  <a href="/archive/e4x.html">E4X</a>
+  
+</div>
+<div id="article">
+  <h1>基本语法</h1>
+
+<p>如果启用了 E4X，基本的 XML 元素就是有效的语法。例如：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">element</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">/&gt;</span>
+</code></pre></div>
+<p>在开启了 E4X 的浏览器里完全有效。</p>
+
+<p>变量的声明也不局限于单个元素，并且和 JavaScript 一样可以扩多行。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">element2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">bar</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="err">/foo&gt;</span>
+</code></pre></div>
+<p>此外，和一般的 XML 文档一样，你能给一个元素指定属性。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">element3</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span> <span class="nx">baz</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="o">/&gt;</span>
+</code></pre></div>
+<h1>操作元素</h1>
+
+<p>E4X 的目标是为 JavaScript 程序员提供一个简单的方法来操作 XML 文档，而无需通过 DOM 接口。不过，很多你在 DOM 中用过的函数也能用到 E4X 中。最基本的就是 appendChild：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">element1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">/&gt;</span>
+<span class="kd">var</span> <span class="nx">element2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">bar</span><span class="o">/&gt;</span>
+<span class="nx">element1</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">element2</span><span class="p">);</span>
+</code></pre></div>
+<p>它会产生你期望的正确的 XML 文档：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">bar</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="err">/foo&gt;</span>
+</code></pre></div>
+<h1>JavaScript 变量</h1>
+
+<p>当 XML 文档需要和 JavaScript 做紧密交互时，E4X 真正强大的地方才得以彰显。通过特定的语法，我们能将 JavaScript 变量的值赋给 E4X 元素。这是用大括号（<code>{}</code>）标记。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">a</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/foo&gt;;</span>
+</code></pre></div>
+<p>创建了一段 XML 文档，内容为 <code>&lt;foo&gt;2&lt;/foo&gt;</code>。</p>
+
+<p>你也可以将大括号标记用于元素的属性（名字或值）。例如：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="s1">&#39;bar&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span> <span class="p">{</span><span class="nx">b</span><span class="p">}</span><span class="o">=</span><span class="p">{</span><span class="nx">a</span><span class="p">}</span><span class="o">&gt;</span><span class="s2">&quot;hi&quot;</span><span class="o">&lt;</span><span class="err">/foo&gt;;</span>
+</code></pre></div>
+<p>创建的 XML 稍有不同：<code>&lt;foo bar=&quot;2&quot;&gt;&quot;hi&quot;&lt;/foo&gt;</code>。</p>
+
+<p>注意：XML 元素只接受文本作为他们的值。大括号标记真正发生的是调用变量的 toString 方法，并将返回值填到相应位置。例如：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="p">{</span><span class="nx">foo</span><span class="o">:</span> <span class="mi">1</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">bar</span><span class="o">&gt;</span><span class="p">{</span><span class="nx">a</span><span class="p">}</span><span class="o">&lt;</span><span class="err">/bar&gt;</span>
+</code></pre></div>
+<p>实际上产生的文档是 <code>&lt;bar&gt;[object Object]&lt;/bar&gt;</code>。</p>
+
+<h1>在内容中使用内联函数</h1>
+
+<p>虽然大括号限定执行单条语句，但通过匿名函数内联可以执行一些额外的处理：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="s1">&#39;foo&#39;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">bar</span><span class="o">&gt;</span><span class="p">{</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span><span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span> <span class="kd">var</span> <span class="nx">d</span> <span class="o">=</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">5</span><span class="p">;</span> <span class="k">return</span> <span class="nx">c</span> <span class="o">+</span> <span class="nx">d</span><span class="p">;}()}</span><span class="o">&lt;</span><span class="err">/bar&gt;</span>
+</code></pre></div>
+<p>上述代码产生：<code>&lt;bar&gt;FOO25&lt;/bar&gt;</code></p>
+
+<p>该用法更多的讨论请参加 <a href="https://developer.mozilla.org/en/E4X_for_templating#Inline_functions">E4X for templating</a>。</p>
+
+<h1>序列化</h1>
+
+<p>E4X 最强大的工具就是简单地调用 .toXMLString() 就可以将整个 XML 文档（或其中部分）序列化到字符串中。</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">element1</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">foo</span><span class="o">/&gt;</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">element2</span> <span class="o">=</span> <span class="o">&lt;</span><span class="nx">bar</span><span class="o">/&gt;</span><span class="p">;</span>
+<span class="nx">element1</span><span class="p">.</span><span class="nx">apppendChild</span><span class="p">(</span><span class="nx">element2</span><span class="p">);</span>
+<span class="nx">element1</span><span class="p">.</span><span class="nx">toXMLString</span><span class="p">();</span>
+</code></pre></div>
+<p>输出为：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="o">&lt;</span><span class="nx">foo</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">bar</span><span class="o">/&gt;</span>
+<span class="o">&lt;</span><span class="err">/foo&gt;</span>
+</code></pre></div>
+<p>本例使用 toString() 也能达到相同效果，不过在一个只有文本内容的元素上调用 toString() 将之产生文本内容（例如，<code>&lt;foo&gt;abc&lt;/foo&gt;.toString()</code>; 会只产生 <code>&#39;abc&#39;</code>）。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">E4X</span>
+    <label class="timestamp">[2013-11-30 18:36:26]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

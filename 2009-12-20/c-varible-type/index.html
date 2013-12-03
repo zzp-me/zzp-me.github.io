@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="使用 printf 输出 %d、%c 时，后面传的参数都是变量的值， 为什么 %s 看起来和它们不一样，要传一个地址？" />
+
+    <title>戏说C语言变量 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="#">Lisp</a><ul><li><a href="/archive/y-combinator.html">Y-combinator(2)</a></li></ul></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>戏说C语言变量</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/编程语言生态.html">编程语言生态</a>
+  
+  <a href="/archive/c语言.html">C语言</a>
+  
+</div>
+<div id="article">
+  <h1>好玩的问题</h1>
+
+<p>今早帮老师去答疑，一位同学跑来问：“使用 printf 输出 %d、%c 时，后面传的参数都是变量的值，为什么 %s 看起来和它们不一样，要传一个地址？”我说：“小伙子很有前途，一般人不问这样的问题，哈哈！”</p>
+
+<p>这个问题类似 Java 中基础类型传递值、对象传递引用，这么设计是为了提高效率。对于还没学完C语言的初学者来说，如果我给他扯一堆“底层设计”或“效率”等显然不合适，还极有可能掉进“值传递还是址传递”等文字游戏漩涡中，估计到了最后也只能在他听得晕头转向时搪塞一句“当初就是这么设计的”。为了尽快得给他满意的答复，我只要想办法让 %s “看起来”和其他标记一样就行了，于是写了如下的代码：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">STRING</span><span class="p">[</span><span class="mi">80</span><span class="p">];</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">STRING</span> <span class="n">s</span> <span class="o">=</span> <span class="s">&quot;redraiment&quot;</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s, %d/n&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>然后我告诉他：“因为C语言不够抽象，让你知道了太多的底层实现细节，比如你知道字符串在内存中是以字符数组的形式保存的。现在我用 <code>typedef</code> 定义了一个字符串类型，把这些细节屏蔽掉。通过 <code>STRING s</code>; 来定义一个名字是 <code>s</code> 的字符串类型变量，这样就和用 <code>double d; int i;</code> 等方式定义变量一样，你无需了解它们在内存中如何实现。此时，对于 <code>printf</code> 来说，<code>%s、%d</code> 后面跟着的 <code>s, i</code> 都是一回事了，它们都是变量的名字，里面保存着不同类型的数据。”很幸运，前面的话解决了他的疑惑，让我省下不少口水:P。</p>
+
+<h1>指针和数组的定义是个BUG</h1>
+
+<p>我初学C语言时，也有过类似的困惑：指针和数组别样的定义方式让我以为它们有别于普通类型。所有普通类型、自定义的结构体类型的定义方式都是 TYPE name，数据类型后面紧跟着变量名。因此，就理论上来说，你定义一个指针 <code>int* pi</code>，其中表示指针类型的“<code>*</code>”应该从属于 <code>int</code>。但很遗憾，实际上它从属于变量名 <code>pi</code>，证据就是 <code>int* pi, i;</code> 中，变量 <code>i</code> 的类型是 <code>int</code>，而不是一个指针。</p>
+
+<p>数组同样存在这样的问题：“<code>[]</code>”从属于变量名。解决的办法就是将指针或数组自定义成新类型，比如：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">typedef</span> <span class="kt">int</span><span class="o">*</span> <span class="n">PINT</span><span class="p">;</span>
+<span class="n">PINT</span> <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">;</span>
+</code></pre></div>
+<p>此时 <code>p1</code> 和 <code>p2</code> 都是指针。切记不能用宏来解决，它依然会存在上面的问题。</p>
+
+<h1>神奇的声明</h1>
+
+<p>每次提起变量声明时，我都会想起《C专家编程》里“骑士和公主”的故事。这是一个很绕嘴的故事（国外诗歌的名字读不习惯），我姑且用毛主席的《沁园春·雪》打个类似的比方。“沁园春”是词牌名，它<em>是</em>“(仄)仄平平，(仄)仄平平，仄仄仄平（韵）……”；只要按照这种词牌格式写的词，都被<em>称作</em>“沁园春”；这首词本身的名字<em>称作</em>“雪”；“雪”这首词的内容<em>是</em>“北国风光，千里冰封，万里雪飘……”。把前面关键词（加粗）部分列于表中：</p>
+
+<table class="content-table"><thead>
+<tr>
+<th></th>
+<th>被称作</th>
+<th>是</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>词的名字</td>
+<td>沁园春</td>
+<td>“(仄)仄平平……”</td>
+</tr>
+<tr>
+<td>词</td>
+<td>雪</td>
+<td>“北国风光 ……”</td>
+</tr>
+</tbody></table>
+
+<p>也许你还不是很了解，我们再把文章开头的问题也罗列成表格：</p>
+
+<table class="content-table"><thead>
+<tr>
+<th></th>
+<th>被称作</th>
+<th>是</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>变量的类型</td>
+<td>STRING</td>
+<td>char[80]</td>
+</tr>
+<tr>
+<td>变量</td>
+<td>s</td>
+<td>&quot;redraiment&quot;</td>
+</tr>
+</tbody></table>
+
+<p>现在清晰了，你明白我们的毛主席也是一个编程高手，他创建了“沁园春 雪, 国情, 长沙;”等多首词。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">戏说C语言变量</span>
+    <label class="timestamp">[2013-12-01 11:56:40]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>
