@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="使用awk脚本取出C语言风格的代码注释：单行注释（//）与多行注释（/**/）" />
+
+    <title>用awk去除C风格注释 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(8)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>用awk去除C风格注释</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/工具技师.html">工具技师</a>
+  
+  <a href="/archive/命令行超级工具.html">命令行超级工具</a>
+  
+</div>
+<div id="article">
+  <p>今天闲逛Linux宝库，看到论坛里有人在讨论如何用 shell 脚本来处理 C 语言注释，发帖时间是 08-10-23（以前怎么都没注意到，失败...），但问题好像并没被解决。正好这两天玩 sed &amp; awk，来小试一下身手。</p>
+
+<h1>C语句注释</h1>
+
+<p>本文讨论的是 C99 标准，它支持单行注释（“// ...”）和块注释（“/<em>...</em>/”），并且当单行注释以“/”结尾时也可以跨多行。测试代码如下：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+<span class="c1">// not show/</span>
+<span class="n">not</span> <span class="n">show</span><span class="o">/</span>
+<span class="n">not</span> <span class="n">show</span>
+<span class="c1">// not show</span>
+<span class="cm">/* not show */</span>
+    <span class="kt">int</span> <span class="n">is</span><span class="p">;</span> <span class="c1">// not show</span>
+    <span class="kt">int</span><span class="cm">/* not show */</span> <span class="n">ms</span><span class="p">;</span> <span class="cm">/* not show */</span>
+    <span class="kt">double</span> <span class="n">ds</span><span class="p">;</span> <span class="c1">// not show/</span>
+    <span class="n">not</span> <span class="n">show</span><span class="o">/</span>
+    <span class="n">not</span> <span class="n">show</span>
+    <span class="kt">double</span> <span class="n">dm</span><span class="p">;</span> <span class="cm">/* ...</span>
+<span class="cm">    not show</span>
+<span class="cm">    not show */</span> <span class="kt">float</span> <span class="n">fs</span><span class="p">;</span> <span class="cm">/**</span>
+<span class="cm">                           * now show</span>
+<span class="cm">                           */</span>
+    <span class="kt">float</span><span class="cm">/**/</span> <span class="n">fm</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">cs</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;aaa // /***/&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">cm1</span><span class="p">[]</span> <span class="o">=</span> <span class="cm">/* not show */</span><span class="s">&quot;hello*/&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">cm2</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;/*redraiment&quot;</span><span class="cm">/* not show */</span><span class="p">;</span>
+    <span class="cm">/* printf(&quot;/////&quot;); */</span>
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>其中灰色部分就是注释，经过处理后需要将它们全部移除或用替换成空字符。论坛原帖中没有处理以“/”结尾的单行注释，也没处理注释关键字出现在字符串中的情况。</p>
+
+<h1>工具的选择</h1>
+
+<p>sed 是一个流编辑器，它能对文件进行“插入”、“删除”、“替换”、“追加”等编辑操作；而 awk 是一门模式匹配的程序设计语言，它除了能编辑文本还可以统计信息，你可以把它看成基于文本文件的数据库系统。原帖中作者使用 sed 来解决，因为问题涉及的操作仅仅是删除 C 代码中的注释。但由于以下原因导致 sed 心有余而力不足：</p>
+
+<h2>一、不支持最小匹配</h2>
+
+<p>正则表达式默认采用贪心匹配策略，在正则的标准中通过在量词后面加“?”来使用最小匹配策略，详细规则介绍请参见<a href="http://deerchao.net/tutorials/regex/regex.htm#greedyandlazy">这里</a>。问题中多行注释必须使用最小匹配原则，如果关键词只有一个字符，就可以通过排除字符集来模拟，比如我们经常用“&quot;[^&quot;]*&quot;”来匹配一个字符串。可惜 C 语言的注释关键词都是多字符。</p>
+
+<h2>二、排序字符（Collating Symbols）只是一个美丽的梦想</h2>
+
+<p>排序字符用于字符列表（character list）中。按照<a href="http://www.gnu.org/software/sed/manual/html_node/Regular-Expressions.html#Regular-Expressions">文档</a>的描述，排序字符可将多个字符当一个字符来匹配。比如模式“[[.ch.]i]”可以匹配行“char”和“int”，但不能匹配“coho”。如果它能被支持，就可以把“/<em>”、“</em>/”、“//”都看做一个字符，通过（一）中的排除字符集来实现最小匹配。可惜到目前为止，我接触的工具中没有一款支持这个特性，更不用说对正则支持平平的 sed 了。</p>
+
+<h2>三、字符串来捣乱</h2>
+
+<p>在《<a href="/2009-12-31/sed-one-line/">sed单行脚本学习笔记</a>》中我给出了一段 sed 单行脚本，用于替换不在字符串中的模式。看起来正适合解决这个问题，但它的前提是模式要和待修改的文本完全匹配。由（一）、（二）两个条件决定了 sed 实现的正则表达式无法匹配 C 语言所有类型的注释。另外，sed 提供的控制语句是“b、t”，它们的功能是类似于 C 语言的 goto，因此它不能像“if ... else ...”一样方便地判断某个注释的起始位置是否在字符串中。</p>
+
+<p>由于上述原因，我们需要一个变量来记录当前状态——是否在字符串中。因此我使用 awk 来解决。</p>
+
+<h1>我的解决方案</h1>
+<div class="highlight"><pre><code class="awk language-awk" data-lang="awk"><span class="c1"># filename: strip_c_comment.awk</span>
+<span class="c1"># issue: awk -f scrip_c_comment.awk test.c</span>
+<span class="nx">BEGIN</span> <span class="p">{</span>
+  <span class="nb">FS</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+<span class="p">}</span>
+
+<span class="o">!</span><span class="p">(</span><span class="nx">ignore_line</span> <span class="o">&amp;&amp;</span> <span class="o">$</span><span class="nb">NF</span> <span class="o">==</span> <span class="s2">&quot;//&quot;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">ignore_line</span><span class="o">--</span> <span class="p">{</span>
+  <span class="nx">ignore_line</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+  <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nb">NF</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">ignore_block</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">$</span><span class="nx">i</span> <span class="o">$</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;*/&quot;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">ignore_block</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="nx">i</span><span class="o">++</span> <span class="c1"># remove &#39;*&#39;</span>
+      <span class="p">}</span>
+      <span class="k">continue</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!in</span><span class="nx">str</span> <span class="o">&amp;&amp;</span> <span class="o">$</span><span class="nx">i</span> <span class="o">$</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;/*&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">ignore_block</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="nx">i</span><span class="o">++</span> <span class="c1"># remove &#39;/&#39;</span>
+      <span class="k">continue</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!in</span><span class="nx">str</span> <span class="o">&amp;&amp;</span> <span class="o">$</span><span class="nx">i</span> <span class="o">$</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;//&quot;</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">ignore_line</span> <span class="o">=</span> <span class="p">(</span><span class="o">$</span><span class="nb">NF</span> <span class="o">==</span> <span class="s2">&quot;//&quot;</span><span class="p">)</span><span class="err">?</span> <span class="mi">1</span><span class="err">:</span> <span class="mi">0</span>
+      <span class="k">break</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">$</span><span class="nx">i</span> <span class="o">==</span> <span class="s2">&quot;/&quot;&quot;) {</span>
+<span class="s2">      instr = 1 - instr</span>
+<span class="s2">    }</span>
+
+<span class="s2">    printf($i)</span>
+<span class="s2">  }</span>
+
+<span class="s2">  printf(&quot;</span><span class="o">/</span><span class="nx">n</span><span class="err">&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>在开始时将 FS 设为空字符串，使得输入记录的每个字符都成为一个独立的字段。代码中的三个布尔变量分别代表：</p>
+
+<dl>
+  <dt>ignore_line</dt>
+  <dd>如果上一行是以“/”结尾的单行注释则为“True”；</dd>
+  <dt>ignore_block</dt>
+  <dd>如果当前字符在块注释中则为“True”；</dd>
+  <dt>instr</dt>
+  <dd>如果当前字符在非注释的字符串内则为“True”。</dd>
+</dl>
+
+<p>脚本的工作就是保留“<code>ignore_line</code>”和“<code>ignore_block</code>”都为“False”时的字符。</p>
+
+<h1>执行结果</h1>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">is</span><span class="p">;</span> 
+    <span class="kt">int</span> <span class="n">ms</span><span class="p">;</span> 
+    <span class="kt">double</span> <span class="n">ds</span><span class="p">;</span> 
+    <span class="kt">double</span> <span class="n">dm</span><span class="p">;</span> 
+ <span class="kt">float</span> <span class="n">fs</span><span class="p">;</span> 
+    <span class="kt">float</span> <span class="n">fm</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">cs</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;aaa // /***/&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">cm1</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;hello*/&quot;</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="n">cm2</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;/*redraiment&quot;</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">小工具：去除C风格的注释</span>
+    <label class="timestamp">[2013-12-04 16:55:04]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

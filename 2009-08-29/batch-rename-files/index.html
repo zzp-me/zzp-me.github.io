@@ -1,0 +1,226 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="批量重命名文件，你会怎么做？下载现有的软件工具？自己开发工具？用Java、C#……？ 如果我是你，我会用批处理或Shell脚本。" />
+
+    <title>批量重命名文件 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(8)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>批量重命名文件</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/工具技师.html">工具技师</a>
+  
+  <a href="/archive/命令行超级工具.html">命令行超级工具</a>
+  
+</div>
+<div id="article">
+  <h1>无心插柳</h1>
+
+<p>不久前，我们软件工程系举行了全系大会。我在大会上做了简短的报告，主题是“学以致用、动手实践”。报告期间我说了一个亲身经历：以前校园内U盘病毒肆虐，病毒会把U盘里所有的文本文件加上系统属性和隐藏属性，并添加“.tmp”扩展名（例如原文件名为“a.txt”，病毒修改为“a.txt.tmp”），然后生成一个和原文件同名的病毒文件。我不幸中招，于是用我所学的知识写了一个小程序，几秒钟就解决了。</p>
+
+<p>原以为它就像插播广告一样随听随忘，不料言者无心听者有意。几个学弟回去后也都竭尽所能玩了一把：有用 Java 的，也有用 C# 的……功能也五花八门，不仅能批量修改扩展名，还能按 1-N 的顺序批量重命名文件等等。看他们玩得不亦乐乎，想来那次报告还有点作用嘛^_^。</p>
+
+<h1>我的解决方法</h1>
+
+<p>今天又被问起我那时候的程序是怎么写的。其实在我们大一那会儿，要用计算机只能到图书馆的电子阅览室，那里的系统“干干净净”，不会有 VC++ 等编译器，而且那种打开网页需要半分钟的速度也不会让你考虑去下载（估计其他高校情况也差不多），所以我是用批处理解决的。我用了下面三条命令：</p>
+<div class="highlight"><pre><code class="bat language-bat" data-lang="bat"><span class="c">::a.bat</span>
+<span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+<span class="c">::删除所有病毒文件</span>
+<span class="k">del</span> <span class="n">/F</span> <span class="n">/S</span> <span class="n">/Q</span> *
+<span class="c">::递归地去掉文件的隐藏属性</span>
+attrib -s -h -r * <span class="n">/S</span> <span class="n">/D</span>
+<span class="c">::遍历目录，去掉 tmp 扩展名</span>
+<span class="k">for</span> <span class="n">/R</span> . <span class="nv">%%f</span> in (*.tmp) <span class="k">do</span> ren <span class="nv">%%f</span> <span class="nv">%%~nf</span>
+</code></pre></div>
+<p>上面的程序中是为了去掉“.tmp”这个扩展名，所以用 for 命令来遍历。但如果仅仅是修改扩展名则更简单，只要运行 ren *.bat *.txt 即可。另附一段好玩的批处理：将下面的代码保存成 bat 文件，双击运行就能将当前目录下的 jpg 图片文件按 1-N 的顺序重新命名（用来批量处理从网上下载下来的图片非常有效）。大家可以自行修改扩展名。</p>
+<div class="highlight"><pre><code class="bat language-bat" data-lang="bat"><span class="c">::b.bat</span>
+<span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+<span class="c">::开启延迟的变量扩充</span>
+<span class="k">setlocal</span> enabledelayedexpansion
+<span class="c">::计数器</span>
+<span class="k">set</span> <span class="n">/a</span> i<span class="o">=</span><span class="m">1</span>
+<span class="k">for</span> <span class="n">/R</span> . <span class="nv">%%f</span> in (*.jpg) <span class="k">do</span> (
+  ren <span class="nv">%%f</span> !i!.jpg
+  <span class="k">set</span> <span class="n">/a</span> i<span class="o">=</span>!i!+<span class="m">1</span>
+)
+</code></pre></div>
+<h1>批量重命名汇总</h1>
+
+<p>只要大家悉心观察，还有很多好玩的问题可以去解决。现将各种批量重命名的批处理代码汇总如下：</p>
+
+<h2>按顺序重命名文件</h2>
+
+<p>将当前目录下不规则命名的 jpg 文件依次重命名成 1.jpg、2.jpg 等</p>
+<div class="highlight"><pre><code class="bat language-bat" data-lang="bat"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+<span class="c">::开启延迟的变量扩充</span>
+<span class="k">setlocal</span> enabledelayedexpansion
+<span class="c">::计数器</span>
+<span class="k">set</span> <span class="n">/a</span> i<span class="o">=</span><span class="m">1</span>
+<span class="k">for</span> <span class="nv">%%f</span> in (*.jpg) <span class="k">do</span> (
+  ren <span class="nv">%%f</span> !i!.jpg
+  <span class="k">set</span> <span class="n">/a</span> i<span class="o">=</span>!i!+<span class="m">1</span>
+)
+</code></pre></div>
+<h2>递归地处理子目录文件</h2>
+
+<p>其他代码都是处理当前目录下的文件，这个程序给出递归处理子目录的模板</p>
+<div class="highlight"><pre><code class="bat language-bat" data-lang="bat"><span class="k">for</span> <span class="n">/R</span> . <span class="nv">%f</span> in (*) <span class="k">do</span> <span class="k">echo</span> <span class="nv">%f</span>
+</code></pre></div>
+<h2>去掉文件名日期前缀</h2>
+
+<p>需求出处：<a href="http://www.oschina.net/code/snippet_125800_4330">http://www.oschina.net/code/snippet_125800_4330</a></p>
+<div class="highlight"><pre><code class="bat language-bat" data-lang="bat"><span class="k">for</span> <span class="nv">%f</span> in (*.sc<span class="m">2</span>replay) <span class="k">do</span> <span class="k">for</span> <span class="n">/F</span> <span class="s2">&quot;delims=- tokens=4*&quot;</span> <span class="nv">%t</span> in (<span class="s2">&quot;%f&quot;</span>) <span class="k">do</span> move <span class="nv">%f</span> <span class="nv">%t</span>
+</code></pre></div>
+<h2>替换文件名中的字串</h2>
+
+<p>需求出处：<a href="http://www.oschina.net/code/snippet_143158_4337">http://www.oschina.net/code/snippet_143158_4337</a></p>
+<div class="highlight"><pre><code class="bat language-bat" data-lang="bat"><span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+<span class="k">setlocal</span> enabledelayedexpansion
+<span class="k">for</span> <span class="nv">%%f</span> in (*) <span class="k">do</span> (
+  <span class="k">set</span> <span class="nv">name</span><span class="o">=</span><span class="nv">%%~nf</span>
+  <span class="k">set</span> <span class="nv">ext</span><span class="o">=</span><span class="nv">%%~xf</span>
+  move !name!.!ext! !name:<span class="nv">%1</span><span class="o">=</span><span class="nv">%2</span>!.!ext!
+)
+</code></pre></div>
+<h2>将文件名变成大写</h2>
+
+<p>需求出处：<a href="http://www.oschina.net/code/snippet_99867_4340">http://www.oschina.net/code/snippet_99867_4340</a></p>
+<div class="highlight"><pre><code class="bat language-bat" data-lang="bat"><span class="c">:: convert file name to upper case</span>
+<span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+<span class="k">setlocal</span> enabledelayedexpansion
+<span class="k">set</span> <span class="nv">LowerCase</span><span class="o">=</span>abcdefghijklmnopqrstuvwxyz
+<span class="k">set</span> <span class="nv">UpperCase</span><span class="o">=</span>ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+<span class="k">for</span> <span class="nv">%%f</span> in (*.txt) <span class="k">do</span> (
+  <span class="k">set</span> <span class="nv">string</span><span class="o">=</span><span class="nv">%%f</span>
+  <span class="k">for</span> <span class="n">/L</span> <span class="nv">%%d</span> in (<span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">25</span>) <span class="k">do</span> (
+    <span class="k">set</span> <span class="nv">from</span><span class="o">=</span>!LowerCase:~<span class="nv">%%d</span><span class="p">,</span><span class="m">1</span>!
+    <span class="k">set</span> <span class="nv">to</span><span class="o">=</span>!UpperCase:~<span class="nv">%%d</span><span class="p">,</span><span class="m">1</span>!
+    <span class="k">call</span> <span class="nl">:convert</span> !from! !to!
+  )
+  move <span class="nv">%%f</span> !string!
+)
+
+<span class="k">goto</span> <span class="nl">end</span>
+
+<span class="nl">:convert</span>
+<span class="k">set</span> <span class="nv">string</span><span class="o">=</span>!string:<span class="nv">%1</span><span class="o">=</span><span class="nv">%2</span>!
+<span class="k">goto</span> <span class="nl">:eof</span>
+
+<span class="nl">:end</span>
+</code></pre></div>
+<h1>Shell版批量重命名</h1>
+
+<p>功能和上述批处理一致，但使用bash来完成</p>
+
+<h2>按顺序重命名文件</h2>
+
+<p>将当前目录下不规则命名的 jpg 文件依次重命名成 1.jpg、2.jpg 等</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">i</span><span class="o">=</span>1
+<span class="k">for </span>f in *.jpg; <span class="k">do</span>
+<span class="k">  </span>mv <span class="nv">$f</span> <span class="k">${</span><span class="nv">i</span><span class="k">}</span>.jpg
+  <span class="o">((</span>i++<span class="o">))</span>
+<span class="k">done</span>
+</code></pre></div>
+<h2>递归地处理子目录文件</h2>
+
+<p>其他代码都是处理当前目录下的文件，这个程序给出递归处理子目录的模板</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c"># 处理子目录文件</span>
+find . -name <span class="s1">&#39;*.log&#39;</span> -type f | <span class="k">while </span><span class="nb">read </span>p; <span class="k">do</span>
+<span class="k">  </span><span class="nv">fname</span><span class="o">=</span><span class="k">$(</span>basename <span class="nv">$p</span><span class="k">)</span>
+  <span class="c"># do some thing for fname</span>
+  mv <span class="nv">$p</span> <span class="k">$(</span>dirname <span class="nv">$p</span><span class="k">)</span>/<span class="nv">$fname</span>
+<span class="k">done</span>
+</code></pre></div>
+<h2>去掉文件名日期前缀</h2>
+
+<p>需求出处：<a href="http://www.oschina.net/code/snippet_125800_4330">http://www.oschina.net/code/snippet_125800_4330</a></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">for </span>f in *.sc2replay; <span class="k">do </span>mv <span class="nv">$f</span> <span class="k">${</span><span class="nv">f</span><span class="p">##*-</span><span class="k">}</span>; <span class="k">done</span>
+</code></pre></div>
+<h2>替换文件名中的字串</h2>
+
+<p>需求出处：<a href="http://www.oschina.net/code/snippet_143158_4337">http://www.oschina.net/code/snippet_143158_4337</a></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">for </span>f in *; <span class="k">do</span>
+<span class="k">  </span><span class="nv">name</span><span class="o">=</span><span class="k">${</span><span class="nv">f</span><span class="p">%.*</span><span class="k">}</span>
+  <span class="nv">ext</span><span class="o">=</span><span class="k">${</span><span class="nv">f</span><span class="p">##*.</span><span class="k">}</span>
+  mv <span class="nv">$f</span> <span class="sb">`</span>sed <span class="s1">&#39;s/e/x/g&#39;</span> <span class="o">&lt;&lt;&lt;</span> <span class="nv">$name</span><span class="sb">`</span>.<span class="nv">$ext</span>
+<span class="k">done</span>
+</code></pre></div>
+<h2>将文件名变成大写</h2>
+
+<p>需求出处：<a href="http://www.oschina.net/code/snippet_99867_4340">http://www.oschina.net/code/snippet_99867_4340</a></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">for </span>f in *; <span class="k">do</span>
+<span class="k">  </span><span class="nv">name</span><span class="o">=</span><span class="k">${</span><span class="nv">f</span><span class="p">%.*</span><span class="k">}</span>
+  <span class="nv">ext</span><span class="o">=</span><span class="k">${</span><span class="nv">f</span><span class="p">##*.</span><span class="k">}</span>
+  mv <span class="nv">$f</span> <span class="sb">`</span>tr <span class="s1">&#39;a-z&#39;</span> <span class="s1">&#39;A-Z&#39;</span> <span class="o">&lt;&lt;&lt;</span> <span class="nv">$name</span><span class="sb">`</span>.<span class="nv">$ext</span>
+<span class="k">done</span>
+</code></pre></div>
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">命令行超级工具：文件批量重命名</span>
+    <label class="timestamp">[2013-12-04 16:42:18]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

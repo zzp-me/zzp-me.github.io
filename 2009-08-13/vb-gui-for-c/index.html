@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="很多初学者发现，即便自己把C语言教材从头啃到尾，依然只能写出命令行下的程序。 本文提供一种简便的方法，使用VB拖出一个图形界面，然后调用现有的C函数。" />
+
+    <title>用VB为C程序添加图形界面 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(8)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>用VB为C程序添加图形界面</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/编程语言生态.html">编程语言生态</a>
+  
+  <a href="/archive/c语言.html">C语言</a>
+  
+</div>
+<div id="article">
+  <p>本文的读者定为C语言初学者，介绍的技巧适用于开发迷你型项目或自娱自乐的玩具程序。读者可以抱着茶余饭后休闲娱乐的心态来围观，至于CLI、GUI等名词解释请参看维基百科。</p>
+
+<h1>诱人的GUI程序</h1>
+
+<p>程序的作用就是化繁为简，让计算机高效地帮我们完成枯燥的工作。写程序最大的动力就是你精心设计的程序能获得大家的认可和好评，这其中伴随着发布程序给大家使用。</p>
+
+<p>在C语言编写的操作系统（比如UNIX、Windows等）上，C语言可以说是“无所不能”。但很多初学者发现，即便自己把C语言教材从头啃到尾，依然只能写出命令行下的程序。程序是CLI还是GUI本无可厚非，对我们程序员来说更重要的是程序本身提供的功能，而且CLI相对于GUI还更灵活一些。也许你可以尝试一下把程序发送给一个非计算机科班出身的朋友，估计得大费唇舌来解释程序如何运行，最后还落得一个“不方便”的抱怨。撇开这些不说，至少一个活泼的桌面图标也比死气沉沉的终端图标更吸引人。</p>
+
+<p>但编写GUI程序从来不是一件容易的事情，MFC也好、Swing也罢，都是一堆烦人的接口。用VB可以屏蔽这些细节，界面设计是所见即所得的，拖拖拽拽就能堆出一个像样的界面。本文的原理就是用VB来设计前台界面，C做后台逻辑处理。实现方法就是将C程序打包成DLL文件，由VB程序来调用。</p>
+
+<h1>所需软件</h1>
+
+<p>Dev-C++ 4.9.9.2或以上版本，VB 6.0精简版。这两款软件在华军软件园都能下载到，合起来大小也就15MB左右。如果你有完整版的VB当然更好，不过有精简版的也够用了。</p>
+
+<h1>Dev-C++生成DLL的方法</h1>
+
+<ol>
+<li>打开Dev-C++；</li>
+<li>点击“文件”-“新建”-“工程”，工程类型选择“DLL”；</li>
+<li>语言必须选择“C”，不能选择“C++”；</li>
+<li>为工程取一个名字，比如“hello”。确定后会自动生成“dllmain.c”和“dll.h”两个文件；</li>
+<li>“dllmain.c”里自带了一个函数“DLLIMPORT void HelloWord ()”，但为了能在VB里调用，需要在DLLIMPORT后面添加一个“<strong>stdcall”，即“DLLIMPORT __stdcall void HelloWord ()”，“dll.h”文件中也做同样的修改。没有写“</strong>stdcall”的话会弹出“DLL调用约定错误，错误号：49”，所以请务必小心。</li>
+<li>保存文件后，按Ctrl+F9编译。就会在工程的目录下生成一个hello.dll。</li>
+</ol>
+
+<h1>用VB设计程序界面</h1>
+
+<ol>
+<li>打开VB；</li>
+<li>新建一个“标准EXE”工程；</li>
+<li>拖一个按钮控件（工具箱的第三行第二列）到界面上，如下图。</li>
+</ol>
+
+<p><img src="/resource/2009-08-13/vb-gui-for-c/1.jpg" /></p>
+
+<h1>在VB中调用DLL里的函数</h1>
+
+<p>在VB中调用DLL里的函数，首先要声明才可调用。声明的格式是</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">[Public|Private] Declare [Sub|Function] 函数名 Lib &quot;DLL路径&quot; (参数列表) [as 返回值类型]
+</code></pre></div>
+<p>其中DLL路径可以是相对路径，也可以是绝对路径；参数列表使用ByVal或ByRef修饰，表示传值还是传引用</p>
+
+<ol>
+<li>双击VB的窗口界面，打开代码窗口；</li>
+<li><p>将一下代码复制到代码窗口里</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">Private Declare Sub HelloWorld Lib &quot;hello.dll&quot; ()
+Private Sub Command1_Click()
+    HelloWorld
+End Sub
+</code></pre></div></li>
+<li><p>点击“文件”-“生成工程1.exe”，路径选择刚才Dev-C++生成hello.dll所在的目录。</p></li>
+<li><p>确保“工程1.exe”和“hello.dll”两个文件放在同一个目录下，双击运行“工程1.exe”。</p></li>
+<li><p>点击按钮“Command1”，就会弹出一个窗口，显示“Hello World from DLL!”则表示调用DLL成功！如下图</p></li>
+</ol>
+
+<p><img src="/resource/2009-08-13/vb-gui-for-c/2.jpg" /></p>
+
+<p>现在，你可以自由发挥来编写丰富多彩的GUI程序了！</p>
+
+<h1>附录：C参数在VB中的声明</h1>
+
+<table class="content-table"><thead>
+<tr>
+<th>C类型</th>
+<th>VB类型</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>char *</td>
+<td>ByVal args As String</td>
+</tr>
+<tr>
+<td>short</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>int</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>long</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>UINT</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>ULONG</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>WORD,DWORD</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>WPARAM,LPARAM</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>WMSG,UMSG</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>HRESULT</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>BOOL</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>COLORREF</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>HWND,HDC,HBRUSH,HKEY,等等.</td>
+<td>Long</td>
+</tr>
+<tr>
+<td>LPSTR,LPCSTR</td>
+<td>String</td>
+</tr>
+<tr>
+<td>LPWSTR,OLECHAR,BSTR</td>
+<td>String</td>
+</tr>
+<tr>
+<td>LPTSTR</td>
+<td>String</td>
+</tr>
+<tr>
+<td>VARIANT_BOOL</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>unsignedchar</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>BYTE</td>
+<td>Byte</td>
+</tr>
+<tr>
+<td>VARIANT</td>
+<td>Variant</td>
+</tr>
+</tbody></table>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">[Thanks Ruby]VB画C程序图形界面</span>
+    <label class="timestamp">[2013-12-04 15:06:20]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>
