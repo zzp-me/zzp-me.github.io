@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="好友买卖是最近在校内网上比较火的小游戏，既然游戏的服务器是程序在控制， 那为什么非要由人去玩呢？此文记录了我发现好友买卖API的过程（虽然它没有公开）， 并借助这个接口实现了自动玩好友买卖的程序。" />
+
+    <title>校内网好友买卖的API - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(8)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>校内网好友买卖的API</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/软件项目.html">软件项目</a>
+  
+  <a href="/archive/好友买卖外挂.html">好友买卖外挂</a>
+  
+</div>
+<div id="article">
+  <p>真是不容易呀，连续好几个不眠的夜晚总算没有白费，我终于实现了自动买卖好友的功能，可以在频繁的鼠标操作中解放出来了！</p>
+
+<p>起初我在Google里搜索好友买卖的漏洞时，出来的结果都是以前的GET和POST漏洞，现在这些漏洞都已经不能再利用了。</p>
+
+<p>我用的系统是fodora 6，自带了一个命令行下的浏览器——curl，于是我就琢磨：既然它是一个浏览器，那也应该能提交让宠物挖煤、卖花的请求吧。于是先阅读一下curl的manual，然后一步一步实现自动化。</p>
+
+<h1>登入校内网</h1>
+
+<p>要玩好友买卖，首先得登入校内网，所以先下载校内网首页：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">curl -o index.html http://xiaonei.com/
+</code></pre></div>
+<p>然后以“form”为关键字查找登入的表单，定位到如下代码：</p>
+<div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;form</span> <span class="na">id=</span><span class="s">&quot;loginForm&quot;</span> <span class="na">class=</span><span class="s">&quot;login-form&quot;</span>
+      <span class="na">method=</span><span class="s">&quot;post&quot;</span> <span class="na">action=</span><span class="s">&quot;http://login.xiaonei.com/Login.do&quot;</span> <span class="nt">&gt;</span>
+<span class="nt">&lt;p</span> <span class="na">class=</span><span class="s">&quot;top&quot;</span><span class="nt">&gt;</span>
+<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;email&quot;</span><span class="nt">&gt;</span>登录邮箱：<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;text&quot;</span> <span class="na">name=</span><span class="s">&quot;email&quot;</span> <span class="na">rule=</span><span class="s">&quot;blank#email&quot;</span>
+       <span class="na">error=</span><span class="s">&quot;请输入正确的email地址&quot;</span> <span class="na">class=</span><span class="s">&quot;input-text&quot;</span>
+       <span class="na">value=</span><span class="s">&quot;&quot;</span> <span class="na">id=</span><span class="s">&quot;email&quot;</span> <span class="na">tabindex=</span><span class="s">&quot;1&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/p&gt;</span>
+<span class="nt">&lt;p&gt;</span>
+<span class="nt">&lt;label</span> <span class="na">for=</span><span class="s">&quot;password&quot;</span><span class="nt">&gt;</span>密码：<span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;password&quot;</span> <span class="na">id=</span><span class="s">&quot;password&quot;</span> <span class="na">name=</span><span class="s">&quot;password&quot;</span>
+       <span class="na">rule=</span><span class="s">&quot;blank&quot;</span> <span class="na">error=</span><span class="s">&quot;请输入密码&quot;</span> <span class="na">class=</span><span class="s">&quot;input-text&quot;</span> <span class="na">tabindex=</span><span class="s">&quot;2&quot;</span>  <span class="nt">/&gt;</span>
+</code></pre></div>
+<p>仔细研究这段代码，发现表单是把email和password提交给 <code>http://login.xiaonei.com/Login.do</code>，用curl模拟登入：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">curl -O -D cookie -d <span class="s2">&quot;email=username&quot;</span> -d <span class="s2">&quot;password=pwd&quot;</span> <span class="se">\</span>
+     http://login.xiaonei.com/Login.do
+</code></pre></div>
+<p>其中，-D是指定cookie的保存地址；-d是将后面的信息以post方式提交信息。打开下载来的Login.do，内容如下：</p>
+<div class="highlight"><pre><code class="html language-html" data-lang="html">The URL has moved <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://home.xiaonei.com/Home.do&quot;</span><span class="nt">&gt;</span>here<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+<p>页面转到了个人主页上，说明登入成功了！此时cookie文件中就保存着session-id等登入信息。</p>
+
+<h1>好友买卖</h1>
+
+<p>现在访问好友买卖的首页了：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">curl -O -b cookie http://friendsell.xiaonei.com/friendsell/home.do
+</code></pre></div>
+<p>其中参数 -b 用于指定使用 cookie 文件。从home.do中定位到对好友处理的代码段：</p>
+<div class="highlight"><pre><code class="html language-html" data-lang="html"><span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;release_f&quot;</span> <span class="na">onclick=</span><span class="s">&quot;releasePet(222729759,this)&quot;</span><span class="nt">&gt;&lt;a</span>
+        <span class="na">href=</span><span class="s">&quot;javascript:void(0)&quot;</span><span class="nt">&gt;</span>抛弃她<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;discount_f&quot;</span> <span class="na">onclick=</span><span class="s">&quot;discountPet(222729759,this)&quot;</span><span class="nt">&gt;&lt;a</span>
+        <span class="na">href=</span><span class="s">&quot;javascript:void(0)&quot;</span><span class="nt">&gt;</span>打折处理<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;torment_f&quot;</span> <span class="na">rel=</span><span class="s">&quot;222729759&quot;</span> <span class="na">onclick=</span><span class="s">&quot;abuse(222729759,this)&quot;</span><span class="nt">&gt;&lt;a</span>
+        <span class="na">href=</span><span class="s">&quot;javascript:void(0)&quot;</span><span class="nt">&gt;</span>折腾她<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;comfort_f&quot;</span> <span class="na">rel=</span><span class="s">&quot;222729759&quot;</span> <span class="na">onclick=</span><span class="s">&quot;comfortPet(222729759,this)&quot;</span><span class="nt">&gt;&lt;a</span>
+        <span class="na">href=</span><span class="s">&quot;javascript:void(0)&quot;</span><span class="nt">&gt;</span>安抚她<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+<span class="nt">&lt;li</span> <span class="na">id=</span><span class="s">&quot;nickname_f&quot;</span> <span class="na">rel=</span><span class="s">&quot;222729759&quot;</span> <span class="na">onclick=</span><span class="s">&quot;nickname(222729759,this)&quot;</span><span class="nt">&gt;&lt;a</span>
+        <span class="na">href=</span><span class="s">&quot;javascript:void(0)&quot;</span><span class="nt">&gt;</span>起昵称<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</code></pre></div>
+<p>我们要做的当然是折磨他咯！不过点击后是触发一个js函数，文件里找不到abuse这个函数，看来还有另外一个js文件。我在顶部看到了 <code>http://xnimg.cn/xnapp/frs/frs.js?ver=63283</code> 这个链接，直接在浏览器里打开看看。就能看到所有的js函数。原来作者还预留了很多功能哈！找到abuse函数内容如下：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">abuse</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">obj</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">XN</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">disable</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">myurl</span> <span class="o">=</span> <span class="s2">&quot;/friendsell/abuseAjax.do&quot;</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">pars</span> <span class="o">=</span> <span class="s2">&quot;id=&quot;</span> <span class="o">+</span> <span class="nx">id</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">myAjax</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Ajax</span><span class="p">.</span><span class="nx">Request</span><span class="p">(</span>
+            <span class="nx">myurl</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="nx">method</span><span class="o">:</span> <span class="s1">&#39;post&#39;</span><span class="p">,</span>
+        <span class="nx">parameters</span><span class="o">:</span> <span class="nx">pars</span><span class="p">,</span>
+        <span class="nx">onComplete</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">XN</span><span class="p">.</span><span class="nx">DOM</span><span class="p">.</span><span class="nx">enable</span><span class="p">();</span>
+            <span class="nx">displayAbus</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">XN</span><span class="p">.</span><span class="nx">Element</span><span class="p">.</span><span class="nx">realLeft</span><span class="p">(</span><span class="nx">obj</span><span class="p">),</span> <span class="nx">XN</span><span class="p">.</span><span class="nx">Element</span><span class="p">.</span><span class="nx">realTop</span><span class="p">(</span><span class="nx">obj</span><span class="p">));</span>
+        <span class="p">},</span>
+        <span class="nx">onFailure</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+        <span class="p">}</span>
+    <span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>原来是把id提交给abuseAjax.do来处理。用curl提交：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">curl -O -b cookie -d <span class="s2">&quot;id=friend_id&quot;</span> <span class="se">\</span>
+     http://friendsell.xiaonei.com/friendsell/abuseAjax.do
+</code></pre></div>
+<p>获得以下JSON信息（格式经过整理）：</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="p">[{</span>
+    <span class="nx">content</span><span class="o">:</span> <span class="s2">&quot;&lt;div class=\&quot;dialog_summary\&quot;&gt;</span>
+<span class="s2">  &lt;div style=\&quot;margin: 10px auto; width: 300px; text-align: center;\&quot;&gt;</span>
+<span class="s2">    &lt;img width=\&quot;100\&quot;</span>
+<span class="s2">src=\&quot;http://hd34.xiaonei.com/photos/hd34/20080510/12/43/head_2695h107.jpg\&quot;/&gt;</span>
+<span class="s2">    &lt;div class=\&quot;m10_0\&quot;&gt;</span>
+<span class="s2">      &lt;table&gt;</span>
+<span class="s2">        &lt;tbody&gt;</span>
+<span class="s2">          &lt;tr&gt;</span>
+<span class="s2">            &lt;td class=\&quot;graytext w100\&quot;&gt;</span>
+<span class="s2">              你要让***做什么呢？</span>
+<span class="s2">            &lt;/td&gt;</span>
+<span class="s2">          &lt;/tr&gt;</span>
+<span class="s2">        &lt;/tbody&gt;</span>
+<span class="s2">      &lt;/table&gt;</span>
+<span class="s2">    &lt;/div&gt;</span>
+<span class="s2">    &lt;hr size=\&quot;1\&quot; class=\&quot;mb10\&quot;/&gt;</span>
+<span class="s2">    &lt;div class=\&quot;cmplist mb10\&quot;&gt;</span>
+<span class="s2">      &lt;ul&gt;</span>
+<span class="s2">        &lt;form id=&#39;abuse_form&#39; method=&#39;post&#39; action=&#39;/friendsell/abuse.do&#39;&gt;</span>
+<span class="s2">          &lt;li&gt;</span>
+<span class="s2">            &lt;input type=\&quot;radio\&quot; name=\&quot;paintype\&quot;</span>
+<span class="s2">                   checked=\&quot;check\&quot; id=\&quot;paintype\&quot; value=\&quot;1\&quot;/&gt;</span>
+<span class="s2">            在冰冷小黑屋关一天</span>
+<span class="s2">            &lt;font color=\&quot;#666666\&quot;&gt;</span>
+<span class="s2">              (消费￥1000)</span>
+<span class="s2">            &lt;/font&gt;</span>
+<span class="s2">          &lt;/li&gt;</span>
+<span class="s2">          &lt;li&gt;</span>
+<span class="s2">            &lt;input type=\&quot;radio\&quot; name=\&quot;paintype\&quot;</span>
+<span class="s2">                   id=\&quot;paintype\&quot; value=\&quot;2\&quot;/&gt;</span>
+<span class="s2">            痛扁她一顿</span>
+<span class="s2">            &lt;font color=\&quot;#666666\&quot;&gt;</span>
+<span class="s2">              (消费￥100)</span>
+<span class="s2">            &lt;/font&gt;</span>
+<span class="s2">          &lt;/li&gt;</span>
+<span class="s2">          &lt;li&gt;</span>
+<span class="s2">            &lt;input type=\&quot;radio\&quot; name=\&quot;paintype\&quot;</span>
+<span class="s2">                   id=\&quot;paintype\&quot; value=\&quot;3\&quot;/&gt;</span>
+<span class="s2">            饿一天不给饭吃</span>
+<span class="s2">          &lt;/li&gt;</span>
+<span class="s2">          &lt;li&gt;</span>
+<span class="s2">            &lt;input type=\&quot;radio\&quot; name=\&quot;paintype\&quot;</span>
+<span class="s2">                   id=\&quot;paintype\&quot; value=\&quot;11\&quot;/&gt;</span>
+<span class="s2">            去看芙蓉姐姐演唱会</span>
+<span class="s2">          &lt;/li&gt;</span>
+<span class="s2">          &lt;li&gt;</span>
+<span class="s2">            &lt;input type=\&quot;radio\&quot; name=\&quot;paintype\&quot;</span>
+<span class="s2">                   id=\&quot;paintype\&quot; value=\&quot;8\&quot;/&gt;</span>
+<span class="s2">            去卖花</span>
+<span class="s2">          &lt;/li&gt;</span>
+<span class="s2">          &lt;li&gt;</span>
+<span class="s2">            &lt;input type=\&quot;radio\&quot; name=\&quot;paintype\&quot;</span>
+<span class="s2">                   id=\&quot;paintype\&quot; value=\&quot;9\&quot;/&gt;</span>
+<span class="s2">            跳草裙舞</span>
+<span class="s2">          &lt;/li&gt;</span>
+<span class="s2">          &lt;li&gt;</span>
+<span class="s2">            &lt;input type=\&quot;radio\&quot; name=\&quot;paintype\&quot;</span>
+<span class="s2">                   id=\&quot;paintype\&quot; value=\&quot;10\&quot;/&gt;</span>
+<span class="s2">            半夜闹铃</span>
+<span class="s2">          &lt;/li&gt;</span>
+<span class="s2">          &lt;input type=&#39;hidden&#39; name=&#39;id&#39; value=&#39;friend&#39;s id&#39;&gt;</span>
+<span class="s2">        &lt;\form&gt;</span>
+<span class="s2">      &lt;\ul&gt;</span>
+<span class="s2">    &lt;\div&gt;</span>
+<span class="s2">  &lt;\div&gt;</span>
+<span class="s2">&lt;\div&gt;&quot;</span><span class="p">,</span>
+    <span class="nx">id</span><span class="o">:</span> <span class="s2">&quot;friend&#39;s id&quot;</span><span class="p">,</span>
+    <span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;***&quot;</span>
+<span class="p">}]</span>
+</code></pre></div>
+<p>内容很明显是弹出的窗口。接下来就是把paintype和好友的id以post形式提交给abuse.do。但到了一步我卡住了，我还是依然提交：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">curl -O -b cookie -d <span class="s2">&quot;paintype=8&quot;</span> -d <span class="s2">&quot;id=***&quot;</span> <span class="se">\</span>
+     http://friendsell.xiaonei.com/friendsell/abuse.do
+</code></pre></div>
+<p>但却没有返回成功的信息。我直接在firefox里访问“<code>http://friendsell.xiaonei.com/friendsell/abuse.do?paintype=8&amp;id=***</code>”，结果弹出一个窗口：“不要修改链接哦^_^”。看来是作者在修补以前的漏洞时做的修改。</p>
+
+<p>这让我感觉有点奇怪，莫非还有什么隐藏的信息要提交吗？为了验证自己的想法，我用winSock来抓包，看看firefox提交和手工get提交的区别。结果，除了提交方式，貌似看不出其他的区别！正当我绝望的时候，突然灵光一闪，是不是abuse.do对前面的页面abuseAjax.do有依赖？于是我运行：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">curl -O -b cookie -d <span class="s2">&quot;paintype=8&quot;</span> -d <span class="s2">&quot;id=***&quot;</span> <span class="se">\</span>
+     -e http://friendsell.xiaonei.com/friendsell/abuseAjax.do <span class="se">\</span>
+     http://friendsell.xiaonei.com/friendsell/abuse.do
+</code></pre></div>
+<p>成功了！然后我写了个shell，对我所有的宠物进行提交，结果全部成功！</p>
+
+<h1>好友买卖小漏洞</h1>
+
+<p>起初我在想，男生没有买花的选项，不晓得行不行；但尝试提交看看，结果却成功了！如下图，其中红色圈的是男生，却也能买花。同样，女生也能挖媒！</p>
+
+<p><img src="/resource/2008-08-29/xiaonei-friend-sell-api/1.png" /></p>
+
+<p>这不算是什么大漏洞，但却方便了我写脚本，无需判断宠物的性别，统一去挖媒即可。</p>
+
+<h2>自动化</h2>
+
+<p>先总结一下需要自动化的过程：</p>
+
+<ol>
+<li>登入校内，保存cookie</li>
+<li>下载好友买卖首页到本地</li>
+<li>提取自己的宠物的id</li>
+<li>逐一安排宠物去打工</li>
+</ol>
+
+<p>现在要做的就是把这些过程写成一个shell脚本，代码如下：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$# </span>-eq 2 <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+<span class="k">    </span><span class="nv">email</span><span class="o">=</span><span class="nv">$1</span>
+    <span class="nv">password</span><span class="o">=</span><span class="nv">$2</span>
+<span class="k">else</span>
+<span class="k">    </span><span class="nb">echo</span> <span class="s2">&quot;usage: $0 email password&quot;</span>
+    <span class="nb">exit </span>1
+<span class="k">fi</span>
+
+<span class="c"># Login</span>
+curl -O -D cookie <span class="se">\</span>
+     -d <span class="s2">&quot;email=${email}&quot;</span> <span class="se">\</span>
+     -d <span class="s2">&quot;password=${password}&quot;</span> <span class="se">\</span>
+     <span class="s2">&quot;http://login.xiaonei.com/Login.do&quot;</span>
+
+<span class="c"># Get pet list.</span>
+curl -O -b cookie <span class="s2">&quot;http://friendsell.xiaonei.com/friendsell/home.do&quot;</span>
+
+<span class="nv">URL</span><span class="o">=</span><span class="s1">&#39;http://friendsell.xiaonei.com/friendsell/&#39;</span>
+sed -n -e <span class="s1">&#39;/ \{20\}/{s/[^0-9]\+//g;p}&#39;</span> home.do <span class="p">|</span> <span class="k">while </span><span class="nb">read </span>id<span class="p">;</span> <span class="k">do</span>
+<span class="k">    </span>curl -O -b cookie <span class="se">\</span>
+         -d <span class="s2">&quot;paintype=5&quot;</span> <span class="se">\</span>
+         -d <span class="s2">&quot;id=${id}&quot;</span> <span class="se">\</span>
+         -e <span class="s2">&quot;${URL}abuseAjax.do&quot;</span> <span class="se">\</span>
+         <span class="s2">&quot;${URL}abuse.do&quot;</span>
+<span class="k">done</span>
+
+<span class="c"># Clean.</span>
+rm -f *.do cookie
+</code></pre></div>
+<p>最后设定一个cron任务，指定每一小时自动运行一次。</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">crontab -e
+0 */1 * * * ~/friendsell/pet email password
+</code></pre></div>
+<p>用同样的方法，还能实现自动补充好友，确保好友总数一直持续在12只。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">发现好友买卖接口</span>
+    <label class="timestamp">[2013-12-04 20:16:49]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

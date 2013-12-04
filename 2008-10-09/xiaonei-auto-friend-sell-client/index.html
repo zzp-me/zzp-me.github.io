@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="该程序是我首次尝试使用插件的方式扩展程序功能。 即AutoAuto本身只是一个管理外挂插件的平台， 提供登入校内网等基础功能； 而具体的外挂功能由插件提供。 目前只提供好友买卖一款插件。" />
+
+    <title>校内网外挂平台 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(8)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>校内网外挂平台</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/软件项目.html">软件项目</a>
+  
+  <a href="/archive/好友买卖外挂.html">好友买卖外挂</a>
+  
+</div>
+<div id="article">
+  <p>校内网外挂平台现在发布预览版！</p>
+
+<p>该程序是我首次尝试使用插件的方式扩展程序功能。即AutoAuto本身只是一个管理外挂插件的平台，提供登入校内网等基础功能；而具体的外挂功能由插件提供。当然，目前只提供好友买卖一款插件。</p>
+
+<p><img src="/resource/2008-10-09/xiaonei-auto-friend-sell-client/1.png" /></p>
+
+<p>功能清单：</p>
+
+<ol>
+<li>定时自动购买宠物（带有随机性）。</li>
+<li>针对每一个宠物进行不同的设置（比如有些宠物安抚，另外一些折腾或使用道具等）</li>
+<li>程序自动设置缓冲时间，设置更加简便。</li>
+<li>自动购买道具卡</li>
+<li>程序会动态获取宠物的配制信息。所以即使已经启动了，再对宠物进行配制也没问题，不用先终止程序。</li>
+<li>记忆用户配置信息</li>
+</ol>
+
+<p>程序用java开发，因此支持跨平台。目前在fedora和win XP下测试都能正常工作，JRE要求1.6以上。如果你还没（或不确定是否）安装Java虚拟机，请到Java中文站：<a href="http://www.java.com/zh_CN/">http://www.java.com/zh_CN/</a>安装最新的JRE。</p>
+
+<p>在此特别感谢班长大人借帐号给我测试。</p>
+
+<p>我是一个很懒的人，一天拖一天，一直拖到现在，还是很多地方不满意。让我很意外的是，居然有网友非常关注我的开发进度，每天过来好多趟，看发布了没有。所以现在赶出一个预览版本，让大家体验一下。最近我个人生活出点问题，今天晚上吃完饭，全身家当就剩下7毛了。好像大家最近突然都没事情可做了，想发传单什么的都没机会。呵呵。所以最近我得先想办法赚生活费去，我大概会在下个月（11月）中旬，再回来完善这个程序。我估计在12月左右能发布下一个版本。</p>
+
+<p>AutoAuto下载地址：<a href="https://sites.google.com/site/redraiment/sunshine/autoauto">https://sites.google.com/site/redraiment/sunshine/autoauto</a></p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">校内网游戏外挂平台</span>
+    <label class="timestamp">[2013-12-04 21:04:09]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>
