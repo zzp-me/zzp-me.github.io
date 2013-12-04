@@ -1,0 +1,322 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="Y组合子是Lambda演算的一部分，也是函数式编程的理论基础。 它是一种方法/技巧，在没有赋值语句的前提下定义递归的匿名函数。 即仅仅通过Lambda表达式这个最基本的“原子”实现循环/迭代。 颇有道生一、一生二、二生三、三生万物的感觉。" />
+
+    <title>10种编程语言实现Y组合子 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(3)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li><li><a href="/archive/编程语言生态.html">编程语言生态(5)</a><ul><li><a href="/archive/c语言.html">C语言(2)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="#">基础算法</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="#">加密解密</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/unix超级工具.html">UNIX超级工具(2)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="#">好友买卖外挂</a></li></ul></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(3)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(4)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(5)</a></li><li><a href="/archive/2009-07.html">07月(6)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-09.html">09月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>10种编程语言实现Y组合子</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/我是程序员.html">我是程序员</a>
+  
+  <a href="/archive/编程语言生态.html">编程语言生态</a>
+  
+  <a href="/archive/lisp.html">Lisp</a>
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/lambda演算.html">Lambda演算</a>
+  
+</div>
+<div id="article">
+  <h1>Y-Combinator</h1>
+
+<p>转眼又过了一年，好像每年这个时候我都要和匿名递归函数较劲。今年我掌握了更多函数式编程的理论知识，了解到“匿名递归函数”已经有相应的研究结果：Y组合子（Y-Combinator）。</p>
+
+<p>Y组合子是Lambda演算的一部分，也是函数式编程的理论基础。它是一种方法/技巧，在没有赋值语句的前提下定义递归的匿名函数。即仅仅通过Lambda表达式这个最基本的“原子”实现循环/迭代，颇有道生一、一生二、二生三、三生万物的感觉。</p>
+
+<h2>从递归的阶乘函数开始</h2>
+
+<p>先不考虑效率等其他因素，写一个最简单的递归阶乘函数。此处采用Scheme，你可以选择自己熟悉的编程语言跟着我一步一步实现Y-Combinator版的阶乘函数。</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fab</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+    <span class="mi">1</span>
+    <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">fab</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))</span>
+</code></pre></div>
+<p>Scheme中<code>(define (fn-name))</code>是<code>(define fn-name (lambda))</code>的简写，就像JS中，<code>function foo() {}</code>等价于<code>var foo = function() {}</code>。把上面的定义展开成Lambda的定义：</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="nv">fab</span>
+  <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+      <span class="mi">1</span>
+      <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">fab</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))))))</span>
+</code></pre></div>
+<h2>绑定函数名</h2>
+
+<p>想要递归地调用一个函数，就必须给这个函数取一个名字。匿名函数想要实现递归，就得取一个临时的名字。所谓临时，指这个名字只在此函数体内有效，函数执行完成后，这个名字就伴随函数一起消失。为解决这个问题，<a href="/2011-08-05/recursive-lambda/">第一篇文章</a>中强制规定匿名函数有一个隐藏的名字this指向自己，这导致this这个变量名被强行占用，并不优雅，因此<a href="/2012-08-04/clojure-style-lambda-in-common-lisp/">第二篇文章</a>借鉴Clojure的方法，允许自定义一个名字。</p>
+
+<p>但在lambda演算中，只有最普通的lambda，没有赋值语句，如何绑定一个名字呢？答案是使用lambda的参数列表！</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">fab</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+      <span class="mi">1</span>
+      <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">fab</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))))))</span>
+</code></pre></div>
+<h2>生成阶乘函数的函数</h2>
+
+<p>虽然通过参数列表，即使用闭包技术给匿名函数取了一个名字，但此函数并不是我们想要的阶乘函数，而是阶乘函数的元函数（meta-fab），即生成阶乘函数的函数。因此需要执行这个元函数，获得想要的阶乘函数：</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">fab</span><span class="p">)</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+       <span class="mi">1</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">fab</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))))))</span>
+ <span class="nv">xxx</span><span class="p">)</span>
+</code></pre></div>
+<p>此时又出现另一个问题：实参xxx，即形参fab该取什么值？从定义来看，fab就是函数自身，既然是“自身”，首先想到的就是复制一份一模一样的代码：</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">fab</span><span class="p">)</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+       <span class="mi">1</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">fab</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))))))</span>
+ <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">fab</span><span class="p">)</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+       <span class="mi">1</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">fab</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))))</span>
+</code></pre></div>
+<p>看起来已经把自己传递给了自己，但马上发现<code>(fab (- n 1))</code>会失败，因为此时的<code>fab</code>不是一个阶乘函数，而是一个包含阶乘函数的函数，即要获取包含在内部的函数，因此调用方式要改成<code>((meta-fab meta-fab) (- n 1))</code>：</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta-fab</span><span class="p">)</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+       <span class="mi">1</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">((</span><span class="nf">meta-fab</span> <span class="nv">meta-fab</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))))))</span>
+ <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta-fab</span><span class="p">)</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+       <span class="mi">1</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">((</span><span class="nf">meta-fab</span> <span class="nv">meta-fab</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))))</span>
+</code></pre></div>
+<p>把名字改成meta-fab就能清晰地看出它是阶乘的元函数，而不是阶乘函数本身。</p>
+
+<h2>去除重复</h2>
+
+<p>以上代码已经实现了lambda的自我调用，但其中包含重复的代码，meta-fab即做函数又做参数，即<code>(meta meta)</code>：</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">meta</span> <span class="nv">meta</span><span class="p">))</span>
+ <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta-fab</span><span class="p">)</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+       <span class="mi">1</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">((</span><span class="nf">meta-fab</span> <span class="nv">meta-fab</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))))</span>
+</code></pre></div>
+<h2>提取阶乘函数</h2>
+
+<p>因为我们想要的是阶乘函数，所以用fab取代<code>(meta-fab meta-fab)</code>，方法同样是使用参数列表命名：</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">meta</span> <span class="nv">meta</span><span class="p">))</span>
+ <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta-fab</span><span class="p">)</span>
+   <span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">fab</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+          <span class="mi">1</span>
+          <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">fab</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))))))</span>
+    <span class="p">(</span><span class="nf">meta-fab</span> <span class="nv">meta-fab</span><span class="p">))))</span>
+</code></pre></div>
+<p>这段代码还不能正常运行，因为Scheme以及其他主流的编程语言实现都采用“应用序”，即执行函数时先计算参数的值，因此<code>(meta-fab meta-fab)</code>原来是在求阶乘的过程中才被执行，现在提取出来后执行的时间被提前，于是陷入无限循环。解决方法是把它包装在lambda中（你学到了lambda的另一个用处：延迟执行）。</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta</span><span class="p">)</span>
+   <span class="p">(</span><span class="nf">meta</span> <span class="nv">meta</span><span class="p">))</span>
+ <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta-fab</span><span class="p">)</span>
+   <span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">fab</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+        <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+          <span class="mi">1</span>
+          <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">fab</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))))))</span>
+    <span class="p">(</span><span class="k">lambda </span><span class="nv">args</span>
+      <span class="p">(</span><span class="nb">apply </span><span class="p">(</span><span class="nf">meta-fab</span> <span class="nv">meta-fab</span><span class="p">)</span> <span class="nv">args</span><span class="p">)))))</span>
+</code></pre></div>
+<p>此时，代码中第4行到第8行正是最初定义的匿名递归阶乘函数，我们终于得到了阶乘函数本身！</p>
+
+<h2>形成模式</h2>
+
+<p>如果把其中的阶乘函数作为一个整体提取出来，那就是得到一种“模式”，即能生成任意匿名递归函数的模式：</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">fn</span><span class="p">)</span>
+   <span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">meta</span> <span class="nv">meta</span><span class="p">))</span>
+    <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta-fn</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">fn</span>
+        <span class="p">(</span><span class="k">lambda </span><span class="nv">args</span>
+          <span class="p">(</span><span class="nb">apply </span><span class="p">(</span><span class="nf">meta-fn</span> <span class="nv">meta-fn</span><span class="p">)</span> <span class="nv">args</span><span class="p">))))))</span>
+ <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">fab</span><span class="p">)</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+     <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">n</span><span class="p">)</span>
+       <span class="mi">1</span>
+       <span class="p">(</span><span class="nb">* </span><span class="nv">n</span> <span class="p">(</span><span class="nf">fab</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)))))))</span>
+</code></pre></div>
+<p>Lambda演算中称这个模式为Y组合子（Y-Combinator），即：</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">y-combinator</span> <span class="nv">fn</span><span class="p">)</span>
+  <span class="p">((</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta</span><span class="p">)</span>
+     <span class="p">(</span><span class="nf">meta</span> <span class="nv">meta</span><span class="p">))</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">meta-fn</span><span class="p">)</span>
+     <span class="p">(</span><span class="nf">fn</span>
+       <span class="p">(</span><span class="k">lambda </span><span class="nv">args</span>
+         <span class="p">(</span><span class="nb">apply </span><span class="p">(</span><span class="nf">meta-fn</span> <span class="nv">meta-fn</span><span class="p">)</span> <span class="nv">args</span><span class="p">))))))</span>
+</code></pre></div>
+<p>有了Y组合子，我们就能定义任意的匿名递归函数。前文中定义的是递归求阶乘，再定义一个递归求斐波那契数：</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">(</span><span class="nf">y-combinator</span>
+  <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">fib</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">n</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="mi">1</span>
+      <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nf">fib</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">1</span><span class="p">))</span>
+         <span class="p">(</span><span class="nf">fib</span> <span class="p">(</span><span class="nb">- </span><span class="nv">n</span> <span class="mi">2</span><span class="p">)))))))</span>
+</code></pre></div>
+<h1>10种实现</h1>
+
+<p>下面用10种不同的编程语言实现Y组合子，以及Y版的递归阶乘函数。实际开发中可能不会用上这样的技巧，但这些代码分别展示了这10种语言的诸多语法特性，能帮助你了解如何在这些语言中实现以下功能：</p>
+
+<ol>
+<li>如何定义匿名函数；</li>
+<li>如何就地调用一个匿名函数；</li>
+<li>如何将函数作为参数传递给其他函数；</li>
+<li>如何定义参数数目不定的函数；</li>
+<li>如何把函数作为值返回；</li>
+<li>如何将数组里的元素平坦开来传递给函数；</li>
+<li>三元表达式的使用方法。</li>
+</ol>
+
+<p>这十种编程语言，有Python、PHP、Perl、Ruby等大家耳熟能详的脚本语言，估计最让大家惊讶的应该是其中有Java！</p>
+
+<h2>Scheme</h2>
+
+<p>我始终觉得Scheme版是这么多种实现中最优雅的！它没有“刻意”的简洁，读起来很自然。</p>
+
+<script src="https://gist.github.com/6445345.js?file=y-combinator.scm"> </script>
+
+<h2>Clojure</h2>
+
+<p>其实Clojure不需要借助Y-Combinator就能实现匿名递归函数，它的lambda——fn——支持传递一个函数名，为这个临时函数命名。也许Clojure的fn不应该叫匿名函数，应该叫临时函数更贴切。</p>
+
+<p>同样是Lisp，Clojure版本比Scheme版本更简短，却让我感觉是一种刻意的简洁。我喜欢用fn取代lambda，但用稀奇古怪的符号来缩减代码量会让代码的可读性变差（我最近好像变得不太喜欢用符号，哈哈）。</p>
+
+<script src="https://gist.github.com/6445345.js?file=y-combinator.clj"> </script>
+
+<h2>Common Lisp</h2>
+
+<p>Common Lisp版和Scheme版其实差不多，只不过Common Lisp属于Lisp-2，即函数命名空间与变量命名空间不同，因此调用匿名函数时需要额外的funcall。我个人不喜欢这个额外的调用，觉得它是冗余信息，位置信息已经包含了角色信息，就像命令行的第一个参数永远是命令。</p>
+
+<script src="https://gist.github.com/6445345.js?file=y-combinator.lisp"> </script>
+
+<h2>Ruby</h2>
+
+<p>Ruby从Lisp那儿借鉴了许多，包括它的缺点。和Common Lisp一样，Ruby中执行一个匿名函数也需要额外的“.call”，或者使用中括号“<code>[]</code>”而不是和普通函数一样的小括号“<code>()</code>”，总之在Ruby中匿名函数与普通函数不一样！还有繁杂的符号也影响我在Ruby中使用匿名函数的心情，因此我会把Ruby看作语法更灵活、更简洁的Java，而不会考虑写函数式风格的代码。</p>
+
+<script src="https://gist.github.com/6445345.js?file=y-combinator.rb"> </script>
+
+<h2>Python</h2>
+
+<p>Python中匿名函数的使用方式与普通函数一样，就这段代码而言，Python之于Ruby就像Scheme之于Common Lisp。但Python对Lambda的支持简直弱爆了，函数体只允许有一条语句！我决定我的工具箱中用Python取代C语言，虽然Python对匿名函数的支持只比C语言好一点点。</p>
+
+<script src="https://gist.github.com/6445345.js?file=y-combinator.py"> </script>
+
+<h2>Perl</h2>
+
+<p>我个人对Perl函数不能声明参数的抱怨更甚于繁杂的符号！</p>
+
+<script src="https://gist.github.com/6445345.js?file=y-combinator.pl"> </script>
+
+<p>假设Perl能像其他语言一样声明参数列表，代码会更简洁直观：</p>
+<div class="highlight"><pre><code class="perl language-perl" data-lang="perl"><span class="k">sub </span><span class="nf">y_combinator</span><span class="p">($f) {</span>
+  <span class="n">sub</span><span class="p">(</span><span class="nv">$u</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$u</span><span class="o">-&gt;</span><span class="p">(</span><span class="nv">$u</span><span class="p">);</span> <span class="p">}</span><span class="o">-&gt;</span><span class="p">(</span><span class="n">sub</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nv">$f</span><span class="o">-&gt;</span><span class="p">(</span><span class="k">sub </span><span class="p">{</span> <span class="nv">$x</span><span class="o">-&gt;</span><span class="p">(</span><span class="nv">$x</span><span class="p">)</span><span class="o">-&gt;</span><span class="p">(</span><span class="nv">@_</span><span class="p">);</span> <span class="p">});</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+
+<span class="k">print</span> <span class="n">y_combinator</span><span class="p">(</span><span class="n">sub</span><span class="p">(</span><span class="nv">$fab</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">sub</span><span class="p">(</span><span class="nv">$n</span><span class="p">)</span> <span class="p">{</span> <span class="nv">$n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">?</span> <span class="mi">1</span><span class="p">:</span> <span class="nv">$n</span> <span class="o">*</span> <span class="nv">$fab</span><span class="o">-&gt;</span><span class="p">(</span><span class="nv">$n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="p">};</span>
+<span class="p">})</span><span class="o">-&gt;</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</code></pre></div>
+<h2>JavaScript</h2>
+
+<p>JavaScript无疑是脚本语言中最流行的！但冗长的function、return等关键字总是刺痛我的神经：</p>
+
+<script src="https://gist.github.com/6445345.js?file=y-combinator.pl"> </script>
+
+<h2>Lua</h2>
+
+<p>Lua和JavaScript有相同的毛病，最让我意外的是它没有三元运算符！不过没有使用花括号让代码看起来清爽不少~</p>
+
+<script src="https://gist.github.com/6445345.js?file=y-combinator.lua"> </script>
+
+<h2>PHP</h2>
+
+<p>PHP也是JavaScript的难兄难弟，function、return……</p>
+
+<p>此外，PHP版本是脚本语言中符号（$、_、()、{}）用的最多的！是的，比Perl还多。</p>
+
+<script src="https://gist.github.com/6445345.js?file=y-combinator.pl"> </script>
+
+<h2>Java</h2>
+
+<p>最后，Java登场。我说的不是Java 8，即不是用Lambda表达式，而是匿名类！匿名函数的意义是把代码块作为参数传递，这正是匿名类所做得事情。</p>
+
+<script src="https://gist.github.com/6445345.js?file=YCombinator.java"> </script>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">Y组合子</span>
+    <label class="timestamp">[2013-12-04 13:28:35]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>
