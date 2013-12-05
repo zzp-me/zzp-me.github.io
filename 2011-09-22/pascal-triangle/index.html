@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="如果你了解函数式编程，可能知道map和reduce两个运算符： map可以保持数据维度不变， reduce则把一个n维的数据降到1维。 杨辉三角属于第三类范畴：把维度为1扩展成n维。" />
+
+    <title>杨辉三角 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(4)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(6)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(5)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(8)</a></li><li><a href="/archive/2009-07.html">07月(7)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>杨辉三角</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/基础算法.html">基础算法</a>
+  
+</div>
+<div id="article">
+  <p>杨辉三角形，又称贾宪三角形、帕斯卡三角形，是二项式系数在三角形中的一种几何排列。其中第n行第i列的值为：C<sup>i</sup><sub>n</sub>= n!/(i! * (n - i)!)。如下图所示。</p>
+
+<p>为了输出一个规模为n的杨辉三角，如果根据定义来做，那每一个元素至少要计算两个阶乘，效率是很低的。从下图可知，第i行可以通过第i-1行的元素两两相加得到，这样乘法就简化成一组加法，效率会提高很多！</p>
+
+<p><img src="/resource/2011-09-22/pascal-triangle/1.gif" /></p>
+
+<p>如果你了解函数式编程，可能知道map和reduce两个运算符：map可以保持数据维度不变，reduce则把一个n维的数据降到1维。杨辉三角属于第三类范畴：把维度为1的数据扩展成n维。</p>
+
+<p>本文提供多种不同的编程语言的解决方法，来比较各语言解决此类问题的优劣。</p>
+
+<h1>Clojure版</h1>
+<div class="highlight"><pre><code class="clojure language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">pascal</span> <span class="p">[]</span>
+  <span class="p">(</span><span class="nb">iterate </span><span class="o">#</span><span class="p">(</span><span class="nb">map + </span><span class="o">`</span><span class="p">(</span><span class="mi">0</span> <span class="o">~@</span><span class="nv">%</span><span class="p">)</span> <span class="o">`</span><span class="p">(</span><span class="o">~@</span><span class="nv">%</span> <span class="mi">0</span><span class="p">))</span> <span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+<span class="p">(</span><span class="nb">take </span><span class="mi">5</span> <span class="p">(</span><span class="nf">pascal</span><span class="p">))</span> <span class="c1">; 取前面5行</span>
+<span class="c1">; -&gt;((1) (1 1) (1 2 1) (1 3 3 1) (1 4 6 4 1))</span>
+</code></pre></div>
+<p>Clojure版是这么多实现中最简洁、最优雅的！</p>
+
+<ol>
+<li>通过内置的倒引号操作符，非常简便地在原数组前后两端追加额外的数据<code>0</code>，达到扩展维度的目的；</li>
+<li>利用现成的迭代工具<code>iterate</code>，无需关心迭代过程，只需专注于每次迭代的逻辑；</li>
+<li>惰性列表让程序无需关心何时结束。</li>
+</ol>
+
+<h1>Common Lisp 版</h1>
+<div class="highlight"><pre><code class="common-lisp language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">do</span> <span class="p">((</span><span class="nv">a</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">mapcar</span> <span class="nf">#&#39;</span><span class="nb">+</span> <span class="o">`</span><span class="p">(</span><span class="mi">0</span> <span class="o">,@</span><span class="nv">a</span><span class="p">)</span> <span class="o">`</span><span class="p">(</span><span class="o">,@</span><span class="nv">a</span> <span class="mi">0</span><span class="p">))))</span>
+    <span class="p">((</span><span class="nb">=</span> <span class="p">(</span><span class="nb">length</span> <span class="nv">a</span><span class="p">)</span> <span class="mi">10</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">format</span> <span class="no">t</span> <span class="s">&quot;~{~A~^ ~}~%&quot;</span> <span class="nv">a</span><span class="p">))</span>
+</code></pre></div>
+<p>Common Lisp拥有和Clojure相同的倒引号功能，但没有类似iterate的自动迭代工具，因此不得不使用do手工控制迭代过程以及结束条件。但Common Lisp优雅的format输出功能，是其他语言可欲而不可求的！</p>
+
+<h1>Python版</h1>
+<div class="highlight"><pre><code class="python language-python" data-lang="python"><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
+<span class="k">def</span> <span class="nf">pascal</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+  <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">yield</span> <span class="n">a</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="p">[</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">pascal</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+</code></pre></div>
+<p>适合Python 2.*版本，Python的特色是Yield生成器与列表推导。</p>
+
+<h1>C语言版</h1>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="cp">#define SIZE 11</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">line</span><span class="p">[</span><span class="n">SIZE</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">};</span>
+  <span class="kt">int</span> <span class="n">row</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="k">for</span> <span class="p">(</span><span class="n">row</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">row</span> <span class="o">&lt;</span> <span class="n">SIZE</span><span class="p">;</span> <span class="n">row</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">row</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">row</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d%c&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">i</span> <span class="o">==</span> <span class="n">row</span><span class="o">?</span> <span class="sc">&#39;\n&#39;</span><span class="o">:</span> <span class="sc">&#39; &#39;</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol>
+<li>C语言不能像Lisp那样便捷地生成新数组，因此一开始就开辟好足够的空间；</li>
+<li>该版本忠实地反映出当前行如何由前一行的数据生成；</li>
+<li>C语言同样没有直接输出数组的能力，因此不得不采用循环来打印每一行；</li>
+<li>C的繁琐换来的是高性能。</li>
+</ol>
+
+<h1>批处理版</h1>
+<div class="highlight"><pre><code class="bat language-bat" data-lang="bat"><span class="c">::Show a Pascal/Yanhui Triangle</span>
+<span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+<span class="k">setlocal</span> enabledelayedexpansion
+<span class="k">set</span> <span class="n">/a</span> line[<span class="m">0</span>]<span class="o">=</span><span class="m">1</span>
+<span class="k">for</span> <span class="n">/l</span> <span class="nv">%%i</span> in (<span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">10</span>) <span class="k">do</span> (
+  <span class="k">for</span> <span class="n">/l</span> <span class="nv">%%j</span> in (<span class="nv">%%i</span><span class="p">,</span><span class="m">-1</span><span class="p">,</span><span class="m">1</span>) <span class="k">do</span> (
+    <span class="k">if</span> <span class="k">defined</span> line[<span class="nv">%%j</span>] (
+      <span class="k">set</span> <span class="nv">n</span><span class="o">=</span><span class="nv">%%j</span>
+      <span class="k">call</span> <span class="nl">:calc</span>
+    ) <span class="k">else</span> (
+      <span class="k">set</span> <span class="n">/a</span> line[<span class="nv">%%j</span>]<span class="o">=</span><span class="m">1</span>
+    )
+  )
+  <span class="k">for</span> <span class="n">/l</span> <span class="nv">%%j</span> in (<span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="nv">%%i</span>) <span class="k">do</span> <span class="k">set</span> <span class="n">/p=!line[%%j]!</span> <span class="p">&lt;</span><span class="n">nul</span>
+  <span class="k">echo</span>.
+)
+<span class="k">goto</span> <span class="nl">end</span>
+
+<span class="nl">:calc</span>
+<span class="k">set</span> <span class="n">/a</span> prev<span class="o">=</span><span class="nv">%n%</span><span class="m">-1</span>
+<span class="k">set</span> <span class="n">/a</span> line[<span class="nv">%n%</span>]+<span class="o">=</span>!line[<span class="nv">%prev%</span>]!
+<span class="k">goto</span> <span class="nl">:eof</span>
+
+<span class="nl">:end</span>
+<span class="k">pause</span>
+</code></pre></div>
+<p>还是那句话：不要小看批处理！虽然它……很蛋疼。</p>
+
+<h1>Bash 版</h1>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#!/usr/bin/bash</span>
+
+a<span class="o">[</span>0<span class="o">]=</span>1
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span>i&lt;<span class="o">=</span>10<span class="p">;</span>i++<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+<span class="k">  for</span> <span class="o">((</span><span class="nv">j</span><span class="o">=</span><span class="nv">$i</span><span class="p">;</span>j&gt;0<span class="p">;</span>j--<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+    <span class="o">((</span>a<span class="o">[</span><span class="nv">$j</span><span class="o">]</span>+<span class="o">=</span>a<span class="o">[</span><span class="nv">$j</span>-1<span class="o">]))</span>
+  <span class="k">done</span>
+<span class="k">  for</span> <span class="o">((</span><span class="nv">j</span><span class="o">=</span>0<span class="p">;</span>j&lt;<span class="o">=</span><span class="nv">$i</span><span class="p">;</span>j++<span class="o">))</span><span class="p">;</span> <span class="k">do</span>
+<span class="k">    </span><span class="nb">printf</span> <span class="s2">&quot;%d &quot;</span> <span class="k">${</span><span class="nv">a</span><span class="p">[</span><span class="nv">$j</span><span class="p">]</span><span class="k">}</span>
+  <span class="k">done</span>
+<span class="k">  </span><span class="nb">echo</span>
+<span class="k">done</span>
+</code></pre></div>
+<p>批处理都来了，怎么能少的了Shell Script。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">点评各种实现，加入Python</span>
+    <label class="timestamp">[2013-12-05 16:26:33]</label>
+  </div>
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">[Thanks Ruby]杨辉三角</span>
+    <label class="timestamp">[2013-12-05 15:47:59]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

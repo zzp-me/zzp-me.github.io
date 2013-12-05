@@ -37,6 +37,14 @@
     <lastmod>2013-11-27T16:34:23+08:00</lastmod>
   </url>
   <url>
+    <loc>http://zzp.me/2008-01-29/prime-div-in-c/</loc>
+    <lastmod>2013-12-05T19:50:28+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://zzp.me/2008-01-29/prime-filter-in-c/</loc>
+    <lastmod>2013-12-05T19:56:42+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://zzp.me/2008-06-11/acm-hdu-2000/</loc>
     <lastmod>2013-11-27T16:34:23+08:00</lastmod>
   </url>
@@ -539,6 +547,14 @@
     <lastmod>2013-11-27T16:34:23+08:00</lastmod>
   </url>
   <url>
+    <loc>http://zzp.me/2008-07-10/perfect-number/</loc>
+    <lastmod>2013-12-05T18:21:30+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://zzp.me/2008-08-29/md5/</loc>
+    <lastmod>2013-12-05T18:21:30+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://zzp.me/2008-08-29/xiaonei-friend-sell-api/</loc>
     <lastmod>2013-12-04T20:14:56+08:00</lastmod>
     <image:image>
@@ -602,12 +618,16 @@
     <lastmod>2013-12-03T20:58:53+08:00</lastmod>
   </url>
   <url>
+    <loc>http://zzp.me/2009-07-19/filter-sensitive-word-via-pinyin/</loc>
+    <lastmod>2013-12-05T18:21:30+08:00</lastmod>
+  </url>
+  <url>
     <loc>http://zzp.me/2009-07-25/what-is-programming/</loc>
     <lastmod>2013-12-03T21:05:08+08:00</lastmod>
   </url>
   <url>
-    <loc>http://zzp.me/2009-07-25/how-to-design-programming-language/</loc>
-    <lastmod>2013-12-03T21:33:12+08:00</lastmod>
+    <loc>http://zzp.me/2009-07-25/flexibility-of-program/</loc>
+    <lastmod>2013-12-05T19:03:33+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/2009-08-02/a-bitch-is-a-bitch/</loc>
@@ -713,6 +733,10 @@
   <url>
     <loc>http://zzp.me/2009-11-05/basic-interpreter-in-c-5/</loc>
     <lastmod>2013-12-01T15:54:42+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://zzp.me/2009-11-08/environment-driven-development/</loc>
+    <lastmod>2013-12-05T18:21:30+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/2009-12-20/c-varible-type/</loc>
@@ -879,6 +903,20 @@
     <lastmod>2013-11-30T20:00:01+08:00</lastmod>
   </url>
   <url>
+    <loc>http://zzp.me/2011-09-22/pascal-triangle/</loc>
+    <lastmod>2013-12-05T18:21:30+08:00</lastmod>
+    <image:image>
+      <image:loc>http://zzp.me/resource/2011-09-22/pascal-triangle/1.gif</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>http://zzp.me/2011-11-20/nth-fibonacci/</loc>
+    <lastmod>2013-12-05T18:21:30+08:00</lastmod>
+    <image:image>
+      <image:loc>http://zzp.me/resource/2011-11-20/nth-fibonacci/1.png</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>http://zzp.me/2012-04-20/brainfuck-in-c/</loc>
     <lastmod>2013-12-03T20:38:23+08:00</lastmod>
   </url>
@@ -990,198 +1028,222 @@
   </url>
   <url>
     <loc>http://zzp.me/archive/c语言实验报告.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://zzp.me/archive/基础算法.html</loc>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/杭电100题.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://zzp.me/archive/加密解密.html</loc>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/好友买卖外挂.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/我是程序员.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/我的世界观.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/设计模式.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/图像处理.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/编程语言生态.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/c语言.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/javascript.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/命令行超级工具.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/双向管道.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/basic解释器.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/e4x.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/lisp.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/brainfuck.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/服务端js.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/iknowledge.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/lambda演算.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/db2.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/clearcase.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/jekyll.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2007-02.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://zzp.me/archive/2008-01.html</loc>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2008-06.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://zzp.me/archive/2008-07.html</loc>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2008-08.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2008-09.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2008-10.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2009-04.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2009-06.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2009-07.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2009-08.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2009-09.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2009-10.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2009-11.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2009-12.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2010-01.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2010-08.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2011-03.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2011-06.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2011-08.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://zzp.me/archive/2011-09.html</loc>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
+  </url>
+  <url>
+    <loc>http://zzp.me/archive/2011-11.html</loc>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2012-04.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2012-08.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2012-09.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2012-10.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2013-01.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2013-03.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2013-09.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2013-11.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
   <url>
     <loc>http://zzp.me/archive/2013-12.html</loc>
-    <lastmod>2013-12-04T21:06:59+08:00</lastmod>
+    <lastmod>2013-12-05T19:59:18+08:00</lastmod>
   </url>
 </urlset>

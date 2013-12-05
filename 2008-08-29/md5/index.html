@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="原来实现一个MD5的加密算法也不是一帆风顺，此文记录了我自己遇到的坎坷。" />
+
+    <title>MD5算法实现 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(4)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(6)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(5)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(8)</a></li><li><a href="/archive/2009-07.html">07月(7)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>MD5算法实现</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/加密解密.html">加密解密</a>
+  
+</div>
+<div id="article">
+  <p>最近很有危机感，觉得自己和别人相比毫无优势。虽说在班里成绩属于拔尖，虽然感觉什么都知道一些，真的静下心来去开发一款软件时却发现做不出来！盗版李宗盛《最近比较烦》的一句歌词“最近比较烦比较烦比较烦，我看那前方怎麽也看不到岸；那个后面还有一班天才追赶哎呦，写一段皆大欢喜的程序，是越来越难”...打击太大了。</p>
+
+<p>这种时候最不能混乱了，我要安安稳稳、认认真真、集中精力只去做一件事。就先编个MD5算法吧，很早就看它不爽了，但一直狠不下心来自己写一个。</p>
+
+<p>所谓祸不单行，困难就好像约好了一样，本来一件简单的事情居然让我折腾到半夜，特来记下中间的坎坷。</p>
+
+<h1>正文</h1>
+
+<p>早在高中的时候，做过一段时间工具黑客，每入侵一个论坛（比如动网），获得管理员的密码后，都要拿工具暴力破解 md5 密码。自打那会儿开始就没对它有好感。现在学过C语言了，自己终于能写些“乱七八糟”的程序了，回想起当年的雄心壮志，就开始动手实现md5加密算法！</p>
+
+<p>第一步当然是先到 Google 上搜索相关资料，饿补一下 md5 的知识。偏偏这一次鬼使神差地进入了 <a href="http://www.google.cn%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%BB%A5%E5%BE%80%E7%9A%84">www.google.cn，而不是以往的</a> <a href="http://www.google.com">www.google.com</a> 英文版，因此埋下了祸根！用关键词“md5”直接搜索，看到百度百科的链接。心想自己怎么糊涂了，这么出名的算法，百科里一定有的呀。打开链接，简单地浏览了前面的历史背景介绍什么的，进入了主题“算法描述”。看完之后，我感觉我这次又要黄了，根据它的描述，我实在无法实现这个算法，因为有太多地方描述不清楚了！我一步一步写完程序后，本打算自己把所有可能的情况都试试看，希望找到正确的结果。但很快发现这不可能。</p>
+
+<p>所幸，百科里留下一个链接：<code>http://www.ietf.org/rfc/rfc1321.txt</code>，这是一份最权威的文档，由其发明者 Ronald L. Rivest 在1992年8月向 IETF 提交。我对照英文原文看，发现中文版里不仅有很多没描述清楚，甚至还有很多错误！下面我按照算法实现步骤，把需要注意的地方列举一下，具体实现可以参考英文原文：</p>
+
+<h2>一、首先是要对信息进行填充</h2>
+
+<ol>
+<li>在原来的信息基础上，在后面进行填充，使其字节长度除64余56。即64*N+56的形式。</li>
+<li>用于填充的位是：第一位为1，其他都为0。</li>
+<li>填充必须进行！也就是说，即使原始信息长度余数本来就是56，那也得再填充64字节的信息。</li>
+<li>最后8字节长度的空间来保存原始信息的长度。
+
+<ol>
+<li>单位是bit，即位。这一点我查可很多中文资料，都没有说明，所有一开始我一直在琢磨长度单位是bit还是byte。</li>
+<li>最后8位的内存存储形式是低到高。这一点也没有说明的，开始我也一直在想，这8位到底是怎么用的？因为内存是从低到高的，而我们平时写数字，比如0x1234是从高到低的。最后我查看Linux下开源的程序md5sum，才知道是把8位作为一个整数从低到高存储的，所有在实现的时候，我直接用了long long来存储，然后用memmove()来追加到信息串里。</li>
+</ol></li>
+<li>填充完后，整个信息串就是(N+1)*64个字节，关于N，百度百科里说N是一个正整数，也就是说填充完的信息最短是128字节；但实际上N是一个非负整数！也就是说，N可以为0，而信息的长度最短是64字节。这个错误让我郁闷很久。</li>
+</ol>
+
+<h2>二、四个初始常量的值</h2>
+
+<p>百度百科里原文：“MD5中有四个32位被称作链接变量（Chaining Variable）的整数参数，他们分别为： A=0x01234567，B=0x89abcdef，C=0xfedcba98，D=0x76543210。”</p>
+
+<p>这又是一个错误的地方，英文原文中说这个四个常量的值从低到高依次是：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">word A: 01 23 45 67
+word B: 89 ab cd ef
+word C: fe dc ba 98
+word D: 76 54 32 10
+</code></pre></div>
+<p>上面说过内存存储方向和我们平时书写是相反的，所以定义的时候应该是：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#define A 0x67452301UL</span>
+<span class="cp">#define B 0xEFCDAB89UL</span>
+<span class="cp">#define C 0x98BADCFEUL</span>
+<span class="cp">#define D 0x10325476UL</span>
+</code></pre></div>
+<p>这一开始也让我郁闷。</p>
+
+<h2>三、四轮加密的函数</h2>
+
+<p>四个非线性函数没有问题：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#define F( X, Y, Z ) ( ( (X) &amp; (Y) ) | ( (~(X)) &amp; (Z) ) )</span>
+<span class="cp">#define G( X, Y, Z ) ( ( (X) &amp; (Z) ) | ( (Y) &amp; (~(Z)) ) )</span>
+<span class="cp">#define H( X, Y, Z ) ( (X) ^ (Y) ^ (Z) )</span>
+<span class="cp">#define I( X, Y, Z ) ( (Y) ^ ( (X) | (~(Z)) ) )</span>
+</code></pre></div>
+<p>但是四轮的加密函数就有问题，我看过几篇不同的md5算法文章，不知道是不是显示问题，函数表达式连括号都不匹配！所以那些表达式没有参考价值。最后看 md5sum 的源代码才知道具体的实现方法：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#define FF( a, b, c, d, Mj, s, ti ) /</span>
+    <span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">LOGIC_SHIFT_LEFT</span><span class="p">(</span> <span class="p">(</span> <span class="n">a</span> <span class="o">+</span> <span class="n">F</span><span class="p">(</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="p">)</span> <span class="o">+</span> <span class="n">Mj</span> <span class="o">+</span> <span class="n">ti</span> <span class="p">),</span> <span class="n">s</span> <span class="p">))</span>
+<span class="cp">#define GG( a, b, c, d, Mj, s, ti ) /</span>
+    <span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">LOGIC_SHIFT_LEFT</span><span class="p">(</span> <span class="p">(</span> <span class="n">a</span> <span class="o">+</span> <span class="n">G</span><span class="p">(</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="p">)</span> <span class="o">+</span> <span class="n">Mj</span> <span class="o">+</span> <span class="n">ti</span> <span class="p">),</span> <span class="n">s</span> <span class="p">))</span>
+<span class="cp">#define HH( a, b, c, d, Mj, s, ti ) /</span>
+    <span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">LOGIC_SHIFT_LEFT</span><span class="p">(</span> <span class="p">(</span> <span class="n">a</span> <span class="o">+</span> <span class="n">H</span><span class="p">(</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="p">)</span> <span class="o">+</span> <span class="n">Mj</span> <span class="o">+</span> <span class="n">ti</span> <span class="p">),</span> <span class="n">s</span> <span class="p">))</span>
+<span class="cp">#define II( a, b, c, d, Mj, s, ti ) /</span>
+    <span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="n">LOGIC_SHIFT_LEFT</span><span class="p">(</span> <span class="p">(</span> <span class="n">a</span> <span class="o">+</span> <span class="n">I</span><span class="p">(</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="p">)</span> <span class="o">+</span> <span class="n">Mj</span> <span class="o">+</span> <span class="n">ti</span> <span class="p">),</span> <span class="n">s</span> <span class="p">))</span>
+</code></pre></div>
+<h2>四、最后的输出</h2>
+
+<p>几乎所有文章都是写道四轮加密就结束了。而我的算法实现到这里，产生的最终的四个数值：a, b, c ,d。这四个数都是32位的整数。于是我就直接用printf ( &quot;%08x%08x%08x%08x/n&quot;, a, b, c, d ); 结果却怎么都不能正确！但按文档上的算法说明，没有错误呀。无奈还得参看 md5sum 的代码，单步跟踪下去，发现算法完全正确！再看他的输出函数，原来是先把结果在转入一个长度为16的 char 数组里，再逐个输出。又是数值存储的高低位顺序问题，改完就通过了！</p>
+
+<p>下面附上我的代码，在 FC6 + GCC 下通过。其实代码还能再精简一下的。晚了，先睡觉！</p>
+
+<h1>程序清单</h1>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cm">/**</span>
+<span class="cm"> * md5 -- compute and check MD5 message digest.</span>
+<span class="cm"> * this version only can calculate the char string.</span>
+<span class="cm"> *</span>
+<span class="cm"> * MD5 (Message-Digest algorithm 5) is a widely used, partially</span>
+<span class="cm"> * insecure cryptographic hash function with a 128-bit hash value.</span>
+<span class="cm"> *</span>
+<span class="cm"> * Author: redraiment@gmail.com</span>
+<span class="cm"> * Date: Aug 27, 2008</span>
+<span class="cm"> * Version: 0.1.6</span>
+<span class="cm"> */</span>
+<span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;string.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+<span class="cp">#include &lt;math.h&gt;</span>
+
+<span class="cp">#define SINGLE_ONE_BIT 0x80</span>
+<span class="cp">#define BLOCK_SIZE 512</span>
+<span class="cp">#define MOD_SIZE 448</span>
+<span class="cp">#define APP_SIZE 64</span>
+<span class="cp">#define BITS 8</span>
+
+<span class="c1">// MD5 Chaining Variable</span>
+<span class="cp">#define A 0x67452301UL</span>
+<span class="cp">#define B 0xEFCDAB89UL</span>
+<span class="cp">#define C 0x98BADCFEUL</span>
+<span class="cp">#define D 0x10325476UL</span>
+
+<span class="c1">// Creating own types</span>
+<span class="cp">#ifdef UINT64</span>
+<span class="cp"># undef UINT64</span>
+<span class="cp">#endif</span>
+<span class="cp">#ifdef UINT32</span>
+<span class="cp"># undef UINT32</span>
+<span class="cp">#endif</span>
+
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">UINT64</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">UINT32</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">UINT8</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+  <span class="kt">char</span> <span class="o">*</span> <span class="n">message</span><span class="p">;</span>
+  <span class="n">UINT64</span> <span class="n">length</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">STRING</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="n">UINT32</span> <span class="n">X</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">},</span> <span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">}</span>
+<span class="p">};</span>
+<span class="c1">// Constants for MD5 transform routine.</span>
+<span class="k">const</span> <span class="n">UINT32</span> <span class="n">S</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="p">{</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">22</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="mi">5</span><span class="p">,</span>  <span class="mi">9</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">20</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span> <span class="p">},</span>
+  <span class="p">{</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">21</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// F, G, H and I are basic MD5 functions.</span>
+<span class="n">UINT32</span> <span class="nf">F</span><span class="p">(</span> <span class="n">UINT32</span> <span class="n">X</span><span class="p">,</span> <span class="n">UINT32</span> <span class="n">Y</span><span class="p">,</span> <span class="n">UINT32</span> <span class="n">Z</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span> <span class="n">X</span> <span class="o">&amp;</span> <span class="n">Y</span> <span class="p">)</span> <span class="o">|</span> <span class="p">(</span> <span class="o">~</span><span class="n">X</span> <span class="o">&amp;</span> <span class="n">Z</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">UINT32</span> <span class="nf">G</span><span class="p">(</span> <span class="n">UINT32</span> <span class="n">X</span><span class="p">,</span> <span class="n">UINT32</span> <span class="n">Y</span><span class="p">,</span> <span class="n">UINT32</span> <span class="n">Z</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span> <span class="n">X</span> <span class="o">&amp;</span> <span class="n">Z</span> <span class="p">)</span> <span class="o">|</span> <span class="p">(</span> <span class="n">Y</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">Z</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">UINT32</span> <span class="nf">H</span><span class="p">(</span> <span class="n">UINT32</span> <span class="n">X</span><span class="p">,</span> <span class="n">UINT32</span> <span class="n">Y</span><span class="p">,</span> <span class="n">UINT32</span> <span class="n">Z</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">X</span> <span class="o">^</span> <span class="n">Y</span> <span class="o">^</span> <span class="n">Z</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">UINT32</span> <span class="nf">I</span><span class="p">(</span> <span class="n">UINT32</span> <span class="n">X</span><span class="p">,</span> <span class="n">UINT32</span> <span class="n">Y</span><span class="p">,</span> <span class="n">UINT32</span> <span class="n">Z</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">Y</span> <span class="o">^</span> <span class="p">(</span> <span class="n">X</span> <span class="o">|</span> <span class="o">~</span><span class="n">Z</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// rotates x left s bits.</span>
+<span class="n">UINT32</span> <span class="nf">rotate_left</span><span class="p">(</span> <span class="n">UINT32</span> <span class="n">x</span><span class="p">,</span> <span class="n">UINT32</span> <span class="n">s</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">s</span> <span class="p">)</span> <span class="o">|</span> <span class="p">(</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="p">(</span> <span class="mi">32</span> <span class="o">-</span> <span class="n">s</span> <span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Pre-processin</span>
+<span class="n">UINT32</span> <span class="nf">count_padding_bits</span> <span class="p">(</span> <span class="n">UINT32</span> <span class="n">length</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">UINT32</span> <span class="n">div</span> <span class="o">=</span> <span class="n">length</span> <span class="o">*</span> <span class="n">BITS</span> <span class="o">/</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span>
+  <span class="n">UINT32</span> <span class="n">mod</span> <span class="o">=</span> <span class="n">length</span> <span class="o">*</span> <span class="n">BITS</span> <span class="o">%</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span>
+  <span class="n">UINT32</span> <span class="n">c_bits</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">mod</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span>
+    <span class="n">c_bits</span> <span class="o">=</span> <span class="n">MOD_SIZE</span><span class="p">;</span> <span class="c1">//BLOCK_SIZE;</span>
+  <span class="k">else</span>
+    <span class="n">c_bits</span> <span class="o">=</span> <span class="p">(</span> <span class="n">MOD_SIZE</span> <span class="o">+</span> <span class="n">BLOCK_SIZE</span> <span class="o">-</span> <span class="n">mod</span> <span class="p">)</span> <span class="o">%</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">c_bits</span> <span class="o">/</span> <span class="n">BITS</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">STRING</span> <span class="nf">append_padding_bits</span> <span class="p">(</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">UINT32</span> <span class="n">msg_length</span> <span class="o">=</span> <span class="n">strlen</span> <span class="p">(</span> <span class="n">argv</span> <span class="p">);</span>
+  <span class="n">UINT32</span> <span class="n">bit_length</span> <span class="o">=</span> <span class="n">count_padding_bits</span> <span class="p">(</span> <span class="n">msg_length</span> <span class="p">);</span>
+  <span class="n">UINT64</span> <span class="n">app_length</span> <span class="o">=</span> <span class="n">msg_length</span> <span class="o">*</span> <span class="n">BITS</span><span class="p">;</span>
+  <span class="n">STRING</span> <span class="n">string</span><span class="p">;</span>
+  <span class="n">string</span><span class="p">.</span><span class="n">message</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">malloc</span><span class="p">(</span><span class="n">msg_length</span> <span class="o">+</span> <span class="n">bit_length</span> <span class="o">+</span> <span class="n">APP_SIZE</span> <span class="o">/</span> <span class="n">BITS</span><span class="p">);</span>
+  <span class="c1">// Save message</span>
+  <span class="n">strncpy</span> <span class="p">(</span> <span class="n">string</span><span class="p">.</span><span class="n">message</span><span class="p">,</span> <span class="n">argv</span><span class="p">,</span> <span class="n">msg_length</span> <span class="p">);</span>
+  <span class="c1">// Pad out to mod 64.</span>
+  <span class="n">memset</span> <span class="p">(</span> <span class="n">string</span><span class="p">.</span><span class="n">message</span> <span class="o">+</span> <span class="n">msg_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">bit_length</span> <span class="p">);</span>
+  <span class="n">string</span><span class="p">.</span><span class="n">message</span> <span class="p">[</span> <span class="n">msg_length</span> <span class="p">]</span> <span class="o">=</span> <span class="n">SINGLE_ONE_BIT</span><span class="p">;</span>
+  <span class="c1">// Append length (before padding).</span>
+  <span class="n">memmove</span> <span class="p">(</span> <span class="n">string</span><span class="p">.</span><span class="n">message</span> <span class="o">+</span> <span class="n">msg_length</span> <span class="o">+</span> <span class="n">bit_length</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">app_length</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span> <span class="n">UINT64</span> <span class="p">)</span> <span class="p">);</span>
+  <span class="n">string</span><span class="p">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">msg_length</span> <span class="o">+</span> <span class="n">bit_length</span> <span class="o">+</span> <span class="k">sizeof</span><span class="p">(</span> <span class="n">UINT64</span> <span class="p">);</span>
+  <span class="k">return</span> <span class="n">string</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="n">STRING</span> <span class="n">string</span><span class="p">;</span>
+  <span class="n">UINT32</span> <span class="n">w</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+  <span class="n">UINT32</span> <span class="n">chain</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+  <span class="n">UINT32</span> <span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+  <span class="n">UINT8</span> <span class="n">r</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+  <span class="n">UINT32</span> <span class="p">(</span> <span class="o">*</span><span class="n">auxi</span><span class="p">[</span> <span class="mi">4</span> <span class="p">])(</span> <span class="n">UINT32</span><span class="p">,</span> <span class="n">UINT32</span><span class="p">,</span> <span class="n">UINT32</span> <span class="p">)</span> <span class="o">=</span> <span class="p">{</span> <span class="n">F</span><span class="p">,</span> <span class="n">G</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">I</span> <span class="p">};</span>
+  <span class="kt">int</span> <span class="n">roundIdx</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">argIdx</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">sIdx</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">wIdx</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span> <span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span> <span class="p">(</span> <span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;usage: %s string .../n&quot;</span><span class="p">,</span> <span class="n">argv</span><span class="p">[</span> <span class="mi">0</span> <span class="p">]</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span> <span class="n">argIdx</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">argIdx</span> <span class="o">&lt;</span> <span class="n">argc</span><span class="p">;</span> <span class="n">argIdx</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+    <span class="n">string</span> <span class="o">=</span> <span class="n">append_padding_bits</span> <span class="p">(</span> <span class="n">argv</span><span class="p">[</span> <span class="n">argIdx</span> <span class="p">]</span> <span class="p">);</span>
+    <span class="c1">// MD5 initialization.</span>
+    <span class="n">chain</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">;</span>
+    <span class="n">chain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">;</span>
+    <span class="n">chain</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">C</span><span class="p">;</span>
+    <span class="n">chain</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">string</span><span class="p">.</span><span class="n">length</span><span class="p">;</span> <span class="n">j</span> <span class="o">+=</span> <span class="n">BLOCK_SIZE</span> <span class="o">/</span> <span class="n">BITS</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">memmove</span> <span class="p">(</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="n">w</span><span class="p">,</span> <span class="n">string</span><span class="p">.</span><span class="n">message</span> <span class="o">+</span> <span class="n">j</span><span class="p">,</span> <span class="n">BLOCK_SIZE</span> <span class="o">/</span> <span class="n">BITS</span> <span class="p">);</span>
+      <span class="n">memmove</span> <span class="p">(</span> <span class="n">state</span><span class="p">,</span> <span class="n">chain</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">chain</span><span class="p">)</span> <span class="p">);</span>
+      <span class="k">for</span> <span class="p">(</span> <span class="n">roundIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">roundIdx</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">roundIdx</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">wIdx</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span> <span class="n">roundIdx</span> <span class="p">][</span> <span class="mi">0</span> <span class="p">];</span>
+        <span class="n">sIdx</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// FF, GG, HH, and II transformations for rounds 1, 2, 3, and 4.</span>
+          <span class="c1">// Rotation is separate from addition to prevent recomputation.</span>
+          <span class="n">state</span><span class="p">[</span><span class="n">sIdx</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span> <span class="p">[</span> <span class="p">(</span><span class="n">sIdx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">4</span> <span class="p">]</span> <span class="o">+</span> 
+            <span class="n">rotate_left</span> <span class="p">(</span> <span class="n">state</span><span class="p">[</span><span class="n">sIdx</span><span class="p">]</span> <span class="o">+</span>
+            <span class="p">(</span> <span class="o">*</span><span class="n">auxi</span><span class="p">[</span> <span class="n">roundIdx</span> <span class="p">]</span> <span class="p">)</span>
+            <span class="p">(</span> <span class="n">state</span><span class="p">[(</span><span class="n">sIdx</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">4</span><span class="p">],</span> <span class="n">state</span><span class="p">[(</span><span class="n">sIdx</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="mi">4</span><span class="p">],</span> <span class="n">state</span><span class="p">[(</span><span class="n">sIdx</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span> <span class="o">%</span> <span class="mi">4</span><span class="p">])</span> <span class="o">+</span>
+            <span class="n">w</span><span class="p">[</span> <span class="n">wIdx</span> <span class="p">]</span> <span class="o">+</span>
+            <span class="p">(</span><span class="n">UINT32</span><span class="p">)</span><span class="n">floor</span><span class="p">(</span> <span class="p">(</span><span class="mi">1ULL</span> <span class="o">&lt;&lt;</span> <span class="mi">32</span><span class="p">)</span> <span class="o">*</span> <span class="n">fabs</span><span class="p">(</span><span class="n">sin</span><span class="p">(</span> <span class="n">roundIdx</span> <span class="o">*</span> <span class="mi">16</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">))</span> <span class="p">),</span>
+            <span class="n">S</span><span class="p">[</span> <span class="n">roundIdx</span> <span class="p">][</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">4</span> <span class="p">]);</span>
+          <span class="n">sIdx</span> <span class="o">=</span> <span class="p">(</span> <span class="n">sIdx</span> <span class="o">+</span> <span class="mi">3</span> <span class="p">)</span> <span class="o">%</span> <span class="mi">4</span><span class="p">;</span>
+          <span class="n">wIdx</span> <span class="o">=</span> <span class="p">(</span> <span class="n">wIdx</span> <span class="o">+</span> <span class="n">X</span><span class="p">[</span> <span class="n">roundIdx</span> <span class="p">][</span> <span class="mi">1</span> <span class="p">]</span> <span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xF</span><span class="p">;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+      <span class="n">chain</span><span class="p">[</span> <span class="mi">0</span> <span class="p">]</span> <span class="o">+=</span> <span class="n">state</span><span class="p">[</span> <span class="mi">0</span> <span class="p">];</span>
+      <span class="n">chain</span><span class="p">[</span> <span class="mi">1</span> <span class="p">]</span> <span class="o">+=</span> <span class="n">state</span><span class="p">[</span> <span class="mi">1</span> <span class="p">];</span>
+      <span class="n">chain</span><span class="p">[</span> <span class="mi">2</span> <span class="p">]</span> <span class="o">+=</span> <span class="n">state</span><span class="p">[</span> <span class="mi">2</span> <span class="p">];</span>
+      <span class="n">chain</span><span class="p">[</span> <span class="mi">3</span> <span class="p">]</span> <span class="o">+=</span> <span class="n">state</span><span class="p">[</span> <span class="mi">3</span> <span class="p">];</span>
+    <span class="p">}</span>
+    <span class="n">memmove</span> <span class="p">(</span> <span class="n">r</span> <span class="o">+</span>  <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">chain</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">UINT32</span><span class="p">)</span> <span class="p">);</span>
+    <span class="n">memmove</span> <span class="p">(</span> <span class="n">r</span> <span class="o">+</span>  <span class="mi">4</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">chain</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">UINT32</span><span class="p">)</span> <span class="p">);</span>
+    <span class="n">memmove</span> <span class="p">(</span> <span class="n">r</span> <span class="o">+</span>  <span class="mi">8</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">chain</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">UINT32</span><span class="p">)</span> <span class="p">);</span>
+    <span class="n">memmove</span> <span class="p">(</span> <span class="n">r</span> <span class="o">+</span> <span class="mi">12</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">chain</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">UINT32</span><span class="p">)</span> <span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span> <span class="p">)</span>
+      <span class="n">printf</span> <span class="p">(</span> <span class="s">&quot;%02x&quot;</span><span class="p">,</span> <span class="n">r</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="p">);</span>
+    <span class="n">putchar</span> <span class="p">(</span> <span class="err">&#39;</span><span class="o">/</span><span class="n">n</span><span class="err">&#39;</span> <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h1>后记</h1>
+
+<p>源代码中有一处笔误，第 78 行：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">if</span> <span class="p">(</span> <span class="n">mod</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span>
+  <span class="n">c_bits</span> <span class="o">=</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span>
+</code></pre></div>
+<p>应该是:</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">if</span> <span class="p">(</span> <span class="n">mod</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span>
+  <span class="n">c_bits</span> <span class="o">=</span> <span class="n">MOD_SIZE</span><span class="p">;</span>
+</code></pre></div>
+<p>否则，当传入数据的长度正好是512的整数倍时，就会出错。感想热心网友<em>Ted Feng</em>指正！</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">[Thanks Ruby]MD5加密算法</span>
+    <label class="timestamp">[2013-12-05 15:11:05]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="使用除余法求2-N之间的所有素数" />
+
+    <title>除余法求素数 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(4)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(6)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(5)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(8)</a></li><li><a href="/archive/2009-07.html">07月(7)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>除余法求素数</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/基础算法.html">基础算法</a>
+  
+</div>
+<div id="article">
+  <h1>问题描述</h1>
+
+<p>试编写一个程序，找出 2-N 之间的所有素数。</p>
+
+<h1>问题分析</h1>
+
+<p>这个问题可以有两种解法：一种是用“筛法”，另一种是除余法。本文使用除余法，“筛法”详情请参见《<a href="/2008-01-29/prime-filter-in-c/">筛法求素数</a>》。</p>
+
+<p>题目要求找出 2-N 之间的所有素数，但并非每个数都需要检查。如2、3是素数，把数列按 2×3=6 来分组，即 6n, 6n+1, 6n+2, 6n+3, 6n+4, 6n+5。其中 6n, 6n+2, 6n+4 是 2 的倍数、6n+3 是 3 的倍数，如果直接跳过 2 与 3 的倍数，则任意连续的 6 个数中仅 2 个数（6n+1 和 6n+5）需要测试，工作量变成原来的 2/6 = 1/3。</p>
+
+<p>再来看每个数的检查过程，根据素数的定义：素数只能被 1 与本身整除。即每个数都要检查 2-n-1 是否能被 n 整除。这其中也有许多冗余的计算：假设 n 不是素数，即存在 n=a×b，且 a、b 不为 1 和 n；则 a≥2、b≤n/2。意味着，检查过 2 之后，大于 n/2 的数都可以不用检查，因为它们不可能整除 n。因此，只需要检查 a≤b，即 2-sqrt(n)。</p>
+
+<p>经过上面的优化，搜索的范围已经大大缩小，但中间还是有不少冗余。例如一个数不能被 2 整除，那它同样不能被 2 的倍数整除。因此在检查 2-sqrt(n) 的过程中 4、6、8……等2的倍数是可以忽略的，最理想的方法就是用已经找到的素数去除n。</p>
+
+<h1>编码技巧</h1>
+
+<p>根据上述优化策略编码代码，其中涉及一些编程小技巧。</p>
+
+<dl>
+  <dt>如何做到只检查 6n+1 和 6n+5？</dt>
+  <dd>不难发现，它们的距离是4、2、4、2……，可以先定义一个变量 factor=4，然后 factor=6-factor。</dd>
+  <dt>sqrt(n)有精度问题</dt>
+  <dd>如sqrt(121)有可能得到 10.999999。使用 i*i &lt;= n 替代 i &lt;= sqrt(n)。</dd>
+</dl>
+
+<h1>程序清单</h1>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> <span class="n">prime</span><span class="p">[</span><span class="mi">30000</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span> <span class="p">};</span> <span class="cm">/* 保存已找到的素数 */</span>
+<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>                  <span class="cm">/* 已找到素数的个数 */</span>
+<span class="kt">int</span> <span class="n">MAX</span> <span class="o">=</span> <span class="mi">200000</span><span class="p">;</span>               <span class="cm">/* 要查找的素数范围 */</span>
+
+<span class="kt">void</span> <span class="nf">generate_prime</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">factor</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="n">MAX</span><span class="p">;</span> <span class="n">n</span> <span class="o">+=</span> <span class="n">factor</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">factor</span> <span class="o">=</span> <span class="mi">6</span> <span class="o">-</span> <span class="n">factor</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">n</span> <span class="o">%</span> <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span> <span class="p">{</span>
+        <span class="k">break</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span> <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">prime</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+      <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="n">generate_prime</span><span class="p">();</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">求素数</span>
+    <label class="timestamp">[2013-12-05 19:58:59]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

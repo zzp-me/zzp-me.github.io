@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="使用通项公式快速地求第N个斐波那契数" />
+
+    <title>高效地计算第n个斐波那契数 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(4)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(11)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(6)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(5)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(8)</a></li><li><a href="/archive/2009-07.html">07月(7)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>高效地计算第n个斐波那契数</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/基础算法.html">基础算法</a>
+  
+</div>
+<div id="article">
+  <p>大家都知道费波那契数列的定义是：</p>
+
+<ol>
+  <li><i>F</i> = 0</li>
+  <li><i>F</i><sub>1</sub> = 1</li>
+  <li><i>F</i><sub>n</sub> = <i>F</i><sub>n-1</sub> + <i>F</i><sub>n-2</sub></li>
+</ol>
+
+<p>如果直接按照这个定义来计算效率是很低的。所有，为获得第 n 个数，一般都会采用迭代的方式计算整个 0-n 的斐波那契数列，在 n 比较小的时候（小于十万）效率还是很不错的（在我的机器上 Java 程序计算 F<sub>100000</sub>耗时 1s）。但如果仅仅是为了获得第 n 个数，这又显得太低效了。这种时候就适合使用通项公式来计算：</p>
+
+<p><img src="/resource/2011-11-20/nth-fibonacci/1.png" /></p>
+
+<p>公式的推导过程可以参考：<code>http://en.wikipedia.org/wiki/Fibonacci_number</code>。</p>
+
+<h1>算法分析</h1>
+
+<p>为了方便讨论，设：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">a = [1 + sqrt(5)] / 2
+b = [1 + sqrt(5)] / 2
+fib(n) = (a^n - b^n) / sqrt(5)
+       = (a^n - b^n) / (a - b)
+</code></pre></div>
+<p>如果直接按照这个公式来写程序，需要分别a和b两个数的n次幂。</p>
+
+<h2>减少求幂次数</h2>
+
+<p>但容易发现：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">a = -1 / b
+</code></pre></div>
+<p>即</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">fib(n) = (a^n - (-1/a)^n) / (a - (-1/a))
+</code></pre></div>
+<p>因此，只需求a的n次幂，再通过一次求倒数运算就得到b，计算量减少一半。</p>
+
+<h2>快速求幂</h2>
+
+<p>朴素的求幂算法效率为O(n)，即迭代n次。根据规则：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">x^n = x^(n/2) * x^(n/2)     ; 当n是偶数
+x^n = x^(n/2) * x^(n/2) * x ; 当n是奇数
+</code></pre></div>
+<p>可以把效率提升到O(log<sub>2</sub><sup>n</sup>)，在《[JavaScript字符串乘法]/2009-08-18/js-string-multiply/》一文中也使用了类似的技巧。</p>
+
+<h2>虚数的乘法</h2>
+
+<p>我们发现<code>a</code>是无理数，而计算结果fib(n)是一个正整数，如果直接使用<code>[1 + sqrt(5)] / 2</code>做乘法，就会有相应的精度丢失。为了避免精度丢失，把sqrt(5)想象成一个虚数<code>i</code>，即<code>1/2 + 1/2i</code>，其中实部和虚部都是<code>1/2</code>。虚数的乘法规则如下：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">  (x + y * i) * (m + n * i)
+= (x * m + y * n * i * i) + (x * n + y * m) * i
+= (x * m - y * n) + (x * n + y * m) * i
+</code></pre></div>
+<p>对应到<code>a</code>，即<code>i = sqrt(5)</code>就是：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">(x * m + 5 * y * n) + (x * n + y * m) * sqrt(5)
+</code></pre></div>
+<h1>Clojure版</h1>
+
+<p>本来是想着用 Java 写一个，一想到又要定义两三个类代码会显得冗长，倒不如用 Clojure 来实现。好在 Clojure 里也没太多稀奇古怪的符号，即使你没接触过 Clojure，应该还是能看懂。</p>
+<div class="highlight"><pre><code class="clojure language-clojure" data-lang="clojure"><span class="p">(</span><span class="kd">ns </span><span class="nv">redraiment.math.fibonacci</span>
+  <span class="s">&quot;Some utils for generate fibonacci number.&quot;</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k">def </span><span class="o">^</span><span class="p">{</span><span class="ss">:private</span> <span class="nv">true</span> <span class="ss">:dynamic</span> <span class="nv">true</span><span class="p">}</span> <span class="nv">*base*</span>
+  <span class="s">&quot;Base number for composite number.</span>
+<span class="s">As you know, it&#39;s complex when *base* = -1.&quot;</span>
+  <span class="mi">5</span><span class="p">)</span>
+
+<span class="p">(</span><span class="kd">defn- </span><span class="nv">multiply</span>
+  <span class="s">&quot;Returns the product of composite nums. Supports arbitrary precision.</span>
+<span class="s">(multiply) returns [1 0].&quot;</span>
+  <span class="p">[</span><span class="o">&amp;</span> <span class="nv">args</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">reduce</span>
+   <span class="o">#</span><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">a1</span> <span class="p">(</span><span class="nb">first </span><span class="nv">%1</span><span class="p">)</span>
+          <span class="nv">b1</span> <span class="p">(</span><span class="nb">second </span><span class="nv">%1</span><span class="p">)</span>
+          <span class="nv">a2</span> <span class="p">(</span><span class="nb">first </span><span class="nv">%2</span><span class="p">)</span>
+          <span class="nv">b2</span> <span class="p">(</span><span class="nb">second </span><span class="nv">%2</span><span class="p">)]</span>
+      <span class="p">[(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">b1</span> <span class="nv">b2</span> <span class="nv">*base*</span><span class="p">))</span>
+       <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">a1</span> <span class="nv">b2</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">a2</span> <span class="nv">b1</span><span class="p">))])</span>
+   <span class="p">(</span><span class="nb">cons </span><span class="p">[</span><span class="mi">1</span> <span class="mi">0</span><span class="p">]</span> <span class="nv">args</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="kd">defn- </span><span class="nv">pow</span>
+  <span class="s">&quot;Returns a composite num whose value is c^n.&quot;</span>
+  <span class="p">[</span><span class="nv">c</span> <span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nf">cond</span>
+   <span class="p">(</span><span class="nb">== </span><span class="nv">n</span> <span class="mi">0</span><span class="p">)</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+   <span class="p">(</span><span class="nb">== </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">c</span>
+   <span class="p">(</span><span class="nb">&gt; </span><span class="nv">n</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">sub</span> <span class="p">(</span><span class="nf">pow</span> <span class="nv">c</span> <span class="p">(</span><span class="nb">quot </span><span class="nv">n</span> <span class="mi">2</span><span class="p">))]</span>
+             <span class="p">(</span><span class="nf">multiply</span> <span class="nv">sub</span> <span class="nv">sub</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nf">odd?</span> <span class="nv">n</span><span class="p">)</span> <span class="nv">c</span> <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span><span class="p">])))</span>
+   <span class="ss">:else</span> <span class="p">(</span><span class="nf">throw</span> <span class="p">(</span><span class="nf">IllegalArgumentException.</span>
+                 <span class="s">&quot;n MUST be a natural number&quot;</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">fibonacci-nth</span>
+  <span class="s">&quot;Returns the n-th fibonacci in high performance.</span>
+<span class="s">The algorithm is: fib(n) = (a^n - b^n) / (a - b)</span>
+<span class="s">where a = (1 + sqrt(5)) / 2 and b = -1 / a.</span>
+<span class="s">See http://en.wikipedia.org/wiki/Fibonacci_number.&quot;</span>
+  <span class="p">[</span><span class="nv">n</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">second </span><span class="p">(</span><span class="nf">pow</span> <span class="p">[</span><span class="mi">1</span><span class="nv">/2</span> <span class="mi">1</span><span class="nv">/2</span><span class="p">]</span> <span class="nv">n</span><span class="p">))</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+<p>计算第一百万个斐波那契数，耗时 4秒。大家可以自己试试用迭代法计算，在我的电脑上耗时 1分钟：</p>
+<div class="highlight"><pre><code class="clojure language-clojure" data-lang="clojure"><span class="nv">redraiment.math.fibonacci=&gt;</span><span class="p">(</span><span class="nb">time </span><span class="p">(</span><span class="k">do </span><span class="p">(</span><span class="nf">fibonacci-nth</span> <span class="mi">1000000</span><span class="p">)</span> <span class="mi">0</span><span class="p">))</span>
+<span class="s">&quot;Elapsed time: 4272.027189 msecs&quot;</span>
+<span class="mi">0</span>
+</code></pre></div>
+<h1>Scheme版本</h1>
+
+<p>有网友把上面的代码翻译成Scheme，据他说代码执行效率很低。我试着在我本地用 Guile 或 Kawa 来执行他的代码，都提示 Out Of Memory。但我一直相信 Scheme 的性能会更好，因为它的解释器是 C语言实现的，Clojure 则运行在 JVM 下的。所以我就自己翻译了一下之前的代码，也是计算第1000000个斐波那契数，在我公司这台旧电脑上的执行效率远好于Clojure版：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span><span class="nb">time </span>guile fib.scm
+1953282128707757731632.......42546875
+real    0m0.750s
+user    0m0.265s
+sys     0m0.124s
+</code></pre></div>
+<p>代码如下</p>
+<div class="highlight"><pre><code class="scheme language-scheme" data-lang="scheme"><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">c*</span> <span class="nv">a</span> <span class="nv">b</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">a1</span> <span class="p">(</span><span class="nb">car </span><span class="nv">a</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">b1</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">a</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">a2</span> <span class="p">(</span><span class="nb">car </span><span class="nv">b</span><span class="p">))</span>
+        <span class="p">(</span><span class="nf">b2</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">b</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">a1</span> <span class="nv">a2</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">b1</span> <span class="nv">b2</span> <span class="mi">5</span><span class="p">))</span>
+          <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">* </span><span class="nv">a1</span> <span class="nv">b2</span><span class="p">)</span> <span class="p">(</span><span class="nb">* </span><span class="nv">a2</span> <span class="nv">b1</span><span class="p">)))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">c**</span> <span class="nv">r</span> <span class="nv">i</span> <span class="nv">c</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">zero? </span><span class="nv">c</span><span class="p">)</span>
+      <span class="nv">r</span>
+      <span class="p">(</span><span class="nf">c**</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">odd? </span><span class="nv">c</span><span class="p">)</span> <span class="p">(</span><span class="nf">c*</span> <span class="nv">r</span> <span class="nv">i</span><span class="p">)</span> <span class="nv">r</span><span class="p">)</span>
+           <span class="p">(</span><span class="nf">c*</span> <span class="nv">i</span> <span class="nv">i</span><span class="p">)</span>
+           <span class="p">(</span><span class="nb">quotient </span><span class="nv">c</span> <span class="mi">2</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">fib</span> <span class="nv">n</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">* </span><span class="mi">2</span> <span class="p">(</span><span class="nb">cadr </span><span class="p">(</span><span class="nf">c**</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span><span class="nv">/2</span> <span class="mi">1</span><span class="nv">/2</span><span class="p">)</span> <span class="nv">n</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="nb">display </span><span class="p">(</span><span class="nf">fib</span> <span class="mi">1000000</span><span class="p">))</span>
+</code></pre></div>
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">添加算法分析</span>
+    <label class="timestamp">[2013-12-05 15:40:13]</label>
+  </div>
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">于2012-05-31 16:00添加Scheme版实现</span>
+    <label class="timestamp">[2013-12-05 15:20:01]</label>
+  </div>
+  
+  <div class="record">
+    <a href="mailto:redraiment@gmail.com">redraiment</a>：
+    <span class="message">Clojure版高效求第n个斐波那契数</span>
+    <label class="timestamp">[2013-12-05 15:12:34]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>
