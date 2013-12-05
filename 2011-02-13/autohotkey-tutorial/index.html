@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="官方AutoHotKey入门教程中文翻译" />
+
+    <title>AutoHotKey入门教程 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(4)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(13)</a></li><li><a href="/archive/幸福生活.html">幸福生活(7)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(6)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="#">SmallC</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/autohotkey.html">AutoHotKey(1)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="#">中文计算器</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">金山词霸生词本转换器</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-07.html">07月(1)</a></li><li><a href="/archive/2011-06.html">06月(7)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li><li><a href="/archive/2011-02.html">02月(2)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-02.html">02月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(6)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(9)</a></li><li><a href="/archive/2009-07.html">07月(8)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-05.html">05月(1)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li><li><a href="/archive/2009-01.html">01月(1)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(1)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-03.html">03月(1)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>AutoHotKey入门教程</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/工具技师.html">工具技师</a>
+  
+  <a href="/archive/autohotkey.html">AutoHotKey</a>
+  
+</div>
+<div id="article">
+  <p>AutoHotKey 真是一个好玩的工具！短短几行代码就是先了“窗口置顶”、“窗口透明”等功能，之前我还特意为此装了好几个小工具，现在都可以卸掉了。闲来无事，就把 Quick Start 翻译了一下，我没有逐字逐句地翻译，有时候我嫌原文罗嗦就用自己的话概括地描述了一下。</p>
+
+<p>原文地址：<a href="http://www.autohotkey.com/docs/Tutorial.htm">http://www.autohotkey.com/docs/Tutorial.htm</a></p>
+
+<h1>教程目录</h1>
+
+<ul>
+<li><a href="#Create">创建脚本</a></li>
+<li><a href="#Launch">启动程序</a></li>
+<li><a href="#Send">模拟鼠标键盘</a></li>
+<li><a href="#Activate">操纵窗口</a></li>
+<li><a href="#Dialogs">输入</a></li>
+<li><a href="#Variables">变量与剪切板</a></li>
+<li><a href="#Loop">循环</a></li>
+<li><a href="#Files">操纵文件</a></li>
+<li><a href="#Overview">其他特性</a></li>
+</ul>
+
+<h1>创建脚本</h1>
+
+<p>每个脚本都是一个纯文本文件，由一些能被 AutoHotKey.exe 执行的命令组成。一个脚本可能还包含<a href="http://www.autohotkey.com/docs/Hotkeys.htm">热键</a>和<a href="http://www.autohotkey.com/docs/Hotstrings.htm">热字符串</a>。如果没有热键和热字符串，脚本在启动的时候就会从头依次执行到尾。</p>
+
+<p>创建一个新的脚本：</p>
+
+<ol>
+<li><a href="http://www.autohotkey.com/download/">下载</a>并安装 AutoHotkey。</li>
+<li>右击鼠标，选择<em>新建 -&gt; 文本文档</em>。</li>
+<li>输入文件名并确保以<em>.ahk</em>结尾。例如：Test.ahk。</li>
+<li>右击文件，选择<em>编辑脚本</em>。</li>
+<li>输入以下内容：#space::Run <a href="http://www.google.com">www.google.com</a></li>
+</ol>
+
+<p>上一行的第一个字符 &quot;#&quot; 代表键盘上的 Windows 键；所以 #space 表示在按住 Windows 键后再按空格键。&quot;::&quot; 后面的命令会在热键激活后执行，在本例中则会打开谷歌主页。继续按下面步骤操作，来执行这个脚本：</p>
+
+<ol>
+<li>保存并关闭该文件。</li>
+<li>双击该文件来启动它。在系统托盘里会出现一个新图标。</li>
+<li>按下 Windows 和空格键，网页会在默认的浏览器里打开。</li>
+<li>右击系统托盘里的绿色图标可以退出或编辑当前脚本。</li>
+</ol>
+
+<p>注意：</p>
+
+<ul>
+<li>可以同时启动多个脚本，并且在系统托盘里都会有一个相应的图标。</li>
+<li>每个脚本都能定义多个<a href="http://www.autohotkey.com/docs/Hotkeys.htm">热键</a>和<a href="http://www.autohotkey.com/docs/Hotstrings.htm">热字符串</a>。</li>
+<li>想让某个脚本开机即启动，可以将它的<a href="http://www.autohotkey.com/docs/FAQ.htm#Startup">快捷方式放到开始菜单的启动目录里</a>。</li>
+</ul>
+
+<h1>启动程序</h1>
+
+<p>命令<a href="http://www.autohotkey.com/docs/commands/Run.htm">Run</a>可以运行程序、打开文档、网页链接或快捷键。请参看以下示例：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">Run Notepad
+Run C:/My Documents/Address List.doc
+Run C:/My Documents/My Shortcut.lnk
+Run www.yahoo.com
+Run mailto:someone@somedomain.com
+</code></pre></div>
+<p>可以给这些命令设置任何<a href="http://www.autohotkey.com/docs/Hotkeys.htm">热键</a>。下面第一个例子的快捷键是 Win+N ，第二个是 Control+Alt+C：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#n::Run Notepad</span>
+^!c::Run calc.exe
+</code></pre></div>
+<p>上例是单行热键，因为每个热键之包含一条命令。如果命令多余一条，则热键定义必须单独放一行，其后每条命令放一行，且最后一行必须是<a href="http://www.autohotkey.com/docs/commands/Return.htm">return</a>。例如：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#n::</span>
+Run http://www.google.com
+Run Notepad.exe
+<span class="k">return</span>
+</code></pre></div>
+<p>如果待执行的程序或文档没有集成到系统中，则需要指定完整路径：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">Run %A_ProgramFiles%/Winamp/Winamp.exe
+</code></pre></div>
+<p>上例中 <code>%A_ProgramFiles%</code> 是<a href="http://www.autohotkey.com/docs/Variables.htm#BuiltIn">内建变量</a>。比起直接使用诸如 <code>C:/Program Files</code> 这样的绝对路径，推荐使用内建变量，它使得脚本的可移植性更好，即能在其他机器上正常运行。注意：命令和变量都是大小写无关的。例如 &quot;Run&quot; 与 &quot;run&quot;、&quot;A<em>ProgramFiles&quot;与&quot;a</em>programfiles&quot;都是一样的。</p>
+
+<p>用<a href="http://www.autohotkey.com/docs/commands/Run.htm">RunWait</a>代替 Run，脚本就会一直等在，直到刚才运行程序退出。在下例中<a href="http://www.autohotkey.com/docs/commands/MsgBox.htm">MsgBox</a>命令直到记事本被关闭后才执行：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">RunWait Notepad
+MsgBox The user has finished <span class="o">(</span>Notepad has been closed<span class="o">)</span>.
+</code></pre></div>
+<p>更多关于启动程序的内容 -- 像附带参数、制定工作路径以及获取程序返回值 -- 请点击<a href="http://www.autohotkey.com/docs/TutorialLaunch.htm">这里</a>。</p>
+
+<h1>模拟鼠标键盘</h1>
+
+<p>用<a href="http://www.autohotkey.com/docs/commands/Send.htm">Send</a>命令可以向当前活动窗口发送键盘击键消息。下例中定义了热键 Control+Alt+S 来输入签名：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">^!s::
+Send Sincerely,<span class="o">{</span>Enter<span class="o">}</span>John Smith
+<span class="k">return</span>
+</code></pre></div>
+<p>上例中{Enter}是模拟回车键，其他字符都是字面意思。下一个例子展示了其他几个特殊字符：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">Send ^c!<span class="o">{</span>tab<span class="o">}</span>pasted:^v
+</code></pre></div>
+<p>代码会依次发送 Control+C、Alt+Tab、字符串 &quot;pasted:&quot;和 Control+V。完整的特殊字符列表请参阅<a href="http://www.autohotkey.com/docs/commands/Send.htm">Send</a>命令。</p>
+
+<p>最后，按键序列还可以用于定义字符串的缩写，即<a href="http://www.autohotkey.com/docs/Hotstrings.htm">热字符串</a>。例如，下例将 btw 定义为 by the way 的缩写，无论何时你输入 btw 后再输入空格或逗号，都会被替换成 &quot;by the way&quot;：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">::btw::by the way
+</code></pre></div>
+<p>鼠标点击：在发送鼠标点击事件前要先确定鼠标的位置（X, Y 坐标值）。AutoHotKey 自带的 Window Spy 可以很方便地确定鼠标的位置：</p>
+
+<ol>
+<li>启动 Window Spy 。</li>
+<li>激活你感兴趣的窗口 (Window Spy 默认置于窗口顶端)。</li>
+<li>鼠标指针移到目标位置，Window Spy 就能显示出鼠标的坐标位置（在 Windows XP 或之前的版本中，按下 Shift-Alt-Tab 来激活 Window Spy，以便复制和粘贴 &quot;冻结&quot; 的坐标位置）。</li>
+<li>将上面的坐标位置应用于<a href="http://www.autohotkey.com/docs/commands/Click.htm">Click</a>命令。下例中鼠标在 112, 223 出单击一下左键：<em>Click 112, 223</em></li>
+</ol>
+
+<p>移动鼠标（未按键）用<a href="http://www.autohotkey.com/docs/commands/MouseMove.htm">MouseMove</a>；拖动鼠标（有按键）<a href="http://www.autohotkey.com/docs/commands/MouseClickDrag.htm">MouseClickDrag</a>。</p>
+
+<h1>操纵窗口</h1>
+
+<p>用<a href="http://www.autohotkey.com/docs/commands/WinActivate.htm">WinActivate</a>来激活一个窗口；用<a href="http://www.autohotkey.com/docs/commands/IfWinExist.htm">IfWinExist</a>或<a href="http://www.autohotkey.com/docs/commands/WinWait.htm">WinWait</a>判断某个窗口是否存在。以下示例演示这些命令的用法：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">IfWinExist Untitled - Notepad
+<span class="o">{</span>
+    WinActivate
+<span class="o">}</span>
+<span class="k">else</span>
+<span class="o">{</span>
+    Run Notepad
+    WinWait Untitled - Notepad
+    WinActivate
+<span class="o">}</span>
+</code></pre></div>
+<p>例子中首先搜索标题以 &quot;Untitled - Notepad&quot;（忽略大小写）开头的窗口。如果找到了就激活它；否则就启动记事本程序 ，等到窗口以出现就激活它。上例中还使用了<a href="http://www.autohotkey.com/docs/LastFoundWindow.htm">上一次找到的的窗口</a>避免在每个 WinActivate 后面再次指定标题。</p>
+
+<p>一些常用的窗口管理命令：</p>
+
+<ul>
+<li><a href="http://www.autohotkey.com/docs/commands/IfWinActive.htm">IfWinActive</a>：检查指定的窗口是否处于激活状态。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/WinWaitActive.htm">WinWaitActive</a>：等待指定的窗口处于激活状态（通常在发送窗口激活指令——比如按下 Control-F 来弹出查找窗口——后使用）。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/WinClose.htm">WinClose</a>：关闭指定的窗口。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/WinMove.htm">WinMove</a>：移动或/且调整窗口大写。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/WinMinimize.htm">WinMinimize</a>，<a href="http://www.autohotkey.com/docs/commands/WinMaximize.htm">WinMaximize</a>，<a href="http://www.autohotkey.com/docs/commands/WinRestore.htm">WinRestore</a>：分别是最小化、最大化和恢复指定的窗口。</li>
+</ul>
+
+<h1>输入</h1>
+
+<p>下例显示一个对话框，它有两个按钮（YES 和 NO）：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">MsgBox, 4, , Would you like to <span class="k">continue</span>?
+IfMsgBox, No
+    <span class="k">return</span>
+<span class="p">;</span> Otherwise, the user picked yes.
+MsgBox You pressed YES.
+</code></pre></div>
+<p>使用<a href="http://www.autohotkey.com/docs/commands/InputBox.htm">InputBox</a>提示用户输入一个字符串；<a href="http://www.autohotkey.com/docs/commands/FileSelectFile.htm">FileSelectFile</a>或<a href="http://www.autohotkey.com/docs/commands/FileSelectFolder.htm">FileSelectFolder</a>供用户选择文件和文件夹；更高级的任务使用<a href="http://www.autohotkey.com/docs/commands/Gui.htm">Gui</a>命令来自定义界面。</p>
+
+<p>提示：从其他例子中你可能已经注意到第一个逗号往往被忽略（除非第一个参数为空或执行 := 、 = 或当前命令是<a href="http://www.autohotkey.com/docs/Scripts.htm#continuation">后续语句</a>唯一的顶部命令)。例如：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">MsgBox This is ok.
+MsgBox, This is ok too <span class="o">(</span>it has an explicit comma<span class="o">)</span>.
+</code></pre></div>
+<h1>变量与剪切板</h1>
+
+<p><em>变量</em>是脚本用于存储文本或数值的内存区域。在数学运算和比较运算里，只包含数字（可以附带可选的小数点）的变量会自动解析成数值。</p>
+
+<p>除了<a href="http://www.autohotkey.com/docs/Functions.htm#Locals">函数</a>里的局部变量，所有其他变量都是全局变量。即，它们的值可在脚本的任意地方读取和修改。此外，变量在使用前无需声明，直接使用即可（初始值为空）。</p>
+
+<p>下例演示如何给变量赋字符串：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">MyVar1</span> <span class="o">=</span> 123
+<span class="nv">MyVar2</span> <span class="o">=</span> my string
+</code></pre></div>
+<p>下例演示将变量的值与字符串或数值进行比较：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">if </span><span class="nv">MyVar2</span> <span class="o">=</span> my string
+<span class="o">{</span>
+    MsgBox MyVar2 contains the string <span class="s2">&quot;my string&quot;</span>.
+<span class="o">}</span>
+<span class="k">if </span>MyVar1 &gt;<span class="o">=</span> 100
+<span class="o">{</span>
+    MsgBox MyVar1 contains %MyVar1%, which is a number greater than or equal to 100.
+<span class="o">}</span>
+</code></pre></div>
+<p>你可能注意到第二个 MsgBox 语句中<em>MyVar1</em>被两个百分号包围着。此处会显示<em>MyVar1</em>变量的值。在给变量赋值时也可以使用相同的技巧。例如：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">MyVarConcatenated</span> <span class="o">=</span> %MyVar1% %MyVar2%
+</code></pre></div>
+<p>上例中变量 MyVarConcatenated 的值是 &quot;123 my string&quot;（不含引号）。</p>
+
+<p>考虑下面这个例子，它演示两个变量相互比较：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">if</span> <span class="o">(</span>ItemCount &gt; ItemLimit<span class="o">)</span>
+<span class="o">{</span>
+    MsgBox The value in ItemCount, which is %ItemCount%, is greater than %ItemLimit%.
+<span class="o">}</span>
+</code></pre></div>
+<p>注意到上例的第一行包含一对小括号。小括号表示这个 if 语句包含一个<a href="http://www.autohotkey.com/docs/Variables.htm#Expressions">表达式</a>；缺少它们则看作 &quot;非表达式 if 语句&quot;，于是需要用百分号将 ItemLimit 括起（这样的 if 语句限定只能使用一个比较运算符，即它们不能包含数学运算符或连词 &quot;AND&quot; 和 &quot;OR&quot; 等）。</p>
+
+<p>数学：如下例所示，使用冒号等号（:=）运算符可以将<a href="http://www.autohotkey.com/docs/Variables.htm#Expressions">表达式</a>的计算结果赋值给一个变量：</p>
+
+<p>NetPrice := Price * (1 - Discount/100)</p>
+
+<p>完整的数学运算符请参阅<a href="http://www.autohotkey.com/docs/Variables.htm#Expressions">表达式</a>一节。</p>
+
+<p>剪切板：<em>Clipboard</em>是一个特殊变量，它代表 Windows 的系统剪切板。虽然如此，你还是可以像普通变量一样使用它。下例会显示当前剪切板里的内容：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">MsgBox %clipboard%
+</code></pre></div>
+<p>考虑下面的例子，它用一段新的文本替代剪切板里当前的内容：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">clipboard</span> <span class="o">=</span> A line of text.<span class="sb">`</span>r<span class="sb">`</span>nA second line of text.<span class="sb">`</span>r<span class="sb">`</span>n
+</code></pre></div>
+<p>上面的 `r 和 `n （第一个字符是倒引号，键盘 1 左边的那个键）分别代表回车符和换行符。这两个字符会将文本换到新的一行，效果等价于键入键盘上的 Enter 键。</p>
+
+<p>下例演示将文本追加到剪切板（或其他任何变量）：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">clipboard</span> <span class="o">=</span> %clipboard% And here is the text to append.
+</code></pre></div>
+<p>更多内容请参阅<a href="http://www.autohotkey.com/docs/misc/Clipboard.htm">剪切板</a>和<a href="http://www.autohotkey.com/docs/Variables.htm">变量</a>两节。</p>
+
+<h1>循环</h1>
+
+<p><a href="http://www.autohotkey.com/docs/commands/Loop.htm">loop</a>可以连续地执行一段代码。下例中弹出<a href="http://www.autohotkey.com/docs/commands/MsgBox.htm">MsgBox</a>窗口三次：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">Loop 3
+<span class="o">{</span>
+    MsgBox This window will be displayed three times.
+<span class="o">}</span>
+</code></pre></div>
+<p>你也可以在 Loop 后面指定一个变量，在迭代次数不确定时这个方法很奏效：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">Loop %RunCount%
+<span class="o">{</span>
+    Run C:/Check Server Status.exe
+    Sleep 60000  <span class="p">;</span> Wait 60 seconds.
+<span class="o">}</span>
+</code></pre></div>
+<p>上例中，除非 RunCount 小于或等于 0，否则循环体至少能执行一次。</p>
+
+<p>根据不同的条件，可以中途跳出循环。执行下例程序后，当用户按住 F1 键，程序就会不断地发送点击鼠标左键事件：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$F1</span>::  <span class="p">;</span> Make the F1 key into a hotkey
+       <span class="p">;</span> <span class="o">(</span>the <span class="nv">$ </span>symbol facilitates the <span class="s2">&quot;P&quot;</span> mode of GetKeyState below<span class="o">)</span>.
+Loop  <span class="p">;</span> Since no number is specified with it, this is an infinite loop
+      <span class="p">;</span> unless <span class="s2">&quot;break&quot;</span> or <span class="s2">&quot;return&quot;</span> is encountered inside.
+<span class="o">{</span>
+    <span class="p">;</span> If this statement is <span class="nb">true</span>, the user has physically released the F1 key.
+    <span class="k">if </span>not GetKeyState<span class="o">(</span><span class="s2">&quot;F1&quot;</span>, <span class="s2">&quot;P&quot;</span><span class="o">)</span>
+        <span class="nb">break</span>  <span class="p">;</span> Break out of the loop.
+    <span class="p">;</span> Otherwise <span class="o">(</span>since the above didn<span class="s1">&#39;t &quot;break&quot;), keep clicking the mouse.</span>
+<span class="s1">    Click  ; Click the left mouse button at the cursor&#39;</span>s current position.
+<span class="o">}</span>
+<span class="k">return</span>
+</code></pre></div>
+<p>上例中，当用户放开 F1 键，程序就能知道并通过<a href="http://www.autohotkey.com/docs/commands/Break.htm">break</a>命令终止循环。<em>Break</em>使得程序跳到循环体外。</p>
+
+<p>一个替代方案是使用<a href="http://www.autohotkey.com/docs/commands/While.htm">&quot;while&quot; 循环</a>：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$F1</span>::
+<span class="k">while </span>GetKeyState<span class="o">(</span><span class="s2">&quot;F1&quot;</span>, <span class="s2">&quot;P&quot;</span><span class="o">)</span>  <span class="p">;</span> While the F1 key is being held down physically.
+<span class="o">{</span>
+    Click
+<span class="o">}</span>
+<span class="k">return</span>
+</code></pre></div>
+<p>上例演示了通用的循环结构。下面的循环结构适用于一些特殊场合：</p>
+
+<p><a href="http://www.autohotkey.com/docs/commands/LoopReadFile.htm">File-reading/writing loop</a>：逐行获取文件内容。它可用于将基于行结构的文件转换成其他格式。还可以用于搜索特定内容。</p>
+
+<p><a href="http://www.autohotkey.com/docs/commands/LoopFile.htm">Files and folders loop</a>：逐个遍历文件和文件夹。它允许你逐个处理文件或文件夹。</p>
+
+<p><a href="http://www.autohotkey.com/docs/commands/LoopParse.htm">Parsing loop</a>：从字符串中逐个获取子串。比如将 &quot;Red,Green,Blue&quot; 分成三个字段。</p>
+
+<p><a href="http://www.autohotkey.com/docs/commands/LoopReg.htm">Registry loop</a>：逐个遍历注册表中的键。</p>
+
+<h1>操纵文件</h1>
+
+<p>下例中使用<a href="http://www.autohotkey.com/docs/commands/FileAppend.htm">FileAppend</a>将文本追加到文件末尾（或创建一个新文件）。注意：它使用 `n （换行符）来换行：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">FileAppend, A line of text to append.<span class="sb">`</span>n, C:/My Documents/My Text File.txt
+</code></pre></div>
+<p>使用<a href="http://www.autohotkey.com/docs/commands/FileDelete.htm">FileDelete</a>删除一个已存在的文件。例如：</p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash">FileDelete, C:/My Documents/My Text File.txt
+</code></pre></div>
+<p>其他一些常用的、和文件和文件夹相关的命令：</p>
+
+<ul>
+<li><a href="http://www.autohotkey.com/docs/commands/FileRead.htm">FileRead</a>：将整个文件的内容读取到变量中。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/LoopReadFile.htm">File-reading Loop</a>：逐行读取文件。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/IfExist.htm">IfExist</a>：判断一个文件或文件夹是否存在。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/FileSelectFile.htm">FileSelectFile</a>和<a href="http://www.autohotkey.com/docs/commands/FileSelectFolder.htm">FileSelectFolder</a>：弹出一个对话框让用户选择文件或文件夹。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/FileDelete.htm">FileDelete</a>/<a href="http://www.autohotkey.com/docs/commands/FileRecycle.htm">FileRecycle</a>：删除/回收文件。使用<a href="http://www.autohotkey.com/docs/commands/FileRemoveDir.htm">FileRemoveDir</a>来删除整个文件夹。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/FileCopy.htm">FileCopy</a>/<a href="http://www.autohotkey.com/docs/commands/FileMove.htm">FileMove</a>：复制/移动文件。使用<a href="http://www.autohotkey.com/docs/commands/FileCopyDir.htm">FileCopyDir</a>/<a href="http://www.autohotkey.com/docs/commands/FileMoveDir.htm">FileMoveDir</a>来拷贝/移动整个文件夹。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/LoopFile.htm">Files-and-folders Loop</a>：逐个遍历文件和文件夹。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/FileSetAttrib.htm">FileSetAttrib</a>和<a href="http://www.autohotkey.com/docs/commands/FileSetTime.htm">FileSetTime</a>：修改文件的属性和时间戳。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/IniRead.htm">IniRead</a>、<a href="http://www.autohotkey.com/docs/commands/IniWrite.htm">IniWrite</a>和<a href="http://www.autohotkey.com/docs/commands/IniDelete.htm">IniDelete</a>：创建、访问和维护 INI 文件。</li>
+<li><a href="http://www.autohotkey.com/docs/commands/RegRead.htm">RegRead</a>、<a href="http://www.autohotkey.com/docs/commands/RegWrite.htm">RegWrite</a>、<a href="http://www.autohotkey.com/docs/commands/RegDelete.htm">RegDelete</a>和<a href="http://www.autohotkey.com/docs/commands/LoopReg.htm">Registry Loop</a>：访问 Windows 注册表。</li>
+</ul>
+
+<h1>其他特性</h1>
+
+<p>参阅<a href="http://www.autohotkey.com/docs/commands/index.htm">命令列表</a>。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">AutoHotKey教程</span>
+    <label class="timestamp">[2013-12-05 21:54:25]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>
