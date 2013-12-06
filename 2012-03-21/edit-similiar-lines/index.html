@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="在日常开发的过程中，经常遇到要输入相似的信息，即大部分内容均一致仅小部分内容不同的信息。 本文针对此类问题提出了一些解决方法，并不断改进使之更加快捷有效。" />
+
+    <title>相似行编辑模式 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(6)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(13)</a></li><li><a href="/archive/幸福生活.html">幸福生活(7)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(6)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/正则表达式.html">正则表达式(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(6)</a></li><li><a href="/archive/autohotkey.html">AutoHotKey(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li><li><a href="/archive/emacs.html">Emacs(3)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li><li><a href="/archive/金山词霸生词本转换器.html">金山词霸生词本转换器(2)</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="/archive/smallc.html">SmallC(1)</a></li><li><a href="#">中文计算器</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-04.html">04月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li><li><a href="/archive/2012-03.html">03月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-07.html">07月(2)</a></li><li><a href="/archive/2011-06.html">06月(8)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li><li><a href="/archive/2011-02.html">02月(2)</a></li><li><a href="/archive/2011-01.html">01月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-05.html">05月(1)</a></li><li><a href="/archive/2010-02.html">02月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(6)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(8)</a></li><li><a href="/archive/2009-08.html">08月(9)</a></li><li><a href="/archive/2009-07.html">07月(8)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-05.html">05月(1)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li><li><a href="/archive/2009-02.html">02月(1)</a></li><li><a href="/archive/2009-01.html">01月(1)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(2)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-03.html">03月(1)</a></li><li><a href="/archive/2008-02.html">02月(1)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>相似行编辑模式</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/工具技师.html">工具技师</a>
+  
+  <a href="/archive/emacs.html">Emacs</a>
+  
+</div>
+<div id="article">
+  <h1>绪论</h1>
+
+<p>作为一个程序员，日常生活就是做软件开发。该过程需要编写大量的代码（code）、配置文件（Configuration file）、数据库原始信息（Database Meta Data）等。开发期间常常会遇到需要反复地输入一段相似的内容的情况。</p>
+
+<p>对于编程而言，有重复的或者类似的代码，就意味着需要思考是否能提炼出一种抽象来重构代码；但对于编码意外的场景往往只能按部就班地输入。下文将列举三个常见的场景。</p>
+
+<h1>场景一：数据库脚本</h1>
+
+<p>软件产品上线，需要向DBA（数据库管理员）提供SQL语句来插入一些原始信息。假设系统中有一张如下表：</p>
+<div class="highlight"><pre><code class="sql language-sql" data-lang="sql"><span class="k">create</span> <span class="k">table</span> <span class="n">users</span> <span class="p">(</span>
+  <span class="n">id</span> <span class="nb">int</span><span class="p">,</span>
+  <span class="n">name</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+  <span class="n">description</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>现在需要往这张表中插入5行原始记录：</p>
+<div class="highlight"><pre><code class="sql language-sql" data-lang="sql"><span class="k">insert</span> <span class="k">into</span> <span class="n">users</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;zhang zepeng&#39;</span><span class="p">,</span> <span class="s1">&#39;Hangzhou, Zhang Zepeng&#39;</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">users</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;chen liang&#39;</span><span class="p">,</span> <span class="s1">&#39;Hangzhou, Chen Liang&#39;</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">users</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;xin zengfeng&#39;</span><span class="p">,</span> <span class="s1">&#39;Hangzhou, Xin Zengfeng&#39;</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">users</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;wang wei&#39;</span><span class="p">,</span> <span class="s1">&#39;Hangzhou, Wang Wei&#39;</span><span class="p">);</span>
+<span class="k">insert</span> <span class="k">into</span> <span class="n">users</span> <span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">description</span><span class="p">)</span> <span class="k">values</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;gao feng&#39;</span><span class="p">,</span> <span class="s1">&#39;Hangzhou, Gao Feng&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>容易发现，这五行代码除了具体的名字不一样，其他信息完全相同。那些经常和数据库打交道的同学应该对这个场景非常熟悉。</p>
+
+<h1>场景二：课堂Menu 程序</h1>
+
+<p>在上一堂课上，邢老师不断改进菜单程序，最终变成可通过配置来改变程序行为的、非常灵活的、非常通用的程序。最终的配置文件格式如下：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text"># index name description
+1 exit Exit_is_great
+2 help Help_is_great
+3 enquery Enquery_is_great
+</code></pre></div>
+<p>这个配置文件中的三行信息同样也是相似的。无独有偶，真实的开发环境往往会根据不同的运行环境提供不同的配置文件，这样文件里的信息大多也都是相似的（比如只有机器名不同而已）。</p>
+
+<h1>场景三：本文标题</h1>
+
+<p>再举一个更近的例子，本中的标题依次有“场景一”、“场景二”和“场景三”，下文还会有“解决方案一”、“解决方案二”、“解决方案三”等等。除了最后的序数不同，其他内容完全一样！这说明，不仅仅出现在程序开发中，日常的写作、笔记等也充斥着相似内容的问题。</p>
+
+<h1>解决方案一：从记事本开始</h1>
+
+<p>我观察了一下周围，碰到这样的问题时，有少数会很老实地打开记事本，很耐心地逐字输入。其中有不少也是程序员。</p>
+
+<p>他们认为这种是临时的、一次性的工作，而且内容并不多（通常都是在10行以内），所以想其他解决方法可能好没有直接动手敲键盘来得快。</p>
+
+<dl>
+  <dt>优点</dt>
+  <dd>实施简单，无需借助任何特殊的工具，因此几乎没有学习成本，任何会使用计算机的人都能完成这个任务。</dd>
+  <dt>缺点</dt>
+  <dd>容易犯错；对未来类似的场景没有帮助；而且这个方法工作量非常大，对操作者要求有一定的耐心。</dd>
+</dl>
+
+<h1>解决方案二：C-c C-v</h1>
+
+<p>第一种方法无论对于当前的工作还是未来的工作，都没有抽象出可参考的模型。所以，在方案二中，首先考虑提高当前操作的效率。</p>
+
+<p>例如场景一中，每行均有70个字符是一模一样的，真正不同的内容只有10来个。因此，多数人都会在完成第一行内容后，复制当前行（C-c），然后连续粘贴4次，最后逐行修改，填入需要的数据。</p>
+
+<dl>
+  <dt>优点</dt>
+  <dd>和第一种方法相比，重复的内容只需要输入一次；后面的内容都是通过复制粘贴得到，因此不容易出错；复制粘贴代价很低，所以可以处理比第一种方法更大量的数据；成本低廉，不需要借助特殊的工具，因此这也是多数人使用的方法。</dd>
+  <dt>缺点</dt>
+  <dd>如果你自己动手操作一下，你就会发现 ，在开始填入不同的内容之前，文件里已经布满了密密麻麻的内容，需要很频繁地在多个位置之间来回切换，容易遗漏。</dd>
+</dl>
+
+<h1>解决方案三：键盘宏</h1>
+
+<p>使用方法二可以避免多次输入重复的内容，已经省下不少功夫。但定位频繁、容易遗漏等缺点也非常显著。到目前为止，方法一、方法二中都使用记事本作为编辑器，但记事本只提供了一小部分基础的编辑功能，为了进一步提高效率，可以使用其他一些提供更丰富功能的优秀编辑器，例如下文要介绍的GNU Emacs（下文简称Emacs）为例。</p>
+
+<p>为了避免方法二中的问题，最好能编辑的过程改成增量式的、交互式的。Emacs提供了一种叫做“键盘宏”的功能，可以将一组操作录制下来反复播放。比如处理场景一可以作如下操作录制一段宏，其中“#”后面为注释，粗体部分为输入的纯文本信息：</p>
+
+<ol>
+<li>C-x ( # 开始录制</li>
+<li>insert into users (id, name, description) values (</li>
+<li>C-u C-x q # 进入递归编辑，等待用户输入</li>
+<li>C-M-c # 结束递归编辑</li>
+<li>, &#39;</li>
+<li>C-u C-x q</li>
+<li>C-M-c</li>
+<li>&#39;, &#39;Hangzhoud,</li>
+<li>C-u C-x q</li>
+<li>C-M-c</li>
+<li>&#39;);<BR></li>
+<li>C-x ) #结 结束录制</li>
+</ol>
+
+<p>录制完后，接着开始执行：</p>
+
+<ol>
+<li>C-u 5 C-x e # 其中 C-x e 为播放宏，C-u 5表示重复执行5次</li>
+<li>1</li>
+<li>C-M-c</li>
+<li>zhang zepeng</li>
+<li>C-M-c</li>
+<li>Zhang Zepeng</li>
+<li>C-M-c</li>
+<li>…</li>
+</ol>
+
+<dl>
+  <dt>优点</dt>
+  <dd>和第二种方法一样，使用宏同样不需要重复输入；另外，宏是逐步得填入内容，光标无需四处游走，不会眼花缭乱。</dd>
+  <dt>缺点</dt>
+  <dd>录制过程比较麻烦，当待编辑内容较少时有点本末倒置；录制的宏不通用，不能被以后的用例使用。</dd>
+</dl>
+
+<h1>解决方案四：Emacs Lisp</h1>
+
+<p>使用Emacs宏已经能很有效地解决问题，但可惜不通用。仔细观察各个场景，它们的共同特征是：从第二行开始，都可通过替换第一行中某些关键词来得到。</p>
+
+<p>抛开现有的工具，想象怎样一个工具才能很顺手地解决这个问题。我想我会这么使用：</p>
+
+<ol>
+<li>输入第一行内容；</li>
+<li>复制第一行内容；</li>
+<li>告诉工具要粘贴多少次；</li>
+<li>工具首先询问我有哪些关键字需要替换，我回答它一些“正则表达式”；</li>
+<li>工具开始粘帖，并且每行都提醒我给出之前那些正则表达式在当前行相应值。</li>
+</ol>
+
+<p>纵观现有的编辑器，没发现有提供类似功能的工具。好在，诸如Emacs这样优秀的编辑器都允许扩展它的功能。我使用Emacs的扩展语言Emacs Lisp开发了下面这个小插件：</p>
+<div class="highlight"><pre><code class="common-lisp language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">yank-with-regexp-replace</span> <span class="p">(</span><span class="k">&amp;optional</span> <span class="nv">arg</span><span class="p">)</span>
+  <span class="s">&quot;Replace regexp while yanking.</span>
+<span class="s">With argument N, yank N times.&quot;</span>
+  <span class="p">(</span><span class="nv">interactive</span> <span class="s">&quot;P&quot;</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">exp-list</span> <span class="o">&#39;</span><span class="p">())</span>
+        <span class="nb">exp</span><span class="p">)</span>
+    <span class="p">(</span><span class="k">setq</span> <span class="nv">exp-list</span>
+          <span class="p">(</span><span class="nb">do</span> <span class="p">((</span><span class="nv">i</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">1+</span> <span class="nv">i</span><span class="p">)))</span>
+              <span class="p">((</span><span class="nb">equalp</span> <span class="p">(</span><span class="k">setq</span> <span class="nb">exp</span> <span class="p">(</span><span class="nv">read-regexp</span> <span class="p">(</span><span class="nb">format</span> <span class="s">&quot;%d&quot;</span> <span class="nv">i</span><span class="p">)))</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
+               <span class="p">(</span><span class="nb">reverse</span> <span class="nv">exp-list</span><span class="p">))</span>
+            <span class="p">(</span><span class="nb">push</span> <span class="nb">exp</span> <span class="nv">exp-list</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">dotimes</span> <span class="p">(</span><span class="nv">_</span> <span class="p">(</span><span class="nv">parse-number-arg</span> <span class="nv">arg</span><span class="p">))</span>
+      <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">line</span> <span class="p">(</span><span class="nv">current-kill</span> <span class="mi">0</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nv">insert</span>
+         <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">from</span> <span class="nv">exp-list</span> <span class="nv">line</span><span class="p">)</span>
+           <span class="p">(</span><span class="k">setq</span> <span class="nv">line</span>
+                 <span class="p">(</span><span class="nv">replace-regexp-in-string</span>
+                  <span class="nv">from</span>
+                  <span class="p">(</span><span class="nv">read-string</span> <span class="p">(</span><span class="nb">format</span> <span class="s">&quot;Replace %s with: &quot;</span> <span class="nv">from</span><span class="p">))</span>
+                  <span class="nv">line</span><span class="p">))))))))</span>
+
+<span class="p">(</span><span class="nv">global-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&quot;C-c C-y&quot;</span><span class="p">)</span> <span class="nf">#&#39;</span><span class="nv">yank-with-regexp-replace</span><span class="p">)</span>
+</code></pre></div>
+<p>将上面的代码添加到自己的“.emacs”文件里，这样就是通过按“C-c C-y”来使用这个功能。如果需要粘帖多行就使用C-u N前缀，比如场景一就使用C-u 4 C-c C-y来粘贴后面4行。</p>
+
+<p>这里要介绍一个Emacs给我面的糖果：Emacs在做替换时能很智能地处理大小写问题。比如将“1, zhang zepeng, Zhang Zepeng”这一行中的“zhang zepeng”替换成”chen liang”，会得到“1, chen liang, Chen Liang”。之前三种方法都认为一行有三个关键词，使用这种方法一行只需要处理两个关键词即可！</p>
+
+<dl>
+  <dt>优点</dt>
+  <dd>更通用，在安装完上述插件后，就可以反复使用；更智能，诸如“zhang zepeng”和“Zhang Zepeng”这样仅大小写区别的字段只需输入一次即可；更灵活，Emacs的正则表达式替换可以使用“\,(expression)”来执行Emacs Lisp代码，借助这一强大的特性，该方法几乎能处理所有场景！</dd>
+  <dt>缺点</dt>
+  <dd>学习成本高，不仅需要你熟悉一种编辑器（比如本文的Emacs），还需要了解如何扩展它（比如本文的Emacs Lisp）；平台依赖性大，如果你使用EditPlus或其他编辑器，很遗憾上面的Emacs Lisp不能为你效劳。</dd>
+</dl>
+
+<h1>结论</h1>
+
+<p>至此，介绍了四种方法解决文章开头提出的问题。从第一种最原始的方法开始，不断挖掘方法中重复的部分，最后抽象出一种通用的解决方案，并使用Emacs Lisp开发出相应的工具，使得以后遇到此类问题时也能很高效地解决。</p>
+
+<p>在解决这个问题的过程中，我们经过“改良方法”、“寻找工具”、“开发自己工具”三个步骤，对比各种方法的优缺点后可以发现：学习成本越低的方法越麻烦。比如前两种使用记事本的方法，操作非常犯错且容易出错；最后一种方法需要了解很多，甚至还要学一门冷僻的编程语言Lisp，但却可以一劳永逸。正验了那句话：如果一开始就怕麻烦，后面只会越来越麻烦！</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">相似行编辑模式</span>
+    <label class="timestamp">[2013-12-06 14:31:28]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

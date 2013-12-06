@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="在寝室上内网真的是很闹心呀～稍微迟点开机，IP 地址就被别人抢去了。 为此，我开了这个批处理脚本，自动检查并设置可用的IP地址。" />
+
+    <title>自动获取内网可用IP - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(6)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(13)</a></li><li><a href="/archive/幸福生活.html">幸福生活(7)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(6)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/正则表达式.html">正则表达式(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(6)</a></li><li><a href="/archive/autohotkey.html">AutoHotKey(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li><li><a href="/archive/emacs.html">Emacs(3)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li><li><a href="/archive/金山词霸生词本转换器.html">金山词霸生词本转换器(2)</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="/archive/smallc.html">SmallC(1)</a></li><li><a href="#">中文计算器</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-04.html">04月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li><li><a href="/archive/2012-03.html">03月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-07.html">07月(2)</a></li><li><a href="/archive/2011-06.html">06月(8)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li><li><a href="/archive/2011-02.html">02月(2)</a></li><li><a href="/archive/2011-01.html">01月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-05.html">05月(1)</a></li><li><a href="/archive/2010-02.html">02月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(6)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(8)</a></li><li><a href="/archive/2009-08.html">08月(9)</a></li><li><a href="/archive/2009-07.html">07月(8)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-05.html">05月(1)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li><li><a href="/archive/2009-02.html">02月(1)</a></li><li><a href="/archive/2009-01.html">01月(1)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(2)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-03.html">03月(1)</a></li><li><a href="/archive/2008-02.html">02月(1)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>自动获取内网可用IP</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/工具技师.html">工具技师</a>
+  
+  <a href="/archive/命令行超级工具.html">命令行超级工具</a>
+  
+</div>
+<div id="article">
+  <p>在寝室上内网真的是很闹心呀～稍微迟点开机，IP 地址就被别人抢去了。昨晚九点放学后，一直等到十点半才连上，实在忍无可忍了！</p>
+
+<p>IP 被抢后解决方法无非就是找一个没被占用的地址，但手工去测试 256 个地址太折磨人了，早些时候我们班的两个同学就分别用 Java 和 C# 来实现过类似的小工具。但解决这样的小问题有点杀鸡用牛刀的感觉，不符合我的性格^_^，我当然还是用批处理来解决。</p>
+
+<p>批处理中核心的两条语句就是：</p>
+
+<dl>
+  <dt>设置静态IP地址</dt>
+  <dd>netsh int ip set address &quot;本地连接&quot; static IP地址 子网掩码 网关 1</dd>
+  <dt>设置域名解析器</dt>
+  <dd>netsh int ip set dns &quot;本地连接&quot; static 域名解析器地址 primary</dd>
+</dl>
+
+<p>程序使用时需要提供一个网关地址，为了方便大家使用，在 XP 和 Vista 系统能自动检测网关地址，如果正确的话直接敲一个回车就可以了。下面是批处理的代码，大家只要将下面的代码复制到记事本里，另存为 sip.bat，双击即可运行。</p>
+<div class="highlight"><pre><code class="bat language-bat" data-lang="bat"><span class="c">:: 自动查找可用 IP</span>
+<span class="c">:: 适用于浙江工商大学</span>
+<span class="c">:: by redraiment</span>
+<span class="p">@</span><span class="k">echo</span> <span class="k">off</span>
+<span class="k">setlocal</span> enabledelayedexpansion
+
+<span class="k">if</span> NOT <span class="s2">&quot;%1&quot;</span><span class="o">==</span><span class="s2">&quot;&quot;</span> <span class="k">goto</span> <span class="nl">scan</span>
+
+<span class="c">:: 检测可识别的系统版本</span>
+<span class="c">:: XP</span>
+ver <span class="p">|</span> <span class="n">find</span> <span class="s2">&quot;[版本 5&quot;</span>
+<span class="k">if</span> NOT <span class="k">ERRORLEVEL</span> <span class="m">1</span> (
+  <span class="k">set</span> <span class="nv">SV</span><span class="o">=</span>XP
+  <span class="k">set</span> <span class="nv">CG</span><span class="o">=</span><span class="s1">&#39;&quot;ipconfig|find /I &quot;gate&quot;&quot;&#39;</span>
+  <span class="k">set</span> <span class="nv">TS</span><span class="o">=</span><span class="m">13</span>
+)
+
+<span class="c">:: VISTA</span>
+ver <span class="p">|</span> <span class="n">find</span> <span class="s2">&quot;[版本 6&quot;</span>
+<span class="k">if</span> NOT <span class="k">ERRORLEVEL</span> <span class="m">1</span> (
+  <span class="k">set</span> <span class="nv">SV</span><span class="o">=</span>VISTA
+  <span class="k">set</span> <span class="nv">CG</span><span class="o">=</span><span class="s1">&#39;&quot;ipconfig|find /V &quot;::&quot;|find &quot;网关&quot;&quot;&#39;</span>
+  <span class="k">set</span> <span class="nv">TS</span><span class="o">=</span><span class="m">15</span>
+)
+
+<span class="k">if</span> NOT <span class="s2">&quot;%SV%&quot;</span><span class="o">==</span><span class="s2">&quot;&quot;</span> (<span class="k">for</span> <span class="n">/F</span> <span class="s2">&quot;tokens=%TS%&quot;</span> <span class="nv">%%i</span> in (<span class="nv">%CG%</span>) <span class="k">do</span> <span class="k">set</span> <span class="nv">g</span><span class="o">=</span><span class="nv">%%i</span>)
+<span class="k">echo</span> 您的网关可能是：!g!
+<span class="k">set</span> <span class="n">/P</span> gateway<span class="o">=</span>如果不正确请重新输入，否则输入回车：
+<span class="k">if</span> <span class="s2">&quot;!gateway!&quot;</span><span class="o">==</span><span class="s2">&quot;&quot;</span> <span class="k">set</span> <span class="nv">gateway</span><span class="o">=</span>!g!
+<span class="k">echo</span> <span class="nv">%0</span> !gateway!
+<span class="k">pause</span>
+exit
+
+<span class="nl">:scan</span>
+<span class="k">for</span> <span class="n">/l</span> <span class="nv">%%d</span> in (<span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">253</span>) <span class="k">do</span> (
+  <span class="k">echo</span> 正在验证 <span class="nv">%~n1</span>.<span class="nv">%%d</span> 是否被占用 ...
+  ping -w <span class="m">10</span> -n <span class="m">1</span> <span class="nv">%~n1</span>.<span class="nv">%%d</span> <span class="p">|</span> <span class="n">find</span> <span class="n">/I</span> <span class="s2">&quot;TTL&quot;</span>
+  <span class="k">if</span> <span class="k">ERRORLEVEL</span> <span class="m">1</span> (
+    <span class="k">echo</span> 设置本地IP ...
+    netsh int ip <span class="k">set</span> <span class="nv">address</span> <span class="s2">&quot;本地连接&quot;</span> static <span class="nv">%~n1</span>.<span class="nv">%%d</span> <span class="m">255</span>.<span class="m">255</span>.<span class="m">255</span>.<span class="m">0</span> <span class="nv">%1</span> <span class="m">1</span>
+
+    <span class="k">echo</span> 测试连接网关 ...
+    ping -w <span class="m">10</span> -n <span class="m">1</span> <span class="nv">%1</span> <span class="p">|</span> <span class="n">find</span> <span class="n">/I</span> <span class="s2">&quot;TTL&quot;</span>
+    <span class="k">if</span> NOT <span class="k">ERRORLEVEL</span> <span class="m">1</span> (
+      <span class="k">echo</span> 恭喜，<span class="nv">%~n1</span>.<span class="nv">%%d</span> 可用!
+      <span class="k">echo</span> 设置域名解析器 ...
+      netsh int ip <span class="k">set</span> <span class="nv">dns</span> <span class="s2">&quot;本地连接&quot;</span> static <span class="m">210</span>.<span class="m">33</span>.<span class="m">88</span>.<span class="m">1</span> primary
+      exit
+    )
+  )
+)
+</code></pre></div>
+<p>下面是在 XP 环境下运行的效果图，它将本地 IP 设置成 10.230.71.6：</p>
+
+<p><img src="/resource/2009-09-23/auto-fetch-intranet-ip-in-batch/1.jpg" /></p>
+
+<p>上述自动搜索的原理是尝试将本地地址逐个设置成指定的静态 IP，然后去 ping 网关，直到找到第一个成功的地址。但这种方法有些不足：</p>
+
+<ol>
+<li>通过 netsh 设置本地静态 IP 比较耗时间；</li>
+<li>如果 IP 已经被分配就会弹出一个消息框需要手工确认，因此并不算真正的自动化。</li>
+</ol>
+
+<p>之前也有同学提到：能 ping 通的主机就是在线主机，这样只要搜索不能 ping 通的 IP 地址即可。其实不然，大部分防火墙都开启防 ping 规则，ping 会被拦截，即使在线也可能 ping 不通。但转念一想：如果主机在线，它的物理地址机会记录在 ARP 列表里，在 ping 完一个地址后到 ARP 列表中检查是否存在该地址的记录，就可以确定这个地址是否已经被 DHCP 分配出去！用下面的代码去替换上面的 scan 模块：</p>
+<div class="highlight"><pre><code class="bat language-bat" data-lang="bat"><span class="nl">:scan</span>
+arp -d
+<span class="k">for</span> <span class="n">/l</span> <span class="nv">%%d</span> in (<span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">253</span>) <span class="k">do</span> (
+  ping -n <span class="m">1</span> <span class="nv">%~n1</span>.<span class="nv">%%d</span> &amp; arp -a <span class="p">|</span> <span class="n">find</span> <span class="s2">&quot; %~n1.%%d &quot;</span>
+  <span class="k">if</span> <span class="k">ERRORLEVEL</span> <span class="m">1</span> (
+    netsh int ip <span class="k">set</span> <span class="nv">address</span> <span class="s2">&quot;本地连接&quot;</span> static <span class="nv">%~n1</span>.<span class="nv">%%d</span> <span class="m">255</span>.<span class="m">255</span>.<span class="m">255</span>.<span class="m">0</span> <span class="nv">%1</span> <span class="m">1</span>
+    ping -w <span class="m">10</span> -n <span class="m">1</span> <span class="nv">%1</span> <span class="p">|</span> <span class="n">find</span> <span class="n">/I</span> <span class="s2">&quot;TTL&quot;</span>
+    <span class="k">if</span> NOT <span class="k">ERRORLEVEL</span> <span class="m">1</span> (
+      netsh int ip <span class="k">set</span> <span class="nv">dns</span> <span class="s2">&quot;本地连接&quot;</span> static <span class="m">210</span>.<span class="m">33</span>.<span class="m">88</span>.<span class="m">1</span> primary
+      exit
+    )
+  )
+)
+</code></pre></div>
+<p>这段代码只在最终找到可用地址后才设置本地地址，执行效率比上一版本要高，但也有美中不足的地方：首先需是要清空 ARP 列表（arp -d），而清空列表操作需要有管理员权限才能执行。比如在 VISIA 系统中，需要右击批处理文件，选择“以管理员身份运行”。不过介于大部分人都是以 Administrator 的身份登入系统，所以不用太担心。呵呵。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">于2009-09-24 11:37改进扫描算法</span>
+    <label class="timestamp">[2013-12-06 12:41:13]</label>
+  </div>
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">寝室上网自动获取可用IP</span>
+    <label class="timestamp">[2013-12-06 12:35:44]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>
