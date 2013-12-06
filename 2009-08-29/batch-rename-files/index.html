@@ -166,7 +166,7 @@ attrib -s -h -r * <span class="n">/S</span> <span class="n">/D</span>
 
 <p>将当前目录下不规则命名的 jpg 文件依次重命名成 1.jpg、2.jpg 等</p>
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">i</span><span class="o">=</span>1
-<span class="k">for </span>f in *.jpg; <span class="k">do</span>
+<span class="k">for </span>f in *.jpg<span class="p">;</span> <span class="k">do</span>
 <span class="k">  </span>mv <span class="nv">$f</span> <span class="k">${</span><span class="nv">i</span><span class="k">}</span>.jpg
   <span class="o">((</span>i++<span class="o">))</span>
 <span class="k">done</span>
@@ -175,7 +175,7 @@ attrib -s -h -r * <span class="n">/S</span> <span class="n">/D</span>
 
 <p>其他代码都是处理当前目录下的文件，这个程序给出递归处理子目录的模板</p>
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c"># 处理子目录文件</span>
-find . -name <span class="s1">&#39;*.log&#39;</span> -type f | <span class="k">while </span><span class="nb">read </span>p; <span class="k">do</span>
+find . -name <span class="s1">&#39;*.log&#39;</span> -type f <span class="p">|</span> <span class="k">while </span><span class="nb">read </span>p<span class="p">;</span> <span class="k">do</span>
 <span class="k">  </span><span class="nv">fname</span><span class="o">=</span><span class="k">$(</span>basename <span class="nv">$p</span><span class="k">)</span>
   <span class="c"># do some thing for fname</span>
   mv <span class="nv">$p</span> <span class="k">$(</span>dirname <span class="nv">$p</span><span class="k">)</span>/<span class="nv">$fname</span>
@@ -184,12 +184,12 @@ find . -name <span class="s1">&#39;*.log&#39;</span> -type f | <span class="k">w
 <h2>去掉文件名日期前缀</h2>
 
 <p>需求出处：<a href="http://www.oschina.net/code/snippet_125800_4330">http://www.oschina.net/code/snippet_125800_4330</a></p>
-<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">for </span>f in *.sc2replay; <span class="k">do </span>mv <span class="nv">$f</span> <span class="k">${</span><span class="nv">f</span><span class="p">##*-</span><span class="k">}</span>; <span class="k">done</span>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">for </span>f in *.sc2replay<span class="p">;</span> <span class="k">do </span>mv <span class="nv">$f</span> <span class="k">${</span><span class="nv">f</span><span class="p">##*-</span><span class="k">}</span><span class="p">;</span> <span class="k">done</span>
 </code></pre></div>
 <h2>替换文件名中的字串</h2>
 
 <p>需求出处：<a href="http://www.oschina.net/code/snippet_143158_4337">http://www.oschina.net/code/snippet_143158_4337</a></p>
-<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">for </span>f in *; <span class="k">do</span>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">for </span>f in *<span class="p">;</span> <span class="k">do</span>
 <span class="k">  </span><span class="nv">name</span><span class="o">=</span><span class="k">${</span><span class="nv">f</span><span class="p">%.*</span><span class="k">}</span>
   <span class="nv">ext</span><span class="o">=</span><span class="k">${</span><span class="nv">f</span><span class="p">##*.</span><span class="k">}</span>
   mv <span class="nv">$f</span> <span class="sb">`</span>sed <span class="s1">&#39;s/e/x/g&#39;</span> <span class="o">&lt;&lt;&lt;</span> <span class="nv">$name</span><span class="sb">`</span>.<span class="nv">$ext</span>
@@ -198,7 +198,7 @@ find . -name <span class="s1">&#39;*.log&#39;</span> -type f | <span class="k">w
 <h2>将文件名变成大写</h2>
 
 <p>需求出处：<a href="http://www.oschina.net/code/snippet_99867_4340">http://www.oschina.net/code/snippet_99867_4340</a></p>
-<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">for </span>f in *; <span class="k">do</span>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="k">for </span>f in *<span class="p">;</span> <span class="k">do</span>
 <span class="k">  </span><span class="nv">name</span><span class="o">=</span><span class="k">${</span><span class="nv">f</span><span class="p">%.*</span><span class="k">}</span>
   <span class="nv">ext</span><span class="o">=</span><span class="k">${</span><span class="nv">f</span><span class="p">##*.</span><span class="k">}</span>
   mv <span class="nv">$f</span> <span class="sb">`</span>tr <span class="s1">&#39;a-z&#39;</span> <span class="s1">&#39;A-Z&#39;</span> <span class="o">&lt;&lt;&lt;</span> <span class="nv">$name</span><span class="sb">`</span>.<span class="nv">$ext</span>

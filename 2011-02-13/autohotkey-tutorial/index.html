@@ -200,7 +200,7 @@ Send Sincerely,<span class="o">{</span>Enter<span class="o">}</span>John Smith
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash">MsgBox, 4, , Would you like to <span class="k">continue</span>?
 IfMsgBox, No
     <span class="k">return</span>
-; Otherwise, the user picked yes.
+<span class="p">;</span> Otherwise, the user picked yes.
 MsgBox You pressed YES.
 </code></pre></div>
 <p>使用<a href="http://www.autohotkey.com/docs/commands/InputBox.htm">InputBox</a>提示用户输入一个字符串；<a href="http://www.autohotkey.com/docs/commands/FileSelectFile.htm">FileSelectFile</a>或<a href="http://www.autohotkey.com/docs/commands/FileSelectFolder.htm">FileSelectFolder</a>供用户选择文件和文件夹；更高级的任务使用<a href="http://www.autohotkey.com/docs/commands/Gui.htm">Gui</a>命令来自定义界面。</p>
@@ -273,21 +273,21 @@ MsgBox, This is ok too <span class="o">(</span>it has an explicit comma<span cla
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash">Loop %RunCount%
 <span class="o">{</span>
     Run C:/Check Server Status.exe
-    Sleep 60000  ; Wait 60 seconds.
+    Sleep 60000  <span class="p">;</span> Wait 60 seconds.
 <span class="o">}</span>
 </code></pre></div>
 <p>上例中，除非 RunCount 小于或等于 0，否则循环体至少能执行一次。</p>
 
 <p>根据不同的条件，可以中途跳出循环。执行下例程序后，当用户按住 F1 键，程序就会不断地发送点击鼠标左键事件：</p>
-<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$F1</span>::  ; Make the F1 key into a hotkey
-       ; <span class="o">(</span>the <span class="nv">$ </span>symbol facilitates the <span class="s2">&quot;P&quot;</span> mode of GetKeyState below<span class="o">)</span>.
-Loop  ; Since no number is specified with it, this is an infinite loop
-      ; unless <span class="s2">&quot;break&quot;</span> or <span class="s2">&quot;return&quot;</span> is encountered inside.
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$F1</span>::  <span class="p">;</span> Make the F1 key into a hotkey
+       <span class="p">;</span> <span class="o">(</span>the <span class="nv">$ </span>symbol facilitates the <span class="s2">&quot;P&quot;</span> mode of GetKeyState below<span class="o">)</span>.
+Loop  <span class="p">;</span> Since no number is specified with it, this is an infinite loop
+      <span class="p">;</span> unless <span class="s2">&quot;break&quot;</span> or <span class="s2">&quot;return&quot;</span> is encountered inside.
 <span class="o">{</span>
-    ; If this statement is <span class="nb">true</span>, the user has physically released the F1 key.
+    <span class="p">;</span> If this statement is <span class="nb">true</span>, the user has physically released the F1 key.
     <span class="k">if </span>not GetKeyState<span class="o">(</span><span class="s2">&quot;F1&quot;</span>, <span class="s2">&quot;P&quot;</span><span class="o">)</span>
-        <span class="nb">break</span>  ; Break out of the loop.
-    ; Otherwise <span class="o">(</span>since the above didn<span class="s1">&#39;t &quot;break&quot;), keep clicking the mouse.</span>
+        <span class="nb">break</span>  <span class="p">;</span> Break out of the loop.
+    <span class="p">;</span> Otherwise <span class="o">(</span>since the above didn<span class="s1">&#39;t &quot;break&quot;), keep clicking the mouse.</span>
 <span class="s1">    Click  ; Click the left mouse button at the cursor&#39;</span>s current position.
 <span class="o">}</span>
 <span class="k">return</span>
@@ -296,7 +296,7 @@ Loop  ; Since no number is specified with it, this is an infinite loop
 
 <p>一个替代方案是使用<a href="http://www.autohotkey.com/docs/commands/While.htm">&quot;while&quot; 循环</a>：</p>
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$F1</span>::
-<span class="k">while </span>GetKeyState<span class="o">(</span><span class="s2">&quot;F1&quot;</span>, <span class="s2">&quot;P&quot;</span><span class="o">)</span>  ; While the F1 key is being held down physically.
+<span class="k">while </span>GetKeyState<span class="o">(</span><span class="s2">&quot;F1&quot;</span>, <span class="s2">&quot;P&quot;</span><span class="o">)</span>  <span class="p">;</span> While the F1 key is being held down physically.
 <span class="o">{</span>
     Click
 <span class="o">}</span>

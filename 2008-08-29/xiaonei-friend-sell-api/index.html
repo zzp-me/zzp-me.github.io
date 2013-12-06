@@ -244,7 +244,7 @@
 <p>现在要做的就是把这些过程写成一个shell脚本，代码如下：</p>
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
 
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$# </span>-eq 2 <span class="o">]</span>; <span class="k">then</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$# </span>-eq 2 <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
 <span class="k">    </span><span class="nv">email</span><span class="o">=</span><span class="nv">$1</span>
     <span class="nv">password</span><span class="o">=</span><span class="nv">$2</span>
 <span class="k">else</span>
@@ -262,7 +262,7 @@ curl -O -D cookie <span class="se">\</span>
 curl -O -b cookie <span class="s2">&quot;http://friendsell.xiaonei.com/friendsell/home.do&quot;</span>
 
 <span class="nv">URL</span><span class="o">=</span><span class="s1">&#39;http://friendsell.xiaonei.com/friendsell/&#39;</span>
-sed -n -e <span class="s1">&#39;/ \{20\}/{s/[^0-9]\+//g;p}&#39;</span> home.do | <span class="k">while </span><span class="nb">read </span>id; <span class="k">do</span>
+sed -n -e <span class="s1">&#39;/ \{20\}/{s/[^0-9]\+//g;p}&#39;</span> home.do <span class="p">|</span> <span class="k">while </span><span class="nb">read </span>id<span class="p">;</span> <span class="k">do</span>
 <span class="k">    </span>curl -O -b cookie <span class="se">\</span>
          -d <span class="s2">&quot;paintype=5&quot;</span> <span class="se">\</span>
          -d <span class="s2">&quot;id=${id}&quot;</span> <span class="se">\</span>

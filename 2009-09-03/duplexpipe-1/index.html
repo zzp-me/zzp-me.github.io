@@ -65,7 +65,7 @@
 <div id="article">
   <p>写 DuplexPipe 是因为“无聊”！真的，那天很无聊，想起小时候用扑克牌和姐姐比赛算24，就随手写了一个 Shell 脚本重温一下：</p>
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#!/bin/sh</span>
-<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0;i&lt;4;i++<span class="o">))</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span>i&lt;4<span class="p">;</span>i++<span class="o">))</span>
 <span class="k">do</span>
     <span class="o">((</span><span class="nv">n</span><span class="o">=</span><span class="nv">$RANDOM</span>%10+1<span class="o">))</span>
     <span class="nb">echo</span> -n <span class="s2">&quot;$n &quot;</span>
@@ -95,7 +95,7 @@ s<span class="o">[</span>1<span class="o">]=</span><span class="s1">&#39;-&#39;<
 s<span class="o">[</span>2<span class="o">]=</span><span class="s1">&#39;*&#39;</span>
 s<span class="o">[</span>3<span class="o">]=</span><span class="s1">&#39;/&#39;</span>
 <span class="nb">read </span>a b c d
-<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0;i&lt;64;i++<span class="o">))</span>
+<span class="k">for</span> <span class="o">((</span><span class="nv">i</span><span class="o">=</span>0<span class="p">;</span>i&lt;64<span class="p">;</span>i++<span class="o">))</span>
 <span class="k">do</span>
     <span class="o">((</span><span class="nv">k</span><span class="o">=</span>i%4<span class="o">))</span>
     <span class="nv">x</span><span class="o">=</span><span class="k">${</span><span class="nv">s</span><span class="p">[</span><span class="nv">$k</span><span class="p">]</span><span class="k">}</span>
@@ -104,7 +104,7 @@ s<span class="o">[</span>3<span class="o">]=</span><span class="s1">&#39;/&#39;<
     <span class="o">((</span><span class="nv">k</span><span class="o">=</span>i/16<span class="o">))</span>
     <span class="nv">z</span><span class="o">=</span><span class="k">${</span><span class="nv">s</span><span class="p">[</span><span class="nv">$k</span><span class="p">]</span><span class="k">}</span>
     <span class="nv">e</span><span class="o">=</span><span class="s2">&quot;$a$x$b$y$c$z$d&quot;</span>
-    <span class="nv">r</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$e</span> | bc -l | sed -e <span class="s1">&#39;s//.0/+$//&#39;</span><span class="sb">`</span>
+    <span class="nv">r</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$e</span> <span class="p">|</span> bc -l <span class="p">|</span> sed -e <span class="s1">&#39;s//.0/+$//&#39;</span><span class="sb">`</span>
     <span class="k">if</span> <span class="o">[[</span> <span class="s2">&quot;$r&quot;</span> <span class="o">==</span> <span class="s2">&quot;24&quot;</span> <span class="o">]]</span>
     <span class="k">then</span>
 <span class="k">        </span><span class="nb">echo</span> <span class="s2">&quot;$e=$r&quot;</span>

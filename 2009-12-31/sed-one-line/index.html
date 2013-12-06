@@ -131,7 +131,7 @@ sed <span class="s1">&#39;/^$/N;/\n$/D&#39;</span>      <span class="c">#方法2
 
 <p>我看的兴起，也设计了一个单行脚本。问题来源于设计宏替换器，比如C语言中有如下定义：</p>
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c">#define PRINT printf</span>
-PRINT<span class="o">(</span><span class="s2">&quot;printf with PRINT&quot;</span><span class="o">)</span>;
+PRINT<span class="o">(</span><span class="s2">&quot;printf with PRINT&quot;</span><span class="o">)</span><span class="p">;</span>
 </code></pre></div>
 <p>此时使用 s/PRINT/printf/g 就会把字符串中的“PRINT”也替换掉。因此需要使用一下脚本：</p>
 <div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="c"># 只替换不在字符串内的模式</span>

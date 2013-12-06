@@ -86,7 +86,7 @@ zb 0612800229 0602
 
 <span class="nb">exec </span>3&lt;f1
 <span class="nb">exec </span>4&lt;f2
-<span class="k">while </span><span class="nb">read </span>f1 &lt;&amp;3 <span class="o">&amp;&amp;</span> <span class="nb">read </span>f2 &lt;&amp;4
+<span class="k">while </span><span class="nb">read </span>f1 &lt;<span class="p">&amp;</span>3 <span class="o">&amp;&amp;</span> <span class="nb">read </span>f2 &lt;<span class="p">&amp;</span>4
 <span class="k">do</span>
 <span class="k">    </span><span class="nb">echo</span> <span class="nv">$f1</span> <span class="nv">$f2</span> &gt;&gt; join.txt
 <span class="k">done</span>

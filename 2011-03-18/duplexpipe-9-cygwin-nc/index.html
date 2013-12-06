@@ -84,13 +84,13 @@ netcat-1.10.orig/  netcat_1.10-38.diff.gz*  netcat_1.10.orig.tar.gz*
 <span class="nv">$ </span>ls
 Changelog  README  generic.h     netcat.c  stupidh*
 Makefile   data/   netcat.blurb  scripts/
-<span class="nv">$ </span>zcat ../netcat_1.10-38.diff.gz | patch -p1
+<span class="nv">$ </span>zcat ../netcat_1.10-38.diff.gz <span class="p">|</span> patch -p1
 <span class="nv">$ </span>ls
 Changelog  README  debian/    nc.1          netcat.c  stupidh*
 Makefile   data/   generic.h  netcat.blurb  scripts/
 </code></pre></div>
 <p>补丁被释放到 debian 目录下。然后就是给源代码打补丁了。</p>
-<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>sed <span class="s1">&#39;s#^#patch -Np1 -i debian/patches/#&#39;</span> debian/patches/series | sh
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">$ </span>sed <span class="s1">&#39;s#^#patch -Np1 -i debian/patches/#&#39;</span> debian/patches/series <span class="p">|</span> sh
 patching file Makefile
 patching file netcat.c
 patching file netcat.c
