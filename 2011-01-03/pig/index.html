@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="Pig的一次重大升级，使用HTA技术完全重写。 Pig的开发让我认识到功能不是越多越好，而是越精越好。" />
+
+    <title>Pig升级到0.7版 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(6)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(13)</a></li><li><a href="/archive/幸福生活.html">幸福生活(7)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(6)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/正则表达式.html">正则表达式(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/autohotkey.html">AutoHotKey(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li><li><a href="/archive/金山词霸生词本转换器.html">金山词霸生词本转换器(2)</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">SmallC</a></li><li><a href="#">中文计算器</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-07.html">07月(1)</a></li><li><a href="/archive/2011-06.html">06月(8)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li><li><a href="/archive/2011-02.html">02月(2)</a></li><li><a href="/archive/2011-01.html">01月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-02.html">02月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(6)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(9)</a></li><li><a href="/archive/2009-07.html">07月(8)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-05.html">05月(1)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li><li><a href="/archive/2009-02.html">02月(1)</a></li><li><a href="/archive/2009-01.html">01月(1)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(2)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-03.html">03月(1)</a></li><li><a href="/archive/2008-02.html">02月(1)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>Pig升级到0.7版</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/软件项目.html">软件项目</a>
+  
+  <a href="/archive/金山词霸生词本转换器.html">金山词霸生词本转换器</a>
+  
+</div>
+<div id="article">
+  <h1>关于 Pig</h1>
+
+<p>Pig 距离上一次更新有快两年的时间了，期间发生了很多事。其中一个原因是我后来对自己电脑上的软件进行了正版化清理：诸如 Visual Basic 6.0 精简版、VMWare 等盗版软件都被我卸载了，而 Pig 之前的版本都是用 VB6 精简版 + Dev-C++ 开发的。</p>
+
+<h1>姗姗来迟的新版本</h1>
+
+<p>事隔这么久，期间也有几位热心网友发邮箱报告程序 Bug，并对程序新功能提出了展望。可惜这次的更新不仅没添加任何新功能，反而还砍掉了一些比较鸡肋的功能。</p>
+
+<p><img src="/resource/2011-01-03/pig/1.gif" /></p>
+
+<p>程序界面如右图所示，与以前的界面相比变化不大（这正是我想要的）。不过本质区别是：以前的 Pig 是一个独立的可执行程序调用一堆动态链接库来完成任务；如今的 Pig 只是一张网页，通过执行 JScript 和极少量的 VBScript 来实现功能。</p>
+
+<h2>新版本解决的问题</h2>
+
+<ol>
+<li>这次的开发编辑器用的是 Emacs，语言选的是 JavaScript 和 HTML。开发环境方面没有版权问题。</li>
+<li>随着金山词霸本身的升级，生词本导出文件的格式出现了调整。有网友反映 Pig 不能处理这些新文件。这次更新也增强了这方面功能，现在 Pig 能处理到目前为止的所有版本生词本导出的文件。</li>
+<li>Pig 之前的版本是用 VB 和 C 语言写的，源代码并没有随程序一起发布。这回简单了，JavaScript 和 VBScript 天生具有开源性质，源代码就是程序，你想怎么改都行。</li>
+<li>更新了帮助文档。</li>
+</ol>
+
+<h2>砍掉的功能有：</h2>
+
+<ol>
+<li>合并“指定输出路径”和“生成单个文件”两个功能；</li>
+<li>删除“输出卡片风格”（这功能真的没人用），统一用“列表”形式；</li>
+<li>删除“图片格式”（当初有这个功能是因为 IE6 不能显示 Unicode 编码的音标，哪知我是费力不讨好：大家背单词并不关心音标）；</li>
+<li>删除“PDF格式”（也是费力不讨好的活）；</li>
+<li>删除“字段排序”功能（目前还没人把音标或解释放到单词前面来打印）。</li>
+</ol>
+
+<h2>下一步预期：</h2>
+
+<ol>
+<li>我自己的系统是 Vista，必须找台 XP 的电脑测试一下（毕竟目前的用户都是用 XP 的）；（Done @ 2011-01-03）</li>
+<li>生成 Excel 格式的文件；</li>
+<li>在已安装了金山词霸的电脑上能自动分析生词本数据库，用户无需导出成文本文件；</li>
+<li>去支持其他词典软件，比如有道、灵格斯等。</li>
+</ol>
+
+<h1>版权问题</h1>
+
+<p>和我的其他玩具一样：源代码都给你了，那还不是想怎么样就怎么样了？说真的，其实我懒得搭理这种事情。我认识的人都知道这玩意儿是我为他们开发的，其他人怎么想我就不在乎了。先睡觉，醒来我会把程序发布到 Google Code 上，到时再更新链接。</p>
+
+<h1>后记</h1>
+
+<p>今天白天在 XP + IE6 下做了简单的测试，并升级到 v0.7.1 版本，不过在 IE6 里选项卡之间切换时会出现一片空白（如下图），是 jQuery 的插件 jdMenu 的问题，它并不影响功能，所以暂时不去修复了。</p>
+
+<p><img src="/resource/2011-01-03/pig/2.gif" /></p>
+
+<p>程序已经发布到Github上：<a href="https://github.com/redraiment/pig">https://github.com/redraiment/pig</a>。</p>
+
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">代码托管迁移到Github上</span>
+    <label class="timestamp">[2013-12-06 10:52:30]</label>
+  </div>
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">金山词霸生词本转换器</span>
+    <label class="timestamp">[2013-12-06 10:37:36]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>

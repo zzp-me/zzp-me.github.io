@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="介绍如何用正则表达式匹配多种情况，以及匹配一段数值区间。" />
+
+    <title>正则表达式匹配double值 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(6)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(13)</a></li><li><a href="/archive/幸福生活.html">幸福生活(7)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(6)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/正则表达式.html">正则表达式(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(5)</a></li><li><a href="/archive/autohotkey.html">AutoHotKey(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li><li><a href="/archive/金山词霸生词本转换器.html">金山词霸生词本转换器(2)</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="#">SmallC</a></li><li><a href="#">中文计算器</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-07.html">07月(1)</a></li><li><a href="/archive/2011-06.html">06月(8)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li><li><a href="/archive/2011-02.html">02月(2)</a></li><li><a href="/archive/2011-01.html">01月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-02.html">02月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(6)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(7)</a></li><li><a href="/archive/2009-08.html">08月(9)</a></li><li><a href="/archive/2009-07.html">07月(8)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-05.html">05月(1)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li><li><a href="/archive/2009-02.html">02月(1)</a></li><li><a href="/archive/2009-01.html">01月(1)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(2)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-03.html">03月(1)</a></li><li><a href="/archive/2008-02.html">02月(1)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-02.html">02月(9)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>正则表达式匹配double值</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/代码分享.html">代码分享</a>
+  
+  <a href="/archive/正则表达式.html">正则表达式</a>
+  
+</div>
+<div id="article">
+  <p>近来在学正则表达式，看到有其他人在尝试用正则表达式来匹配检查一个字符串是否是合法的Double类型了，我也手痒来发挥一下。这在实际开发中可能用不上，例如Java中判断一个字符串是否是合法的数值，可以用现成的Double.parseDouble等来完成。不过，这样的练习有助于掌握正则表达式的使用。</p>
+
+<p>本文代码用Perl实现，因为Perl对正则表达式的支持是最好的。让我们一步一步来解刨double浮点数：</p>
+
+<h1>一、普通整数</h1>
+
+<p>普通的整数都是合法double型，带上后缀字母d或者D也是double型。比如：1、+10、-100、100d、987D。即：</p>
+<div class="highlight"><pre><code class="perl language-perl" data-lang="perl"><span class="sr">/^[-+]?\d+[dD]$/</span>
+</code></pre></div>
+<h1>二、实数</h1>
+
+<p>double型的变量还能保存实数。比如：<code>1.0</code>、<code>+12.34</code>、<code>-45.896</code>、<code>-563.887d</code>甚至<code>124.</code>、<code>.123</code>、<code>-.687</code>在Java中也都是合法double值。规则如下：</p>
+
+<ol>
+<li>如果小数点前有整数的话，那小数点和小数的出现可以随意；</li>
+<li>如果小数点前面没有数字的话，默认以0做整数，但小数必须出现。</li>
+</ol>
+
+<p>也就是说，只有一个小数点的话，那就是非法的double数。因此，我们要用多选分支来做：</p>
+<div class="highlight"><pre><code class="perl language-perl" data-lang="perl"><span class="sr">/^[-+]?(\d+(\.\d*)?|\.\d+)[dD]?$/</span>
+</code></pre></div>
+<h1>三、科学计数法</h1>
+
+<p>double变量还有一种形式——科学计数法。指数部分只能是十进制整数，允许为负数。比如：<code>1e123</code>、<code>12.546e54d</code>、<code>4335.546E33</code>、<code>-.54e-7D</code>，因此还要在尾部加上指数的匹配。指数没有小数，所以只要匹配整数就可以。</p>
+<div class="highlight"><pre><code class="perl language-perl" data-lang="perl"><span class="sr">/^[-+]?(\d+(\.\d*)?|\.\d+)([eE][-+]?\d+)?[dD]?$/</span>
+</code></pre></div>
+<h1>四、取值范围</h1>
+
+<p>最后，也是最麻烦的，就是Java中double的取值范围：负数范围：从-1.7976931348623157×10<sup>+308</sup>到-4.94065645841246544×10<sup>-324</sup>正数范围：从4.94065645841246544×10<sup>-324</sup>到1.7976931348623157×10<sup>+308</sup>这也就是说，指数的取值范围在 -324 到 308 之间。如果仅仅是这样，那还好说，关键是前面的小数还这么复杂。为了简化问题，我就把指数的范围在 -323 到 307 之间，对前面的小数没有限制。那首先来匹配 -307 到 307</p>
+<div class="highlight"><pre><code class="perl language-perl" data-lang="perl"><span class="sr">/[-+]?([012]?\d{1,2}|30[0-7])/</span>
+</code></pre></div>
+<p>然后另外在匹配 -308 到 -324</p>
+<div class="highlight"><pre><code class="perl language-perl" data-lang="perl"><span class="sr">/-3([01]?[4-9]|[012]?[0-3])/</span>
+</code></pre></div>
+<p>合并起来，就是：</p>
+<div class="highlight"><pre><code class="perl language-perl" data-lang="perl"><span class="sr">/^[-+]?(\d+(\.\d*)?|\.\d+)([eE]([-+]?([012]?\d{1,2}|30[0-7])|-3([01]?[4-9]|[012]?[0-3])))?[dD]?$/</span>
+</code></pre></div>
+<h1>实例测试</h1>
+
+<p>用这个正则表达式来编写一个perl脚本：</p>
+<div class="highlight"><pre><code class="perl language-perl" data-lang="perl"><span class="c1">#!/usr/bin/perl</span>
+
+<span class="k">while</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=</span> <span class="sr">&lt;STDIN&gt;</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">chomp</span><span class="p">(</span><span class="nv">$line</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nv">$line</span> <span class="o">=~</span><span class="sr"> /^[-+]?(\d+(\.\d*)?|(\.\d+))([eE]([-+]?([012]?\d{1,2}|30[0-7])|-3([01]?[4-9]|[012]?[0-3])))?[dD]?$/</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">print</span> <span class="nv">$line</span><span class="p">,</span> <span class="s">&quot; is Java double!\n&quot;</span><span class="p">;</span>
+  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="k">print</span> <span class="nv">$line</span><span class="p">,</span> <span class="s">&quot; is not Java double\n&quot;</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>测试数据：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">+
+-
+.
+e
+a
+1.
+.1
+0.1
+-.
+-.1
++.1
+1e123d
+-3.543E4456D
+-45.54879e-323d
+-777.1234E-324
+4553.876e357
+1543e307
+13.54e15.78d
+213.e123d
+1.2.3
+-.1.1
++e
+e12
+</code></pre></div>
+<p>输出结果：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">+ is not Java double
+- is not Java double
+. is not Java double
+e is not Java double
+a is not Java double
+1. is Java double!
+.1 is Java double!
+0.1 is Java double!
+-. is not Java double
+-.1 is Java double!
++.1 is Java double!
+1e123d is Java double!
+-3.543E4456D is not Java double
+-45.54879e-323d is Java double!
+-777.1234E-324 is not Java double
+4553.876e357 is not Java double
+1543e307 is Java double!
+13.54e15.78d is not Java double
+213.e123d is Java double!
+1.2.3 is not Java double
+-.1.1 is not Java double
++e is not Java double
+e12 is not Java double
+</code></pre></div>
+</div>
+<div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">正则表达式匹配double值</span>
+    <label class="timestamp">[2013-12-06 11:12:31]</label>
+  </div>
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>
