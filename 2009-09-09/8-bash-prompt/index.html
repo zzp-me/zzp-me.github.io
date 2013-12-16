@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="很多人并不关心命令提示符，觉得它没用。 刚从互联网上搜罗了几个有趣且实用的 Bash 提示符。 好的提示符或许能改善你的工作方式～" />
+
+    <title>八个有趣实用的Bash提示符 - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(6)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(13)</a></li><li><a href="/archive/幸福生活.html">幸福生活(12)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(6)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/正则表达式.html">正则表达式(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(7)</a></li><li><a href="/archive/autohotkey.html">AutoHotKey(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li><li><a href="/archive/emacs.html">Emacs(3)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li><li><a href="/archive/金山词霸生词本转换器.html">金山词霸生词本转换器(2)</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="/archive/smallc.html">SmallC(1)</a></li><li><a href="/archive/中文计算器.html">中文计算器(2)</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-04.html">04月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-06.html">06月(1)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li><li><a href="/archive/2012-03.html">03月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-07.html">07月(2)</a></li><li><a href="/archive/2011-06.html">06月(10)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li><li><a href="/archive/2011-02.html">02月(2)</a></li><li><a href="/archive/2011-01.html">01月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-05.html">05月(1)</a></li><li><a href="/archive/2010-02.html">02月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(6)</a></li><li><a href="/archive/2009-10.html">10月(2)</a></li><li><a href="/archive/2009-09.html">09月(9)</a></li><li><a href="/archive/2009-08.html">08月(9)</a></li><li><a href="/archive/2009-07.html">07月(8)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-05.html">05月(1)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li><li><a href="/archive/2009-02.html">02月(1)</a></li><li><a href="/archive/2009-01.html">01月(1)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(2)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(2)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-03.html">03月(1)</a></li><li><a href="/archive/2008-02.html">02月(1)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-08.html">08月(2)</a></li><li><a href="/archive/2007-07.html">07月(1)</a></li><li><a href="/archive/2007-02.html">02月(10)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>八个有趣实用的Bash提示符</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/工具技师.html">工具技师</a>
+  
+  <a href="/archive/命令行超级工具.html">命令行超级工具</a>
+  
+</div>
+<div id="article">
+  <p>原文链接：<a href="http://maketecheasier.com/8-useful-and-interesting-bash-prompts/2009/09/04">http://maketecheasier.com/8-useful-and-interesting-bash-prompts/2009/09/04</a></p>
+
+<p>很多人并不关心命令提示符，觉得它没用。刚从互联网上搜罗了几个有趣且实用的 Bash 提示符。好的提示符或许能改善你的工作方式～</p>
+
+<p>注：要使用下面的效果，只需将“PS1=”部分复制粘贴到终端执行即可。如果要保持修改，可以将它追加到“~/.bashrc”文件中。</p>
+
+<h1>一、执行成功就显示笑脸</h1>
+
+<p>如果命令执行成功，就显示一张笑脸。效果和代码如下：</p>
+
+<p><img src="http://mcdn.maketecheasier.com/wp-content/uploads/2009/08/bashprompts-happyface.jpg" alt="prompt"></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\`[\u@\h:\w]\\$ &quot;</span>
+</code></pre></div>
+<h1>二、遇错误命令改变颜色</h1>
+
+<p>效果和上面类似，只是改变了提示符的颜色；另一个亮点就是它在最左边显示历史记录的数量。效果和代码如下：</p>
+
+<p><img src="http://mcdn.maketecheasier.com/wp-content/uploads/2009/08/bashprompts-hurring.jpg" alt="prompt"></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">PROMPT_COMMAND</span><span class="o">=</span><span class="s1">&#39;PS1=&quot;\[\033[0;33m\][\!]\`if [[ \$? = &quot;0&quot; ]]; then echo &quot;\\[\\033[32m\\]&quot;; else echo &quot;\\[\\033[31m\\]&quot;; fi\`[\u.\h: \`if [[ `pwd|wc -c|tr -d &quot; &quot;` &gt; 18 ]]; then echo &quot;\\W&quot;; else echo &quot;\\w&quot;; fi\`]\$\[\033[0m\] &quot;; echo -ne &quot;\033]0;`hostname -s`:`pwd`\007&quot;&#39;</span>
+</code></pre></div>
+<h1>三、多行提示符</h1>
+
+<p>利用多行可以显示更多的内容。比如下列中显示了当前日期和时间、完整路径、用户和主机名、活动的终端以及当前目录文件数量和所用空间。</p>
+
+<p><img src="http://mcdn.maketecheasier.com/wp-content/uploads/2009/08/bashprompts-informant.jpg" alt="prompt"></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\n\[\033[35m\]\$(/bin/date)\n\[\033[32m\]\w\n\[\033[1;31m\]\u@\h: \[\033[1;34m\]\$(/usr/bin/tty | /bin/sed -e &#39;s:/dev/::&#39;): \[\033[1;36m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed &#39;s: ::g&#39;) files \[\033[1;33m\]\$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed &#39;s/total //&#39;)b\[\033[0m\] -&gt; \[\033[0m\]&quot;</span>
+</code></pre></div>
+<h1>四、七彩提示符</h1>
+
+<p>这个的特点就是用不同的颜色来显示不同的信息。如下列中分别显示了时间、用户名、主机名以及当前目录：</p>
+
+<p><img src="http://mcdn.maketecheasier.com/wp-content/uploads/2009/08/bashprompts-4.jpg" alt="prompt"></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\[\033[35m\]\t\[\033[m\]-\[\033[36m\]\u\[\033[m\]@\[\033[32m\]\h:\[\033[33;1m\]\w\[\033[m\]\$ &quot;</span>
+</code></pre></div>
+<h1>五、显示完整路径</h1>
+
+<p>这是一个简短的提示符，第一行显示完整路径，第二行显示当前用户：</p>
+
+<p><img src="http://mcdn.maketecheasier.com/wp-content/uploads/2009/08/bashprompts-5.jpg" alt="prompt"></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;[\[\033[32m\]\w]\[\033[0m\]\n\[\033[1;36m\]\u\[\033[1;33m\]-&gt; \[\033[0m\]&quot;</span>
+</code></pre></div>
+<h1>六、显示后台任务数量</h1>
+
+<p>这个提示符的第一行还是显示用户名、主机名以及完整路径。特色在第二行，不仅显示历史记录数量，还会显示后台作业的数量：</p>
+
+<p><img src="http://mcdn.maketecheasier.com/wp-content/uploads/2009/08/bashprompts-61.jpg" alt="prompt"></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">PS1</span><span class="o">=</span><span class="s1">&#39;\[\e[1;32m\]\u@\H:\[\e[m\] \[\e[1;37m\]\w\[\e[m\]\n\[\e[1;33m\]hist:\! \[\e[0;33m\] \[\e[1;31m\]jobs:\j \$\[\e[m\] &#39;</span>
+</code></pre></div>
+<h1>七、显示目录信息</h1>
+
+<p>这是一个看起来很酷的设计：第一行显示用户名、主机名、后台作业数量、以及日期时间。第二行显示当前路径、文件数量以及所用空间：</p>
+
+<p><img src="http://mcdn.maketecheasier.com/wp-content/uploads/2009/08/bashprompts-7.jpg" alt="prompt"></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\n\[\e[30;1m\]\[\016\]l\[\017\](\[\e[34;1m\]\u@\h\[\e[30;1m\])-(\[\e[34;1m\]\j\[\e[30;1m\])-(\[\e[34;1m\]\@ \d\[\e[30;1m\])-&gt;\[\e[30;1m\]\n\[\016\]m\[\017\]-(\[\[\e[32;1m\]\w\[\e[30;1m\])-(\[\e[32;1m\]\$(/bin/ls -1 | /usr/bin/wc -l | /bin/sed &#39;s: ::g&#39;) files, \$(/bin/ls -lah | /bin/grep -m 1 total | /bin/sed &#39;s/total //&#39;)b\[\e[30;1m\])--&gt; \[\e[0m\]&quot;</span>
+</code></pre></div>
+<h1>八、作者所用的提示符</h1>
+
+<p>这是本文原作者自己的提示符，这是基于 #7 修改的：第一行显示用户名、后台作业数、当前路径；第二行显示历史记录数。</p>
+
+<p><img src="http://mcdn.maketecheasier.com/wp-content/uploads/2009/08/bashprompts-8.jpg" alt="prompt"></p>
+<div class="highlight"><pre><code class="bash language-bash" data-lang="bash"><span class="nv">PS1</span><span class="o">=</span><span class="s2">&quot;\n\[\e[32;1m\](\[\e[37;1m\]\u\[\e[32;1m\])-(\[\e[37;1m\]jobs:\j\[\e[32;1m\])-(\[\e[37;1m\]\w\[\e[32;1m\])\n(\[\[\e[37;1m\]! \!\[\e[32;1m\])-&gt; \[\e[0m\]&quot;</span>
+</code></pre></div>
+<h1>九、我的提示符</h1>
+
+<p>我的提示符非常简洁，就是 PS1=&#39;$ &#39;。我大概就是原作者说的不在乎提示符的那类人，呵呵。通常命令返回的结果并不多，如果提示符过于复杂，屏幕上提示符的数量反而比真正的命令还多（多行提示符尤甚）。我的机子就我一个人用，像用户名、主机名等信息并不需要强调，真的想知道就临时执行一下<code>whoami</code>。不知道大家都搜罗了什么实用的提示符，来一起分享一下吧。</p>
+
+</div>
+<div id="log">
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>
