@@ -125,9 +125,9 @@
              <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^$/</span><span class="p">,</span> <span class="s1">&#39;零&#39;</span><span class="p">)</span>
           <span class="o">+</span> <span class="nx">group</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">+</span> <span class="nx">s</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="nx">prefix</span> <span class="o">+</span><span class="err">　</span><span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(零.)*零元/</span><span class="p">,</span> <span class="s1">&#39;元&#39;</span><span class="p">)</span>
-            <span class="err">　　　　　</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(零.)+/g</span><span class="p">,</span> <span class="s1">&#39;零&#39;</span><span class="p">)</span>
-            <span class="err">　　　　　</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^整$/</span><span class="p">,</span> <span class="s1">&#39;零元整&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="nx">prefix</span> <span class="o">+</span> <span class="nx">s</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(零.)*零元/</span><span class="p">,</span> <span class="s1">&#39;元&#39;</span><span class="p">)</span>
+                     <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/(零.)+/g</span><span class="p">,</span> <span class="s1">&#39;零&#39;</span><span class="p">)</span>
+                     <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/^整$/</span><span class="p">,</span> <span class="s1">&#39;零元整&#39;</span><span class="p">);</span>
 <span class="p">};</span>
 </code></pre></div>
 <h1>功能测试</h1>
