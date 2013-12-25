@@ -1,0 +1,872 @@
+<!DOCTYPE html PUBLIC
+ "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:wb="http://open.weibo.com/wb">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="redraiment@gmail.com" />
+    <meta name="keywords" content="redraiment,张泽鹏,iKnowledge" />
+    <meta name="description" content="本文将采用C语言解决一个问题，围绕这个问题不断地变化需求、重构代码， 分别展示两种风格如何从不同的侧面提高代码的可维护性。" />
+
+    <title>你试过这样写C程序吗？ - 子清行 - zzp.me</title>
+
+    <link rel="shortcut icon" type="image/png" href="/resource/image/fav.png" />
+    <link rel="apple-touch-icon" sizes="57x57" type="image/png" href="/resource/image/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="114x114" type="image/png" href="/resource/image/apple-icon-114x114.png" />
+
+    <link rel="stylesheet" type="text/css" href="/resource/style/iKnowledge.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/highlight.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="/resource/style/article.css" media="screen" />
+
+    <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1192214979" type="text/javascript" charset="utf-8"></script>
+    <script language="JavaScript" type="text/javascript" src="/resource/script/iKnowledge.js"></script>
+    <script language="JavaScript" type="text/javascript" src="http://www.google-analytics.com/ga.js"></script>
+  </head>
+  <body>
+    <a name="top"></a>
+    <div id="container">
+      <div id="logo">
+        <input id="search" type="text" value="站内搜索" onkeyup="doSearch(event);" onfocus="doFocus();" onblur="doBlur();"/>
+        <h1>
+          <a href="/">子清行 - zzp.me</a>
+        </h1>
+        <h2>黑夜中孤守一轮明月|喧闹中独享一份清闲</h2>
+      </div>
+      <div id="navigate">
+        <img width="200" height="200" src="/resource/image/avatar.gif" />
+        <div id="bio">
+          <a href="/">我是张泽鹏</a>
+          <div>邮箱：<a href="mailto:redraiment@gmail.com">redraiment@gmail</a></div>
+          <div>微博：<a href="http://weibo.com/redraiment">@redraiment</a></div>
+        </div>
+        <div class="widget">
+          <h1>分类归档</h1>
+          <ul><li><a href="/archive/我是程序员.html">我是程序员(9)</a><ul><li><a href="/archive/我的世界观.html">我的世界观(13)</a></li><li><a href="/archive/幸福生活.html">幸福生活(12)</a></li></ul></li><li><a href="/archive/编程语言生态.html">编程语言生态(7)</a><ul><li><a href="/archive/c语言.html">C语言(3)</a><ul><li><a href="/archive/c语言实验报告.html">实验报告(9)</a></li></ul></li><li><a href="/archive/javascript.html">JavaScript(1)</a><ul><li><a href="/archive/e4x.html">E4X(6)</a></li><li><a href="/archive/服务端js.html">服务端JS(2)</a></li></ul></li><li><a href="/archive/lisp.html">Lisp(3)</a></li></ul></li><li><a href="#">代码分享</a><ul><li><a href="/archive/基础算法.html">基础算法(5)</a></li><li><a href="#">数据结构</a></li><li><a href="/archive/杭电100题.html">杭电100题(100)</a></li><li><a href="/archive/设计模式.html">设计模式(2)</a></li><li><a href="/archive/加密解密.html">加密解密(1)</a></li><li><a href="/archive/图像处理.html">图像处理(1)</a></li><li><a href="/archive/正则表达式.html">正则表达式(1)</a></li><li><a href="/archive/lambda演算.html">Lambda演算(1)</a></li><li><a href="#">解释器</a><ul><li><a href="/archive/basic解释器.html">BASIC解释器(5)</a></li><li><a href="/archive/brainfuck.html">BrainFuck(1)</a></li></ul></li></ul></li><li><a href="#">工具技师</a><ul><li><a href="/archive/命令行超级工具.html">命令行超级工具(7)</a></li><li><a href="/archive/autohotkey.html">AutoHotKey(1)</a></li><li><a href="/archive/clearcase.html">ClearCase(2)</a></li><li><a href="/archive/db2.html">DB2(6)</a></li><li><a href="/archive/emacs.html">Emacs(3)</a></li><li><a href="/archive/jekyll.html">Jekyll(1)</a></li></ul></li><li><a href="#">软件项目</a><ul><li><a href="/archive/iknowledge.html">iKnowledge(4)</a></li><li><a href="/archive/好友买卖外挂.html">好友买卖外挂(3)</a></li><li><a href="/archive/金山词霸生词本转换器.html">金山词霸生词本转换器(2)</a></li><li><a href="/archive/双向管道.html">双向管道(11)</a></li><li><a href="/archive/smallc.html">SmallC(1)</a></li><li><a href="/archive/中文计算器.html">中文计算器(2)</a></li></ul></li></ul>
+        </div>
+        <div class="widget">
+          <h1>时间归档</h1>
+          <ul><li><a href="#">2013年</a><ul><li><a href="/archive/2013-12.html">12月(1)</a></li><li><a href="/archive/2013-11.html">11月(11)</a></li><li><a href="/archive/2013-09.html">09月(1)</a></li><li><a href="/archive/2013-08.html">08月(1)</a></li><li><a href="/archive/2013-04.html">04月(1)</a></li><li><a href="/archive/2013-03.html">03月(1)</a></li><li><a href="/archive/2013-01.html">01月(1)</a></li></ul></li><li><a href="#">2012年</a><ul><li><a href="/archive/2012-10.html">10月(1)</a></li><li><a href="/archive/2012-09.html">09月(1)</a></li><li><a href="/archive/2012-08.html">08月(4)</a></li><li><a href="/archive/2012-06.html">06月(1)</a></li><li><a href="/archive/2012-04.html">04月(1)</a></li><li><a href="/archive/2012-03.html">03月(1)</a></li></ul></li><li><a href="#">2011年</a><ul><li><a href="/archive/2011-11.html">11月(1)</a></li><li><a href="/archive/2011-09.html">09月(1)</a></li><li><a href="/archive/2011-08.html">08月(2)</a></li><li><a href="/archive/2011-07.html">07月(2)</a></li><li><a href="/archive/2011-06.html">06月(10)</a></li><li><a href="/archive/2011-03.html">03月(1)</a></li><li><a href="/archive/2011-02.html">02月(2)</a></li><li><a href="/archive/2011-01.html">01月(1)</a></li></ul></li><li><a href="#">2010年</a><ul><li><a href="/archive/2010-08.html">08月(1)</a></li><li><a href="/archive/2010-05.html">05月(1)</a></li><li><a href="/archive/2010-02.html">02月(1)</a></li><li><a href="/archive/2010-01.html">01月(4)</a></li></ul></li><li><a href="#">2009年</a><ul><li><a href="/archive/2009-12.html">12月(2)</a></li><li><a href="/archive/2009-11.html">11月(6)</a></li><li><a href="/archive/2009-10.html">10月(4)</a></li><li><a href="/archive/2009-09.html">09月(9)</a></li><li><a href="/archive/2009-08.html">08月(9)</a></li><li><a href="/archive/2009-07.html">07月(8)</a></li><li><a href="/archive/2009-06.html">06月(2)</a></li><li><a href="/archive/2009-05.html">05月(1)</a></li><li><a href="/archive/2009-04.html">04月(2)</a></li><li><a href="/archive/2009-02.html">02月(1)</a></li><li><a href="/archive/2009-01.html">01月(1)</a></li></ul></li><li><a href="#">2008年</a><ul><li><a href="/archive/2008-10.html">10月(1)</a></li><li><a href="/archive/2008-09.html">09月(3)</a></li><li><a href="/archive/2008-08.html">08月(2)</a></li><li><a href="/archive/2008-07.html">07月(2)</a></li><li><a href="/archive/2008-06.html">06月(100)</a></li><li><a href="/archive/2008-03.html">03月(1)</a></li><li><a href="/archive/2008-02.html">02月(1)</a></li><li><a href="/archive/2008-01.html">01月(2)</a></li></ul></li><li><a href="#">2007年</a><ul><li><a href="/archive/2007-08.html">08月(2)</a></li><li><a href="/archive/2007-07.html">07月(1)</a></li><li><a href="/archive/2007-02.html">02月(10)</a></li></ul></li></ul>
+        </div>
+      </div>
+      <div id="main">
+        <div id="abstract">
+          <h1>你试过这样写C程序吗？</h1>
+        </div>
+        <div id="content">
+          <div class="tags">
+  关键字：
+  
+  <a href="/archive/编程语言生态.html">编程语言生态</a>
+  
+</div>
+<div id="article">
+  <h1>摘要</h1>
+
+<p>面向对象风格和函数式编程风格是编写代码的两种风格，面向对象风格早为大众所认知，函数式风格也渐渐受到大家的关注。网上为其布道的文章不少，有人赞扬有人不屑，但鲜有展示一个完整例子的。例如很多人对函数式风格的印象只是“有人说它很好，但不清楚到底好在哪儿，更不知如何在实际的项目中获益”。</p>
+
+<p>本文将采用C语言解决一个问题，围绕这个问题不断地变化需求、重构代码，分别展示两种风格如何从不同的侧面提高代码的可维护性。如果你没有耐心读完这篇长文章，可以参见：[附录II]直接看代码，但这篇文章会向你解释为什么代码会写成这样，以及写成这样的好处。</p>
+
+<p>注：本文纯属个人观点，如有雷同，非常荣幸！</p>
+
+<p>关键字：C语言; 结构化编程; 面向对象编程; 函数式编程</p>
+
+<h1>什么是函数式风格？</h1>
+
+<p>面向对象风格大家都耳熟能详，而提到函数式风格，脑海中或多或少会闪过一些耳熟能详的名词：无副作用、无状态、易于并行编程，甚至是Lisp那扭曲的前缀表达式。追根溯源，函数式风格源自λ演算：函数能作为值传递给其他函数或由其他函数返回。其中“函数”是一种抽象的概念，可以理解成代码块，在C语言里叫函数或过程，在Java中叫成员方法……因此，函数式风格的本质是函数作为“第一等公民”。在我看来，诸如闭包、匿名函数等特性仅是添头，例如Emacs Lisp最初不支持闭包，但不影响它是一门支持函数式风格的编程语言。</p>
+
+<p>有些人会把函数式风格与面向对象风格对立起来，但在我看来这两种风格都是为了提高代码的可维护性，可以相辅相成：</p>
+
+<ul>
+<li>函数式风格重点是增强类型系统：一些编程语言提供的基础数据类型仅有数值型和字符串型，函数式风格要求函数也是基础数据类型，即代码也是一种数据；</li>
+<li>面向对象风格侧重代码的组织形式：要求把数据和操作这些数据的函数组织在同一个类中，提高内聚；对象之间通过调用开放的接口通讯，降低耦合。</li>
+</ul>
+
+<h1>代码即数据的作用？</h1>
+
+<p>使用不支持函数式风格的编程语言开发，将迫使我们永远在语言恰好提供的基础功能上工作。例如迭代只能使用for、while等关键字；读写文件每次都要写fopen、fclose；并行加锁也少不了lock和unlock。面对这些大同小异的冗余代码总会很无奈：如果XX语言能提供XX特性该多好啊！</p>
+
+<p>代码即数据让这一切成为可能，它允许你自定义控制语句。如果语言不支持某个期望的特性，那就自己动手加一个！后文将展示如何自定义控制语句，以及它如何提高代码的可维护性。</p>
+
+<h1>为什么选C语言？</h1>
+
+<p>函数若要作为“第一等公民”，至少需要满足以下四条特权：</p>
+
+<ol>
+<li>可以用变量命名；</li>
+<li>可以提供给过程作为参数；</li>
+<li>可以由过程作为结果返回；</li>
+<li>可以包含在数据结构中。</li>
+</ol>
+
+<p>对照之下会惊讶地发现，C这门看似离函数式风格最远的编程语言居然也符合上述条件；此外，相比其他对函数式风格支持更好的语言（如Lisp、Haskell等），至少C的语法不那么古怪；何况熟悉C语系（如Java、C#等）语法的同学也更多，方便大家用自己熟悉的语言实践。</p>
+
+<h1>问题描述</h1>
+
+<p>作为贯穿全文的主线，这有一个问题需要你开发一个C程序来完成任务：有一个存有职员信息（姓名、年龄、工资）的文件“work.txt”，内容如下：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">William 35 25000
+Kishore 41 35000
+Wallace 37 20000
+Bruce 39 15000
+</code></pre></div>
+<ol>
+<li>要求从文件中读取这些信息，并输出到屏幕上；</li>
+<li>为所有工资小于三万的员工涨3000元；</li>
+<li>在屏幕上输出薪资调整后的结果；</li>
+<li>把调整后的结果保存到原始文件。</li>
+</ol>
+
+<p>即运行的结果是屏幕上要有八行输出，“work.txt”的内容将变成：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">William 35 28000
+Kishore 41 35000
+Wallace 37 23000
+Bruce 39 18000
+</code></pre></div>
+<h1>快速实现</h1>
+
+<p>这个问题很简单，简单到把所有代码都塞到main函数里也不觉得太长：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">struct</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">name</span><span class="p">[</span><span class="mi">8</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">salary</span><span class="p">;</span>
+  <span class="p">}</span> <span class="n">e</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+  <span class="kt">FILE</span> <span class="o">*</span><span class="n">istream</span><span class="p">,</span> <span class="o">*</span><span class="n">ostream</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">length</span><span class="p">;</span>
+
+  <span class="n">istream</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">fscanf</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span> <span class="s">&quot;%s%d%d&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">age</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">salary</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">age</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">salary</span><span class="p">);</span>
+  <span class="n">length</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">istream</span><span class="p">);</span>
+
+  <span class="n">ostream</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">salary</span> <span class="o">&lt;</span> <span class="mi">30000</span><span class="p">)</span>
+      <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">salary</span> <span class="o">+=</span> <span class="mi">3000</span><span class="p">;</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">age</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">salary</span><span class="p">);</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">ostream</span><span class="p">,</span> <span class="s">&quot;%s %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">age</span><span class="p">,</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">salary</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">ostream</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>其中第一个循环不断地从work.txt中读数据，直到文件末尾，同时把信息输出到屏幕，即实现了需求#1；第二个循环遍历所有数据，为薪资小于三万的职员增加三千元（需求#2），并把调整后的结果输出屏幕（需求#3）和work.txt中（需求#4）。</p>
+
+<h1>当变化来临时</h1>
+
+<p>上面的代码简洁明了，而且运行良好，作为应付无需维护、需求亦不会变化的课后作业绰绰有余。可惜，我们没有活在新闻联播里，需求总在不断地变化，以至于要不停地维护代码。下面从维护的角度罗列几个问题，并尝试重构。</p>
+
+<h2>当文件打开失败时</h2>
+
+<p>程序发布之后，就面临各种苛刻的运行环境，例如文件<code>work.txt</code>可能没有读或写权限。代码的维护者需要通过错误日志里的信息定位出错的位置，但不是所有环境都会提供充足的信息，例如<code>Linux</code>下，没有读或写权限都只输出“<code>Segmentation fault</code>”，仅凭这段错误信息无法确定是哪一句<code>fopen</code>出错。</p>
+
+<h2>当职员信息数量变化时</h2>
+
+<p>样例中只有4条记录，不意味着真实环境中永远只有4条记录，甚至可以认为记录的数目是不确定的。臆断结构体数组的最大长度是4或其他数值都是不合适的，需要能自适应不同的数目。</p>
+
+<h2>当字段类型变化时</h2>
+
+<p>虽然样例中工资都是整数，但真实环境中工资很可能是浮点数。把<code>int salary</code>改成<code>float salary</code>意味着所有涉及输入输出的地方都要修改：<code>%d</code>换成<code>%f</code>。</p>
+
+<p>在短短不到30行的代码里尚且有4处需要修改，换成庞大的项目，维护成本将不可估量。</p>
+
+<h2>当字段数目变化时</h2>
+
+<p>客户提出职员信息中需新增一列，保存员工入职的年份。这带来的影响和上个问题一样。</p>
+
+<h2>当业务逻辑变化时</h2>
+
+<p>本例的业务逻辑就是调薪和输出，几乎都集中在了第二个循环体中。如果不断地增加新的业务逻辑，循环体就会爆炸式地增长。而且业务逻辑可能需要相互组合，代码就变得杂乱无章。</p>
+
+<h1>面向对象风格</h1>
+
+<p>上节提到的变化都很常见，你肯定还能想出更多。它们综合的维护成本已不比完全重写低，即代码应对合理需求变化的能力差，可维护性低。究其原因，是相同或相似的代码散落在多处，因此一个变化就引起多处更改，误改或漏改都在所难免。</p>
+
+<p>回顾前文面向对象风格的宗旨：把数据和操作数据的函数集中在一起，开放操作数据的接口供其它对象或方法调用。这恰好能解决把操作数据的方法散落在各处的问题，下面就用面向对象的思想重构代码。</p>
+
+<h2>抽象数据结构</h2>
+
+<p>首先需要抽象出要处理的对象类型，此处为结构体命名即可：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_Employee</span> <span class="p">{</span>
+  <span class="p">...</span>
+<span class="p">}</span> <span class="o">*</span><span class="n">Employee</span><span class="p">;</span>
+</code></pre></div>
+<p>需要注意的是，<code>Employee</code>是结构体<code>_Employee</code>的指针，因为操作结构体，使用指针比直接使用对象更频繁。</p>
+
+<p>接着要选择一种数据结构作为容器，由于数据是一组个数不确定的线性结构，单链表正好适合这样的场景：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_Employee</span> <span class="p">{</span>
+  <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">salary</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">_Employee</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">*</span><span class="n">Employee</span><span class="p">;</span>
+</code></pre></div>
+<h2>开放接口</h2>
+
+<p>根据需求，职员对象至少提供从文件中读取信息、输出到屏幕、保存到文件、调整薪资四项功能。其中输出到屏幕和保存到文件可以合并成输出到输出流中，因此它将开放以下四个接口：</p>
+
+<ol>
+<li><code>employee_read</code>：批量从输入流中读取职员信息并返回</li>
+<li><code>employee_free</code>：批量释放动态申请的空间</li>
+<li><code>employee_print</code>：批量输出职员信息到输出流</li>
+<li><code>employee_adjust_salary</code>：遍历职员信息并调整薪资</li>
+</ol>
+
+<h2>构造函数</h2>
+
+<p>即创建并初始化对象的函数。</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">static</span> <span class="n">Employee</span> <span class="nf">employee_read_node</span><span class="p">(</span><span class="n">File</span> <span class="n">istream</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">_Employee</span><span class="p">));</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">fscanf</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span> <span class="s">&quot;%s%d%d&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">employee_free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">e</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>构造函数先通过<code>calloc</code>申请了一片内存空间（并自动初始化为0），再从给定的输入流中读取职员信息来初始化对象，如果输入流中没有更多的数据，就释放空间并返回空指针。</p>
+
+<p>该函数只能构造单个对象，而文件中有一组对象，且需要串联成单链表结构，因此接口<code>employee_read</code>的工作就是组织这些对象：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="n">Employee</span> <span class="nf">employee_read</span><span class="p">(</span><span class="n">File</span> <span class="n">istream</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">e</span> <span class="o">=</span> <span class="n">employee_read_node</span><span class="p">(</span><span class="n">istream</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+      <span class="n">tail</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">head</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>由于<code>employee_read_node</code>是一个辅助函数，不是对外开放的接口，所以使用<code>static</code>修饰把作用域限定在当前文件。</p>
+
+<h2>析构函数</h2>
+
+<p>因为对象的空间是动态申请的，需要提供手工释放的析构函数，即<code>employee_free</code>：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">employee_free</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">p</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>输出</h2>
+
+<p>如果说输入是把字符串反序列化成对象的过程，那输出就是输入的逆运算，即把对象序列化成字符串的过程。因此，输出的要求是格式必须和输入文件保持一致，允许程序多次处理。此处的输出就是遍历整个集合并输出到输出流：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">employee_print</span><span class="p">(</span><span class="n">File</span> <span class="n">ostream</span><span class="p">,</span> <span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(;</span> <span class="n">e</span><span class="p">;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">ostream</span><span class="p">,</span> <span class="s">&quot;%s %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>核心业务逻辑：调整薪资</h2>
+
+<p>与输出类似，调整薪资也是遍历整个集合，为符合要求的职员调薪：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">employee_adjust_salary</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(;</span> <span class="n">e</span><span class="p">;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span> <span class="o">&lt;</span> <span class="mi">30000</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span> <span class="o">+=</span> <span class="mi">3000</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>解决问题</h2>
+
+<p>经过以上几个步骤，为职员信息管理这个领域定义了一套方便的接口。此时的<code>main</code>函数不用再操心数据具体以什么形式组织、如何获取、如何输出，只需向<code>Employee</code>对象发送消息（调用接口）即可完成任务。</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">File</span> <span class="n">istream</span><span class="p">,</span> <span class="n">ostream</span><span class="p">;</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="n">istream</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">istream</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Cannot open work.txt with r mode.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="n">employee_read</span><span class="p">(</span><span class="n">istream</span><span class="p">);</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">istream</span><span class="p">);</span>
+
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+
+  <span class="n">employee_adjust_salary</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+
+  <span class="n">ostream</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ostream</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Cannot open work.txt with w mode.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">ostream</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">ostream</span><span class="p">);</span>
+
+  <span class="n">employee_free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>重构后的代码与需求的描述更接近，虽然代码量膨胀了三倍，但能解决前文的问题：</p>
+
+<ol>
+<li>文件指针做空指针检查</li>
+<li>单链表容量能自动扩展</li>
+<li>字段类型或数目变化时仅修改输入和输出两处</li>
+<li>每项业务逻辑为独立的函数，易扩展且组合灵活</li>
+</ol>
+
+<p>完整的代码请参见：[附录I]</p>
+
+<h1>欢迎变化再次光临</h1>
+
+<p>经过重构的代码可维护性更好，因为每个函数的职责是单一的：</p>
+
+<ol>
+<li><code>employee_read_node</code>：应对输入源的变化，如列的顺序改变；</li>
+<li><code>employee_read</code>：应对集合结构的变化，如单向链表改成双向链表；</li>
+<li><code>employee_print</code>：应对输出格式的变化，如输出成CSV结构；</li>
+<li><code>employee_adjust_salary</code>：应对业务逻辑的变化，如调薪幅度增大。</li>
+</ol>
+
+<p>不过，代码仍有不少重复之处，“重复”是维护性的大敌。想想你会如何应付下面这些问题？</p>
+
+<h2>数据源升级</h2>
+
+<p>上游系统在升级后，work.txt的第一行提供了行数：</p>
+<div class="highlight"><pre><code class="text language-text" data-lang="text">4
+William 35 25000
+Kishore 41 35000
+Wallace 37 20000
+Bruce 39 15000
+</code></pre></div>
+<p>而且，原系统频繁地申请空间也影响到性能。经过权衡，决定用数组取代单链表，这样只需一次性申请足够大的空间。</p>
+
+<p>凭借面向对象风格的优势，对接口的实现的修改不会影响接口的使用，因此<code>main</code>函数无需任何修改。但对<code>Employee</code>对象而言却是灾难：每个接口的实现都与内部数据结构紧紧地绑在一起。几乎所有实现里都用<code>for</code>或<code>while</code>循环遍历整个链表，底层数据结构的变化意味着遍历方式的变化，即所有接口的实现全部需要重写！</p>
+
+<h2>优雅的访问文件</h2>
+
+<p>但凡涉及访问文件的代码，都需要<code>fopen</code>、检查文件指针、存取数据、<code>fclose</code>，这几乎成了一种魔咒。比如<code>main</code>函数中，建立文件访问上下文的代码占去近一半的代码量。考虑规避这种魔咒，自动管理文件资源，在操作完成后自动关闭。</p>
+
+<h1>函数式风格</h1>
+
+<p>以上两个需求又足以让整个工程推倒重来。需求#1要求抽象出遍历集合的方法，在迭代的过程中执行各自的循环体处理数据；需求#2则要创建一种上下文，能自动打开文件，在执行访问操作完成后自动关闭。它们都涉及将代码块作为函数参数，在某个时刻调用，这正是函数式风格擅长的领域。</p>
+
+<p>C语言中，函数指针类型的变量可以指向参数类型与返回值类型都兼容的函数。虽然C不允许嵌套地定义函数或定义匿名函数，但确实允许将函数作为值传递，例如<code>qsort</code>的比较函数。</p>
+
+<h2>自定义遍历语句</h2>
+
+<p>先试着从<code>employee_print</code>和<code>employee_adjust_salary</code>中抽象出迭代过程：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">Callback</span><span class="p">)(</span><span class="n">Employee</span><span class="p">);</span>
+
+<span class="kt">void</span> <span class="nf">foreach</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">,</span> <span class="n">Callback</span> <span class="n">fn</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(;</span> <span class="n">e</span><span class="p">;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fn</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>其中<code>Callback</code>是自定义的函数指针类型，能接收一个<code>Employee</code>类型的参数，并且无返回值。</p>
+
+<p>上述过程照搬了两个函数中相同的代码，但作为通用的迭代方法，这个实现有一个<code>bug</code>：当<code>fn</code>的调用破坏了<code>e-&gt;next</code>的值时（例如调用<code>free</code>），<code>e = e-&gt;next</code>的值就变得未知。为了规避这个问题，需引入一个额外的变量：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">foreach</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">,</span> <span class="n">Callback</span> <span class="n">fn</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">p</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="n">fn</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>在<code>fn</code>破坏节点内容前先获得<code>next</code>节点的引用，这样就能避免<code>free</code>这样具破坏性的过程影响遍历。使用这个自定义的控制语句（或高阶函数）重构<code>employee_free</code>函数，让它从遍历的细节中解放：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span> <span class="nf">employee_free_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_free</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_free_node</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>由于C不支持定义匿名函数，因此不得不定义一个释放单个节点的辅助函数。重构<code>employee_adjust_salary</code>与此类似：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span> <span class="nf">employee_adjust_salary_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span> <span class="o">&lt;</span> <span class="mi">30000</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span> <span class="o">+=</span> <span class="mi">3000</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_adjust_salary</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_adjust_salary_node</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>文件访问上下文</h2>
+
+<p>但是，重构<code>employee_print</code>的过程遇到了障碍：它需要一个额外的输出流，造成接口与<code>Callback</code>不兼容。似乎只能再为<code>IO</code>接口额外定义能接收两个参数的<code>IoCallback</code>接口，但如此一来又不得不实现一套专门处理它的<code>io_foreach</code>，这是无法接受的！其实，利用偏函数技术能很优雅地解决这个问题，可惜C语言不允许定义匿名函数，也不支持闭包，只能感叹：臣妾做不到啊！由此可见匿名函数与闭包对函数式风格的友好性。</p>
+
+<p>经过深思熟虑，我做出了一个很艰难地决定：使用<code>freopen</code>重定向标准输入输出流。这就能使用<code>printf</code>输出，无需提供额外的文件流。</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">employee_print</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(;</span> <span class="n">e</span><span class="p">;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="p">...</span>
+<span class="n">ostream</span> <span class="o">=</span> <span class="n">freopen</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">,</span> <span class="n">stdout</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="n">employee_print</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+</code></pre></div>
+<p>如此，<code>employee_print</code>的接口与<code>Callback</code>也兼容了，可以使用<code>foreach</code>来重构：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span> <span class="nf">employee_print_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_print</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_print_node</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>有了以上基础，创建上下文的方法就呼之欲出了：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">with_open_file</span><span class="p">(</span><span class="n">String</span> <span class="n">filename</span><span class="p">,</span> <span class="n">String</span> <span class="n">mode</span><span class="p">,</span> <span class="n">Callback</span> <span class="n">fn</span><span class="p">,</span> <span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="n">freopen</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="p">(</span><span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;r&#39;</span><span class="o">?</span> <span class="n">stdin</span><span class="o">:</span> <span class="n">stdout</span><span class="p">));</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Cannot open %s with %s mode.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">fn</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>先把重定文件流到标准输入或输出流；执行回调函数；关闭文件流。如此，保存数据到文件的代码将简化成一句话：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="n">with_open_file</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">,</span> <span class="n">employee_print</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+</code></pre></div>
+<p>对我而言，这样的代码很优雅，我迫不及待地希望<code>employee_read</code>也支持这种方式！</p>
+
+<p>但<code>employee_read</code>又是一块难啃的骨头：它不仅参数类型与<code>Callback</code>不兼容，连返回值类型也不同。为将返回值重构成<code>void</code>，不得不提供一个额外参数保存返回值，并且类型是<code>Employee*</code>：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span> <span class="nf">employee_read_node</span><span class="p">(</span><span class="n">File</span> <span class="n">istream</span><span class="p">,</span> <span class="n">Employee</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">_Employee</span><span class="p">));</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">fscanf</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span> <span class="s">&quot;%s%d%d&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">employee_free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_read</span><span class="p">(</span><span class="n">File</span> <span class="n">istream</span><span class="p">,</span> <span class="n">Employee</span><span class="o">*</span> <span class="n">head</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">employee_read_node</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="p">),</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">head</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+      <span class="n">tail</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>看起来这样就可以使用与<code>employee_print</code>相同的技巧去除<code>istream</code>这个参数了。其实不然，<code>Callback</code>的参数是<code>Employee</code>，不是<code>Employee*</code>，接口依旧不兼容。这也是静态类型对函数式风格不友好的一个例子，静态类型在编译期就确定变量的类型，限制越多则灵活性越差，相应的受众面也越窄。</p>
+
+<p>当然，C语言也提供了一个替代方案，使用万能指针<code>void*</code>作为<code>Callback</code>的参数（例如<code>qsort</code>就是这么做的）。但这样做，要么所有实现都要改成<code>void*</code>，然后在函数里使用强制转换；要么得忍受编译器一堆类型不匹配的<code>warning</code>。权衡再三，还是决定让<code>employee_read</code>牺牲小我，<code>Callback</code>接口继续使用<code>Employee</code>做参数类型，在<code>employee_read</code>中将参数类型强制转换成<code>Employee*</code>。</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="k">static</span> <span class="kt">void</span> <span class="nf">employee_read_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="o">*</span><span class="p">)</span> <span class="n">node</span><span class="p">;</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">_Employee</span><span class="p">));</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_read</span><span class="p">(</span><span class="n">Employee</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="o">*</span><span class="p">)</span> <span class="n">list</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">employee_read_node</span><span class="p">((</span><span class="n">Employee</span><span class="p">)</span><span class="o">&amp;</span><span class="n">e</span><span class="p">),</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>解决问题</h2>
+
+<p>重构后的主函数变得愈加简洁，没有啰嗦的文件操作，甚至可以看成描述原始需求的伪代码。</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="n">with_open_file</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">,</span> <span class="n">employee_read</span><span class="p">,</span> <span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+
+  <span class="n">employee_adjust_salary</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">with_open_file</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">,</span> <span class="n">employee_print</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+
+  <span class="n">employee_free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>重构后的完整代码请参见：[附录II]。回到需求#1，切换数据结构。从单链表切换成数组，结构体需把“<code>struct _Employee *next</code>”替换成“<code>int length</code>”。而用于创建集合的<code>employee_read</code>更是责不旁贷：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">employee_read</span><span class="p">(</span><span class="n">Employee</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">);</span>
+  <span class="o">*</span><span class="p">((</span><span class="n">Employee</span><span class="o">*</span><span class="p">)</span> <span class="n">list</span><span class="p">)</span> <span class="o">=</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">_Employee</span><span class="p">));</span>
+  <span class="n">e</span><span class="o">-&gt;</span><span class="n">length</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_read_node</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>与之前逐个为对象申请不同，现在一次性申请，即简化了代码又提高了性能。由于内存申请被转移出，<code>employee_read_node</code>也得到极大的简化：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">employee_read_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s%d%d&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>因为空间已提前申请好，因此无需传入指针。伴随空间申请方式的改变，空间释放的方式也要相应调整：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">employee_free</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>不再需要辅助函数<code>employee_free_node</code>。接着是遍历：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">foreach</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">,</span> <span class="n">Callback</span> <span class="n">fn</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fn</span><span class="p">(</span><span class="n">e</span><span class="o">++</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>同样需要额外的变量length保存最初长度的信息。最后，还有一个可能意想不到的改动——<code>employee_print</code>。前文提过，“输出”是“输入”的逆操作，它的职责除了展示和保存数据，还要保持格式与输入兼容，即输出的数据还能再次被输入处理。因此需要在开头输出行数：</p>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="kt">void</span> <span class="nf">employee_print</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">);</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_print_node</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>修改后的代码不仅实现了需求，而且变得愈加简洁！重点是无需修改业务处理的代码，因此业务逻辑也繁杂，函数式风格的优势越明显。完整代码请参见：[附录III]。</p>
+
+<h1>轮到你了！</h1>
+
+<p>客户对这次重构非常满意！这一回，他们希望<code>foreach</code>能改成并行，即每个循环体都在独立的线程中执行，那效率又会得到飞跃。</p>
+
+<p>现在轮到你了，你会如何实现客户的需求？</p>
+
+<h1>附录I：面向对象风格代码</h1>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">String</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<span class="k">typedef</span> <span class="kt">FILE</span><span class="o">*</span> <span class="n">File</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_Employee</span> <span class="p">{</span>
+  <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">salary</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">_Employee</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">*</span><span class="n">Employee</span><span class="p">;</span>
+
+<span class="cm">/* Destructor */</span>
+<span class="kt">void</span> <span class="nf">employee_free</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">p</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Input */</span>
+<span class="k">static</span> <span class="n">Employee</span> <span class="nf">employee_read_node</span><span class="p">(</span><span class="n">File</span> <span class="n">istream</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">_Employee</span><span class="p">));</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">fscanf</span><span class="p">(</span><span class="n">istream</span><span class="p">,</span> <span class="s">&quot;%s%d%d&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">employee_free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">e</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">Employee</span> <span class="nf">employee_read</span><span class="p">(</span><span class="n">File</span> <span class="n">istream</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="k">while</span> <span class="p">(</span><span class="n">e</span> <span class="o">=</span> <span class="n">employee_read_node</span><span class="p">(</span><span class="n">istream</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+      <span class="n">tail</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="n">head</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="k">return</span> <span class="n">head</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* Output */</span>
+<span class="kt">void</span> <span class="nf">employee_print</span><span class="p">(</span><span class="n">File</span> <span class="n">ostream</span><span class="p">,</span> <span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(;</span> <span class="n">e</span><span class="p">;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">ostream</span><span class="p">,</span> <span class="s">&quot;%s %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Business Logic */</span>
+<span class="kt">void</span> <span class="nf">employee_adjust_salary</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(;</span> <span class="n">e</span><span class="p">;</span> <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span> <span class="o">&lt;</span> <span class="mi">30000</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span> <span class="o">+=</span> <span class="mi">3000</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">File</span> <span class="n">istream</span><span class="p">,</span> <span class="n">ostream</span><span class="p">;</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="n">istream</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">istream</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Cannot open work.txt with r mode.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="n">employee_read</span><span class="p">(</span><span class="n">istream</span><span class="p">);</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">istream</span><span class="p">);</span>
+
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+
+  <span class="n">employee_adjust_salary</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">stdout</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+
+  <span class="n">ostream</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ostream</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Cannot open work.txt with w mode.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">ostream</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">ostream</span><span class="p">);</span>
+
+  <span class="n">employee_free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h1>附录II：函数式风格代码</h1>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">String</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<span class="k">typedef</span> <span class="kt">FILE</span><span class="o">*</span> <span class="n">File</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_Employee</span> <span class="p">{</span>
+  <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">salary</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">_Employee</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">*</span><span class="n">Employee</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">Callback</span><span class="p">)(</span><span class="n">Employee</span><span class="p">);</span>
+
+<span class="cm">/* High Order Functions  */</span>
+<span class="kt">void</span> <span class="nf">foreach</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">,</span> <span class="n">Callback</span> <span class="n">fn</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">p</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">;</span>                <span class="cm">/* Avoid *next be changed in fn */</span>
+    <span class="n">fn</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">with_open_file</span><span class="p">(</span><span class="n">String</span> <span class="n">filename</span><span class="p">,</span> <span class="n">String</span> <span class="n">mode</span><span class="p">,</span> <span class="n">Callback</span> <span class="n">fn</span><span class="p">,</span> <span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="n">freopen</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="p">(</span><span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;r&#39;</span><span class="o">?</span> <span class="n">stdin</span><span class="o">:</span> <span class="n">stdout</span><span class="p">));</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Cannot open %s with %s mode.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">fn</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Destructor */</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">employee_free_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_free</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_free_node</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Input */</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">employee_read_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="o">*</span><span class="p">)</span> <span class="n">node</span><span class="p">;</span>
+  <span class="n">e</span> <span class="o">=</span> <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">_Employee</span><span class="p">));</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e</span> <span class="o">!=</span> <span class="nb">NULL</span> <span class="o">&amp;&amp;</span> <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s%d%d&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">employee_free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+    <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_read</span><span class="p">(</span><span class="n">Employee</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="o">*</span><span class="p">)</span> <span class="n">list</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">employee_read_node</span><span class="p">((</span><span class="n">Employee</span><span class="p">)</span><span class="o">&amp;</span><span class="n">e</span><span class="p">),</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">head</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">tail</span><span class="o">-&gt;</span><span class="n">next</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+      <span class="n">tail</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="o">*</span><span class="n">head</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/* Output */</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">employee_print_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_print</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_print_node</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Business Logic */</span>
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">employee_adjust_salary_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span> <span class="o">&lt;</span> <span class="mi">30000</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span> <span class="o">+=</span> <span class="mi">3000</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_adjust_salary</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_adjust_salary_node</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="n">with_open_file</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">,</span> <span class="n">employee_read</span><span class="p">,</span> <span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+
+  <span class="n">employee_adjust_salary</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">with_open_file</span><span class="p">(</span><span class="s">&quot;work.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">,</span> <span class="n">employee_print</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+
+  <span class="n">employee_free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h1>附录III：改造成用数组的代码</h1>
+<div class="highlight"><pre><code class="c language-c" data-lang="c"><span class="cp">#include &lt;stdlib.h&gt;</span>
+<span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="k">typedef</span> <span class="kt">char</span> <span class="n">String</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<span class="k">typedef</span> <span class="kt">FILE</span><span class="o">*</span> <span class="n">File</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="k">struct</span> <span class="n">_Employee</span> <span class="p">{</span>
+  <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">salary</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">length</span><span class="p">;</span>
+<span class="p">}</span> <span class="o">*</span><span class="n">Employee</span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">Callback</span><span class="p">)(</span><span class="n">Employee</span><span class="p">);</span>
+
+<span class="cm">/* High Order Functions  */</span>
+<span class="kt">void</span> <span class="nf">foreach</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">,</span> <span class="n">Callback</span> <span class="n">fn</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fn</span><span class="p">(</span><span class="n">e</span><span class="o">++</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">with_open_file</span><span class="p">(</span><span class="n">String</span> <span class="n">filename</span><span class="p">,</span> <span class="n">String</span> <span class="n">mode</span><span class="p">,</span> <span class="n">Callback</span> <span class="n">fn</span><span class="p">,</span> <span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="n">freopen</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">,</span> <span class="p">(</span><span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="sc">&#39;r&#39;</span><span class="o">?</span> <span class="n">stdin</span><span class="o">:</span> <span class="n">stdout</span><span class="p">));</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">file</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;Cannot open %s with %s mode.</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">filename</span><span class="p">,</span> <span class="n">mode</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">fn</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">fclose</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Destructor */</span>
+<span class="kt">void</span> <span class="nf">employee_free</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Input */</span>
+<span class="kt">void</span> <span class="nf">employee_read_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%s%d%d&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_read</span><span class="p">(</span><span class="n">Employee</span> <span class="n">list</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+
+  <span class="n">scanf</span><span class="p">(</span><span class="s">&quot;%d&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">size</span><span class="p">);</span>
+  <span class="o">*</span><span class="p">((</span><span class="n">Employee</span><span class="o">*</span><span class="p">)</span> <span class="n">list</span><span class="p">)</span> <span class="o">=</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="n">calloc</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span> <span class="n">_Employee</span><span class="p">));</span>
+  <span class="n">e</span><span class="o">-&gt;</span><span class="n">length</span> <span class="o">=</span> <span class="n">size</span><span class="p">;</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_read_node</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Output */</span>
+<span class="kt">void</span> <span class="nf">employee_print_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s %d %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">age</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_print</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">e</span><span class="o">-&gt;</span><span class="n">length</span><span class="p">);</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_print_node</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* Business Logic */</span>
+<span class="kt">void</span> <span class="nf">employee_adjust_salary_node</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span> <span class="o">&lt;</span> <span class="mi">30000</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">e</span><span class="o">-&gt;</span><span class="n">salary</span> <span class="o">+=</span> <span class="mi">3000</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">employee_adjust_salary</span><span class="p">(</span><span class="n">Employee</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">foreach</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">employee_adjust_salary_node</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Employee</span> <span class="n">e</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+
+  <span class="n">with_open_file</span><span class="p">(</span><span class="s">&quot;work.array&quot;</span><span class="p">,</span> <span class="s">&quot;r&quot;</span><span class="p">,</span> <span class="n">employee_read</span><span class="p">,</span> <span class="p">(</span><span class="n">Employee</span><span class="p">)</span><span class="o">&amp;</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+
+  <span class="n">employee_adjust_salary</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">employee_print</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+  <span class="n">with_open_file</span><span class="p">(</span><span class="s">&quot;work.array&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">,</span> <span class="n">employee_print</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+
+  <span class="n">employee_free</span><span class="p">(</span><span class="n">e</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h1>附录IV：Common Lisp的解决方案</h1>
+
+<p>从函数式风格重构的过程能体会到，如果C语言能支持动态类型，那就不必在<code>employee_read</code>中做强制转换；如果C语言支持匿名函数，亦不用写这么多小函数；如果C语言除了能读入整型、字符串等基础类型，还能只能读入数组、结构体等复合类型，就无需<code>employee_read</code>和<code>employee_print</code>等输入输出函数……</p>
+
+<p>许多对函数式风格支持更好的编程语言（如Python、Ruby、Lisp等）已经让这些“如果”变成现实！看看Common Lisp的解决方案：</p>
+<div class="highlight"><pre><code class="common-lisp language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">defparameter</span> <span class="nv">e</span> <span class="p">(</span><span class="nb">with-open-file</span> <span class="p">(</span><span class="nv">f</span> <span class="l-Other">#P&quot;work.lisp&quot;</span><span class="p">)</span> <span class="p">(</span><span class="nb">read</span> <span class="nv">f</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">print</span> <span class="nv">e</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">p</span> <span class="nv">e</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if</span> <span class="p">(</span><span class="nb">&lt;</span> <span class="p">(</span><span class="nb">third</span> <span class="nv">p</span><span class="p">)</span> <span class="mi">30000</span><span class="p">)</span>
+    <span class="p">(</span><span class="nb">incf</span> <span class="p">(</span><span class="nb">third</span> <span class="nv">p</span><span class="p">)</span> <span class="mi">3000</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nb">print</span> <span class="nv">e</span><span class="p">)</span>
+
+<span class="p">(</span><span class="nb">with-open-file</span> <span class="p">(</span><span class="nv">f</span> <span class="l-Other">#P&quot;work.lisp&quot;</span> <span class="ss">:direction</span> <span class="ss">:output</span><span class="p">)</span> <span class="p">(</span><span class="nb">print</span> <span class="nv">e</span> <span class="nv">f</span><span class="p">))</span>
+</code></pre></div>
+<p>尝试用你自己熟悉的编程语言解决这个问题，并评估它的可维护性。</p>
+
+</div>
+<div id="log">
+  
+</div>
+
+        </div>
+        <wb:comments url="auto" fontsize="14" width="auto" skin="silver" appkey="1192214979" ralateuid="1776428432"></wb:comments>
+      </div>
+      <div id="copyright">
+        <p>&copy; 2012-2013 张泽鹏 &lt;redraiment@gmail.com&gt; - 子清行 - zzp.me</p>
+      </div>
+    </div>
+  </body>
+</html>
