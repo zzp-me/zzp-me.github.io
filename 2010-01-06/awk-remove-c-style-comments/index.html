@@ -72,16 +72,16 @@
 <span class="cp">#include &lt;stdio.h&gt;</span>
 <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
-<span class="c1">// not show/</span>
-<span class="n">not</span> <span class="n">show</span><span class="o">/</span>
-<span class="n">not</span> <span class="n">show</span>
+<span class="c1">// not show\</span>
+<span class="c1">not show\</span>
+<span class="c1">not show</span>
 <span class="c1">// not show</span>
 <span class="cm">/* not show */</span>
     <span class="kt">int</span> <span class="n">is</span><span class="p">;</span> <span class="c1">// not show</span>
     <span class="kt">int</span><span class="cm">/* not show */</span> <span class="n">ms</span><span class="p">;</span> <span class="cm">/* not show */</span>
-    <span class="kt">double</span> <span class="n">ds</span><span class="p">;</span> <span class="c1">// not show/</span>
-    <span class="n">not</span> <span class="n">show</span><span class="o">/</span>
-    <span class="n">not</span> <span class="n">show</span>
+    <span class="kt">double</span> <span class="n">ds</span><span class="p">;</span> <span class="c1">// not show\</span>
+<span class="c1">    not show\</span>
+<span class="c1">    not show</span>
     <span class="kt">double</span> <span class="n">dm</span><span class="p">;</span> <span class="cm">/* ...</span>
 <span class="cm">    not show</span>
 <span class="cm">    not show */</span> <span class="kt">float</span> <span class="n">fs</span><span class="p">;</span> <span class="cm">/**</span>
@@ -95,7 +95,7 @@
     <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>其中灰色部分就是注释，经过处理后需要将它们全部移除或用替换成空字符。论坛原帖中没有处理以“/”结尾的单行注释，也没处理注释关键字出现在字符串中的情况。</p>
+<p>其中灰色部分就是注释，经过处理后需要将它们全部移除或用替换成空字符。论坛原帖中没有处理以“\”结尾的单行注释，也没处理注释关键字出现在字符串中的情况。</p>
 
 <h1>工具的选择</h1>
 
@@ -118,48 +118,41 @@
 <h1>我的解决方案</h1>
 <div class="highlight"><pre><code class="awk language-awk" data-lang="awk"><span class="c1"># filename: strip_c_comment.awk</span>
 <span class="c1"># issue: awk -f scrip_c_comment.awk test.c</span>
-<span class="nx">BEGIN</span> <span class="p">{</span>
-  <span class="nb">FS</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
-<span class="p">}</span>
+<span class="c1">#!/bin/awk -f</span>
 
-<span class="o">!</span><span class="p">(</span><span class="nx">ignore_line</span> <span class="o">&amp;&amp;</span> <span class="o">$</span><span class="nb">NF</span> <span class="o">==</span> <span class="s2">&quot;//&quot;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">ignore_line</span><span class="o">--</span> <span class="p">{</span>
-  <span class="nx">ignore_line</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-
-  <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nb">NF</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="nx">ignore_block</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="o">$</span><span class="nx">i</span> <span class="o">$</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;*/&quot;</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">ignore_block</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="nx">i</span><span class="o">++</span> <span class="c1"># remove &#39;*&#39;</span>
-      <span class="p">}</span>
-      <span class="k">continue</span>
+<span class="nx">BEGIN</span> <span class="p">{</span> <span class="nb">FS</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="p">}</span>
+<span class="o">!</span><span class="p">(</span><span class="nx">ignore_line</span> <span class="o">&amp;&amp;</span> <span class="o">$</span><span class="nb">NF</span> <span class="o">==</span> <span class="s2">&quot;\\&quot;</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="nx">ignore_line</span><span class="o">--</span> <span class="p">{</span>
+    <span class="nx">ignore_line</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;=</span> <span class="nb">NF</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">ignore</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">$</span><span class="nx">i</span> <span class="o">$</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;*/&quot;</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">ignore</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="nx">i</span><span class="o">++</span> <span class="c1"># remove &#39;*&#39;</span>
+            <span class="p">}</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!in</span><span class="nx">str</span> <span class="o">&amp;&amp;</span> <span class="o">$</span><span class="nx">i</span> <span class="o">$</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;/*&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">ignore</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="nx">i</span><span class="o">++</span> <span class="c1"># remove &#39;/&#39;</span>
+            <span class="k">continue</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!in</span><span class="nx">str</span> <span class="o">&amp;&amp;</span> <span class="o">$</span><span class="nx">i</span> <span class="o">$</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;//&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">ignore_line</span> <span class="o">=</span> <span class="p">(</span><span class="o">$</span><span class="nb">NF</span> <span class="o">==</span> <span class="s2">&quot;\\&quot;</span><span class="p">)</span><span class="err">?</span> <span class="mi">1</span><span class="err">:</span> <span class="mi">0</span>
+            <span class="k">break</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">$</span><span class="nx">i</span> <span class="o">==</span> <span class="s2">&quot;\&quot;&quot;</span><span class="p">)</span> <span class="p">{</span>
+            <span class="o">in</span><span class="nx">str</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="o">in</span><span class="nx">str</span>
+        <span class="p">}</span>
+        <span class="kr">printf</span><span class="p">(</span><span class="o">$</span><span class="nx">i</span><span class="p">)</span>
     <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="o">!in</span><span class="nx">str</span> <span class="o">&amp;&amp;</span> <span class="o">$</span><span class="nx">i</span> <span class="o">$</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;/*&quot;</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">ignore_block</span> <span class="o">=</span> <span class="mi">1</span>
-      <span class="nx">i</span><span class="o">++</span> <span class="c1"># remove &#39;/&#39;</span>
-      <span class="k">continue</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="o">!in</span><span class="nx">str</span> <span class="o">&amp;&amp;</span> <span class="o">$</span><span class="nx">i</span> <span class="o">$</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;//&quot;</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">ignore_line</span> <span class="o">=</span> <span class="p">(</span><span class="o">$</span><span class="nb">NF</span> <span class="o">==</span> <span class="s2">&quot;//&quot;</span><span class="p">)</span><span class="err">?</span> <span class="mi">1</span><span class="err">:</span> <span class="mi">0</span>
-      <span class="k">break</span>
-    <span class="p">}</span>
-
-    <span class="k">if</span> <span class="p">(</span><span class="o">$</span><span class="nx">i</span> <span class="o">==</span> <span class="s2">&quot;/&quot;&quot;) {</span>
-<span class="s2">      instr = 1 - instr</span>
-<span class="s2">    }</span>
-
-<span class="s2">    printf($i)</span>
-<span class="s2">  }</span>
-
-<span class="s2">  printf(&quot;</span><span class="o">/</span><span class="nx">n</span><span class="err">&quot;</span><span class="p">)</span>
+    <span class="kr">printf</span><span class="p">(</span><span class="s2">&quot;\n&quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>在开始时将 FS 设为空字符串，使得输入记录的每个字符都成为一个独立的字段。代码中的三个布尔变量分别代表：</p>
 
 <dl>
   <dt>ignore_line</dt>
-  <dd>如果上一行是以“/”结尾的单行注释则为“True”；</dd>
+  <dd>如果上一行是以“\”结尾的单行注释则为“True”；</dd>
   <dt>ignore_block</dt>
   <dd>如果当前字符在块注释中则为“True”；</dd>
   <dt>instr</dt>
@@ -173,11 +166,17 @@
 <span class="cp">#include &lt;stdio.h&gt;</span>
 <span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
 <span class="p">{</span>
+
+
+
     <span class="kt">int</span> <span class="n">is</span><span class="p">;</span> 
     <span class="kt">int</span> <span class="n">ms</span><span class="p">;</span> 
     <span class="kt">double</span> <span class="n">ds</span><span class="p">;</span> 
     <span class="kt">double</span> <span class="n">dm</span><span class="p">;</span> 
+
  <span class="kt">float</span> <span class="n">fs</span><span class="p">;</span> 
+
+
     <span class="kt">float</span> <span class="n">fm</span><span class="p">;</span>
     <span class="kt">char</span> <span class="n">cs</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;aaa // /***/&quot;</span><span class="p">;</span>
     <span class="kt">char</span> <span class="n">cm1</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&quot;hello*/&quot;</span><span class="p">;</span>
@@ -188,6 +187,12 @@
 </code></pre></div>
 </div>
 <div id="log">
+  
+  <div class="record">
+    <a href="mailto:redraiment+zzp.me@gmail.com">zzp-me</a>：
+    <span class="message">感谢UltimateSniper指出笔误，CSDN居然自动把所有\换成了/</span>
+    <label class="timestamp">[2013-12-27 14:31:56]</label>
+  </div>
   
   <div class="record">
     <a href="mailto:redraiment@gmail.com">redraiment</a>：
