@@ -4,7 +4,7 @@
   <title>子清行</title>
   <link href="http://zzp.me/"/>
   <link type="application/atom+xml" rel="self" href="http://zzp.me/atom.xml"/>
-  <updated>2013-12-28T18:37:43+08:00</updated>
+  <updated>2014-01-12T14:20:28+08:00</updated>
   <id>http://zzp.me/</id>
   <author>
     <name>张泽鹏</name>
@@ -2340,6 +2340,28 @@ sys     0m0.004s
 3 end @ Fri Sep 21 2012 19:17:01 GMT+0800 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;CST&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;下表中A1表示第一次请求中的代码块A，其他以此类推。假定代码块A、B、D都是瞬间完成，只有C耗时5秒。从表中可知，第三次请求是在第15钟才开始被处理。根据测试脚本的输出可知，第三次请求其实在第7秒就已经发出了，但由于是那时队列中还有C1、C2在处理，因此等待了8秒钟！假设队列的平均长度是100，那每个请求平均的等待时间就是 (100 / 4 - 1) * (A+B+C+D)，即要等前面24个请求处理完。这还仅仅是请求得到回馈的时间，该请求对应回调函数被执行的时间还要更久。&lt;/p&gt;
+
+&lt;table&gt;
+&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;当前时间&lt;/td&gt;
+&lt;td&gt;当前队列&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;0&lt;/td&gt;
+&lt;td&gt;A1 B1 D1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;A2 B2 D1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;C1&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;C1 C2&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;C1 C2 A3 B3 D3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;C2 A3 B3 D3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;15&lt;/td&gt;
+&lt;td&gt;A3 B3 D3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;20&lt;/td&gt;
+&lt;td&gt;C3&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;25&lt;/td&gt;
+&lt;td&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 
 &lt;h1&gt;适用场景&lt;/h1&gt;
 
